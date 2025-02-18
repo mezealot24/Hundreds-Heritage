@@ -1,21 +1,182 @@
+/* Extended global CSS for Hundreds Heritage Tea Theme */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Import fonts - serif for brand names, sans-serif for body */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 18 38% 17%;
+    --foreground: 36 30% 90%;
+
+    --card: 30 25% 15%;
+    --card-foreground: 36 30% 90%;
+
+    --popover: 30 25% 15%;
+    --popover-foreground: 36 30% 90%;
+
+    /* Darker golden brown  */
+    --primary: 36 30% 40%;
+    --primary-foreground: 36 30% 95%;
+
+    --secondary: 30 15% 20%;
+    --secondary-foreground: 36 30% 90%;
+
+    --muted: 30 15% 20%;
+    --muted-foreground: 30 15% 60%;
+
+    --accent: 36 20% 25%;
+    --accent-foreground: 36 30% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 15% 25%;
+    --input: 30 15% 25%;
+    --ring: 36 30% 40%;
+
+    /* Dark mode chart colors - deeper, richer tones */
+    --chart-1: 36 40% 35%; /* Deeper gold */
+    --chart-2: 25 35% 25%; /* Deep mahogany */
+    --chart-3: 20 30% 20%; /* Dark coffee */
+    --chart-4: 45 50% 40%; /* Muted gold */
+    --chart-5: 15 40% 30%; /* Dark cinnamon */
+
+    /* Brand specific variables */
+    --tea-container-bg: 25 25% 20%;
+    --tea-label-bg: 45 50% 35%;
+    --tea-text-primary: 45 40% 90%;
+    --tea-text-secondary: 45 30% 70%;
+    --tea-border-accent: 45 40% 40%;
+  }
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, .brand-heading {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.03em;
+  }
+  
+  .tea-product-container {
+    background: hsl(var(--tea-container-bg));
+    border: 1px solid hsl(var(--tea-border-accent) / 0.2);
+  }
+  
+  .tea-label {
+    background: hsl(var(--tea-label-bg));
+    color: hsl(var(--tea-container-bg));
+    font-weight: 600;
+  }
+  
+  .tea-description {
+    color: hsl(var(--tea-text-secondary));
+    line-height: 1.7;
+  }
+  
+  .tea-ingredient-tag {
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--tea-text-primary));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    @apply px-3 py-1 rounded-sm text-xs inline-block mr-2 mb-2;
+  }
+  
+  .tea-benefit-tag {
+    background: hsl(var(--chart-1) / 0.15);
+    color: hsl(var(--tea-text-primary));
+    @apply px-3 py-1 rounded-sm text-xs inline-block mr-2 mb-2;
+  }
+  
+  /* Certification badges styling */
+  .certification-badge {
+    @apply w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mr-3;
+    border: 1px solid hsl(var(--tea-border-accent) / 0.2);
+  }
+  
+  /* Luxury gold accents */
+  .gold-accent {
+    color: hsl(45, 80%, 60%);
+  }
+  
+  .gold-border {
+    border-color: hsl(45, 80%, 60%, 0.3);
+  }
+  
+  /* Product container patterns */
+  .tea-pattern-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-gold {
+    @apply bg-transparent text-primary-foreground border border-primary/30 hover:bg-primary/20 transition-colors duration-200;
+  }
+  
+  .tea-card {
+    @apply overflow-hidden border-none shadow-lg;
+    background: linear-gradient(to bottom right, hsl(var(--tea-container-bg)), hsl(var(--tea-container-bg) / 0.9));
+  }
+  
+  .tea-card-header {
+    @apply p-6 border-b border-primary/10;
+  }
+  
+  .tea-ingredients-list {
+    @apply space-y-2 mt-4;
+  }
+  
+  .tea-ingredients-list-item {
+    @apply flex items-center text-sm text-tea-text-secondary;
+  }
+  
+  .tea-ingredients-list-item::before {
+    content: "•";
+    @apply mr-2 text-tea-border-accent;
+  }
+}
+
+/* Custom animations */
+@keyframes gentle-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gold-shine-text {
+  background: linear-gradient(90deg, hsl(36, 40%, 45%) 0%, hsl(45, 80%, 60%) 50%, hsl(36, 40%, 45%) 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gentle-shine 4s linear infinite;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .tea-card-header {
+    @apply p-4;
+  }
+  
+  .certification-badge {
+    @apply w-10 h-10;
+  }
 }
