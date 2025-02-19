@@ -21,7 +21,7 @@ const navItems = [
 	{ name: "ติดต่อ", href: "/contact" },
 ];
 
-export const Header = () => {
+const Header = () => {
 	const [scrolled, setScrolled] = useState(false);
 
 	useEffect(() => {
@@ -122,3 +122,5 @@ export const Header = () => {
 		</header>
 	);
 };
+
+export default Header;
