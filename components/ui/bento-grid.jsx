@@ -21,10 +21,11 @@ export const BentoGridItem = ({ className, benefit }) => {
 	return (
 		<motion.div
 			className={cn(
-				"row-span-1 rounded-xl overflow-hidden transition-shadow duration-200 shadow-input",
+				"row-span-1 rounded-xl overflow-hidden transition-shadow duration-200 shadow-input group",
 				"dark:shadow-none dark:bg-black dark:border-white/[0.2] bg-accent-foreground border border-transparent",
 				className
 			)}
+			// Animation settings
 			initial={{
 				opacity: 0,
 				...(benefit.id === 1
@@ -35,7 +36,7 @@ export const BentoGridItem = ({ className, benefit }) => {
 					? { y: 50 }
 					: benefit.id === 4
 					? { x: 50 }
-					: { x: 50 }), // Desktop Animation
+					: { x: 50 }),
 			}}
 			whileInView={{
 				opacity: 1,
@@ -46,16 +47,23 @@ export const BentoGridItem = ({ className, benefit }) => {
 			viewport={{ once: true }}
 		>
 			<div className="relative w-full h-full overflow-hidden rounded-xl">
-				<Image
-					src={benefit.image}
-					alt={benefit.title}
-					fill
-					className="object-cover"
-					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-				/>
-
-				{/* Overlay: แสดงเฉพาะ Desktop */}
-				<div className="absolute bottom-0 left-0 right-0 p-4 bg-black/50 text-white lg:block">
+				<motion.div
+					whileHover={{
+						scale: 1.1,
+					}}
+					transition={{ duration: 0.3 }}
+					className="w-full h-full"
+				>
+					<Image
+						src={benefit.image}
+						alt={benefit.title}
+						fill
+						className="object-cover"
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					/>
+				</motion.div>
+				{/* Overlay: Fix hover effect */}
+				<div className="absolute bottom-0 left-0 right-0 p-4 bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
 					<CardTitle className="text-lg md:text-xl lg:text-2xl text-white">
 						{benefit.title}
 					</CardTitle>
