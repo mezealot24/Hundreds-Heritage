@@ -1,4 +1,14 @@
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { CardTitle, CardDescription } from "@/components/ui/card";
+
+const variants = {
+	1: { opacity: 0, x: -50 }, // เลื่อนมาจากซ้าย
+	2: { opacity: 0, y: -50 }, // เลื่อนลงมาจากบน
+	3: { opacity: 0, x: 50 }, // เลื่อนมาจากขวา
+	4: { opacity: 0, y: 50 }, // เลื่อนขึ้นมาจากล่าง
+};
 
 export const BentoGrid = ({ className, children }) => {
 	return (
@@ -13,30 +23,33 @@ export const BentoGrid = ({ className, children }) => {
 	);
 };
 
-export const BentoGridItem = ({
-	className,
-	title,
-	description,
-	header,
-	icon,
-}) => {
+export const BentoGridItem = ({ className, benefit }) => {
 	return (
-		<div
+		<motion.div
 			className={cn(
-				"row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
+				"row-span-1 rounded-xl overflow-hidden transition-shadow duration-200 shadow-input dark:shadow-none dark:bg-black dark:border-white/[0.2] bg-accent-foreground border border-transparent",
 				className
 			)}
+			initial={variants[benefit.id]}
+			whileInView={{ opacity: 1, x: 0, y: 0 }}
+			transition={{ duration: 0.6, delay: benefit.id * 0.2 }}
+			viewport={{ once: true }}
 		>
-			{header}
-			<div className="group-hover/bento:translate-x-2 transition duration-200">
-				{icon}
-				<div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
-					{title}
-				</div>
-				<div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
-					{description}
-				</div>
+			<div className="relative w-full h-full overflow-hidden rounded-xl group">
+				<Image
+					src={benefit.image}
+					alt={benefit.title}
+					fill
+					className="object-cover transition-transform duration-300 group-hover:scale-110"
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+				/>
+				<motion.div className="absolute bottom-0 left-0 right-0 h-[80px] bg-black/60 p-4 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+					<CardTitle className="text-white">{benefit.title}</CardTitle>
+					<CardDescription className="text-gray-200">
+						{benefit.description}
+					</CardDescription>
+				</motion.div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
