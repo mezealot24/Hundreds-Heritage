@@ -55,7 +55,7 @@ export const BentoGridItem = ({ className, benefit }) => {
 				/>
 
 				{/* Overlay: แสดงเฉพาะ Desktop */}
-				<div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-white hidden lg:block">
+				<div className="absolute bottom-0 left-0 right-0 p-4 bg-black/50 text-white lg:block">
 					<CardTitle className="text-lg md:text-xl lg:text-2xl text-white">
 						{benefit.title}
 					</CardTitle>
