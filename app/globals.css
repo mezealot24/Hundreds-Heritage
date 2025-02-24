@@ -181,7 +181,30 @@
   }
 }
 
-/* เพิ่มเติมใน globals.css */
+.radial-gradient-bg {
+  background-image: radial-gradient(
+    circle at center,
+    #746835 0%,    /* น้ำตาลเข้มตรงกลาง */
+    #66331a 20%,
+    #2f1508 40%,
+    #251005 60%,
+    #1b0b03 80%,
+    #110702 100%
+  );
+  position: relative;
+}
+
+.radial-gradient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(164, 137, 87, 0.15) 0%,    /* โทนทองอ่อนๆ */
+    transparent 70%
+  );
+  pointer-events: none;
+}
 
 /* Modern grid background pattern */
 .bg-grid-pattern {
@@ -246,6 +269,7 @@
 /* Image zoom effect container */
 .image-zoom-container {
   overflow: hidden;
+  transform: scale(1.25);
 }
 
 .image-zoom-container img {
@@ -255,3 +279,4 @@
 .image-zoom-container:hover img {
   transform: scale(1.05);
 }
+
