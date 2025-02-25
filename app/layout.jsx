@@ -1,9 +1,10 @@
 // layout.jsx - ปรับปรุงการใช้ Font
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
 const inter = Inter({
 	subsets: ["latin"],
 	variable: "--font-inter",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
 		<html lang="en" className={`${inter.variable} ${playfair.variable}`}>
 			<body className="antialiased min-h-screen flex flex-col">
 				<Header />
-				<main className="flex-grow">{children}</main>
+				<div className="pt-32 md:pt-36 flex-grow">
+					<main>{children}</main>
+				</div>
 				<Footer />
 			</body>
 		</html>
