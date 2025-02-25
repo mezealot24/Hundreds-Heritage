@@ -6,7 +6,7 @@ const AboutSection = () => {
 	return (
 		<section className="relative w-full min-h-screen py-24 overflow-hidden">
 			{/* Pattern Background - ปรับให้เต็มพื้นที่ */}
-			<div className="fixed inset-0 w-full h-full">
+			<div className="fixed inset-0 w-full h-full -z-10">
 				<img
 					src="/pattern.svg"
 					alt="Pattern Background"

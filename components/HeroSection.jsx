@@ -51,7 +51,7 @@ const HeroSection = () => {
 	];
 
 	return (
-		<section className="relative w-full h-[calc(100vh-27vh)] hidden lg:block  radial-gradient-bg ">
+		<section className="relative w-full h-[calc(100vh-27vh)] hidden lg:block  radial-gradient-bg z-50">
 			<div className="container mx-auto h-full relative">
 				{/* Logo */}
 				<motion.div

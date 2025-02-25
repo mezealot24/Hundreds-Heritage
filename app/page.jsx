@@ -10,6 +10,7 @@ const HomePage = () => {
 	return (
 		<div className="w-full mx-auto">
 			<HeroSection />
+
 			<BannerCarousel />
 			<AboutSection />
 			<ProductPreview />
