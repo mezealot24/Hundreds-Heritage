@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -50,16 +51,32 @@ const HeroSection = () => {
 	];
 
 	return (
-		<section className="relative w-full h-screen bg-background overflow-hidden">
+		<section className="relative w-full h-[calc(100vh-27vh)] hidden lg:block  radial-gradient-bg ">
 			<div className="container mx-auto h-full relative">
 				{/* Logo */}
-				<div className="absolute left-1/2 top-24 transform -translate-x-1/2 w-64 z-20">
+				<motion.div
+					className="absolute left-1/2 top-0 w-64 z-20"
+					initial={{
+						opacity: 0,
+						scale: 1.2,
+						x: "-50%", // ใช้ x แทน -translate-x-1/2
+					}}
+					animate={{
+						opacity: 1,
+						scale: 1,
+						x: "-50%",
+					}}
+					transition={{
+						duration: 1.2,
+						ease: "easeOut",
+					}}
+				>
 					<img
 						src="/images/logo_HH.svg"
 						alt="Hundreds Heritage Logo"
 						className="w-full h-auto"
 					/>
-				</div>
+				</motion.div>
 
 				{/* Tea Boxes Container */}
 				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-full max-w-7xl">

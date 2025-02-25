@@ -4,7 +4,7 @@ import "./globals.css";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
+
 const inter = Inter({
 	subsets: ["latin"],
 	variable: "--font-inter",

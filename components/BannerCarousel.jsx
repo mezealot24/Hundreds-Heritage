@@ -33,7 +33,7 @@ const BannerCarousel = () => {
 	}, [api]);
 
 	return (
-		<div className="w-full max-w-[1440px] mt-12 mx-auto px-4">
+		<div className="w-full max-w-[1440px] mt-28 mx-auto px-4">
 			<Card className="border-none">
 				<Carousel
 					setApi={setApi}

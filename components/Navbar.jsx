@@ -106,7 +106,7 @@ const Navbar = () => {
 									>
 										<Link
 											href={item.href}
-											className="text-tea-text-secondary hover:text-primary transition-colors px-2 py-1"
+											className="text-tea-text-secondary font-semibold hover:text-primary transition-colors px-2 py-1"
 										>
 											{item.title}
 										</Link>

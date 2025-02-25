@@ -1,113 +1,136 @@
-// AboutSection.jsx - ปรับปรุงเพื่อเพิ่ม scroll animations
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
 
 const AboutSection = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.1, 0.3], [50, 0]);
-  
-  return (
-    <div ref={ref} className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
-      
-      <div className="max-w-6xl mx-auto w-full pt-24 pb-32 px-4">
-        {/* Main Layout Container */}
-        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-          {/* Left Column - Image with parallax effect */}
-          <motion.div 
-            className="w-full lg:w-1/2 sticky top-24 h-[70vh] lg:h-auto"
-            style={{ scale: imageScale }}
-          >
-            <Card className="overflow-hidden border-0 shadow-lg h-full rounded-lg">
-              <CardContent className="p-0 h-full">
-                <img
-                  src="/images/About1.jpg"
-                  alt="Elegant tea brewing ceremony"
-                  className="w-full h-full object-cover"
-                />
-                {/* Fancy overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
-                <div className="absolute bottom-0 left-0 p-8 text-white">
-                  <h3 className="text-2xl font-medium mb-2 brand-heading">Heritage & Craft</h3>
-                  <div className="w-16 h-1 bg-primary mb-4"></div>
-                  <p className="text-white/80 max-w-xs">
-                    Centuries of tradition meets modern expertise
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+	return (
+		<section className="relative w-full min-h-screen py-24 overflow-hidden">
+			{/* Pattern Background - ปรับให้เต็มพื้นที่ */}
+			<div className="fixed inset-0 w-full h-full">
+				<img
+					src="/pattern.svg"
+					alt="Pattern Background"
+					className="w-full h-full object-cover opacity-20"
+					style={{
+						position: "fixed",
+						top: 0,
+						left: 0,
+						width: "100vw",
+						height: "100vh",
+						objectFit: "cover",
+						zIndex: -1,
+					}}
+				/>
+			</div>
 
-          {/* Right Column - Content with scroll animation */}
-          <div className="w-full lg:w-1/2 space-y-24 py-8">
-            <motion.div 
-              className="space-y-8"
-              style={{ opacity: textOpacity, y: textY }}
-            >
-              <h2 className="text-4xl lg:text-5xl gold-shine-text font-semibold tracking-tight leading-tight">
-                The Art of Premium Tea
-              </h2>
+			{/* Content Container - เพิ่ม glass effect */}
+			<div className="relative z-10 container mx-auto px-4 glass-card rounded-lg py-8">
+				{/* Certificates */}
+				<motion.div
+					className="flex justify-center items-center gap-4 mb-16"
+					initial={{ opacity: 0, y: 50 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.8 }}
+				>
+					{[...Array(5)].map((_, index) => (
+						<motion.div
+							key={index}
+							className={`relative ${
+								index === 2 ? "scale-150 z-10" : "scale-100"
+							}`}
+							initial={{ opacity: 0, scale: 0.8 }}
+							whileInView={{ opacity: 1, scale: index === 2 ? 1.5 : 1 }}
+							viewport={{ once: true }}
+							transition={{ delay: index * 0.2, duration: 0.8 }}
+						>
+							<div
+								className="w-24 h-24 rounded-full bg-primary/20 border border-primary/30 gold-shine-svg"
+								style={{
+									background:
+										"linear-gradient(45deg, rgba(116, 104, 53, 0.2), rgba(164, 137, 87, 0.3))",
+								}}
+							/>
+						</motion.div>
+					))}
+				</motion.div>
 
-              <p className="text-xl lg:text-2xl text-primary leading-relaxed">
-                Our carefully selected teas come from the finest estates around
-                the world. Each leaf is harvested at the perfect moment, ensuring
-                exceptional flavor and aromatic complexity that can only come from
-                generations of expertise.
-              </p>
+				{/* Background Section */}
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.8 }}
+					className="mb-16"
+				>
+					<h2 className="text-4xl font-playfair text-center mb-8">
+						<span className="hover-underline gold-shine-text">Background</span>
+					</h2>
+					<div className="max-w-3xl mx-auto space-y-6 text-lg text-tea-text-secondary">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+							eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</p>
+						<p>
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+							nisi ut aliquip ex ea commodo consequat.
+						</p>
+						<p>
+							Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur.
+						</p>
+					</div>
+				</motion.div>
 
-              <p className="text-lg lg:text-xl text-primary leading-relaxed">
-                Whether you prefer the delicate notes of white tea, the grounded
-                earthiness of pu-erh, or the soothing comfort of chamomile, our
-                collection offers something for every palate and occasion.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              className="space-y-8"
-              style={{ 
-                opacity: useTransform(scrollYProgress, [0.3, 0.5], [0, 1]),
-                y: useTransform(scrollYProgress, [0.3, 0.5], [50, 0])
-              }}
-            >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-medium">Exceptional Quality</h3>
-              </div>
-              
-              <p className="text-lg lg:text-xl text-primary leading-relaxed">
-                We honor traditions that span centuries while embracing modern
-                brewing techniques that bring out the best in every cup. Our tea
-                masters craft each blend with precision and care, creating an
-                experience that transcends the ordinary.
-              </p>
+				{/* Our Story Section */}
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.8 }}
+					className="mb-16"
+				>
+					<h2 className="text-4xl font-playfair text-center mb-8">
+						<span className="hover-underline gold-shine-text">Our Story</span>
+					</h2>
+					<div className="max-w-3xl mx-auto relative">
+						<img
+							src="/images/logo_HH.svg"
+							alt="Hundreds Heritage Logo"
+							className="float-right ml-8 mb-8 w-48 opacity-80"
+						/>
+						<div className="space-y-6 text-lg text-tea-text-secondary">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+								eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+							<p>
+								Ut enim ad minim veniam, quis nostrud exercitation ullamco
+								laboris nisi ut aliquip ex ea commodo consequat.
+							</p>
+							<p>
+								Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur.
+							</p>
+						</div>
+					</div>
+				</motion.div>
 
-              <div className="pt-8">
-                <motion.button 
-                  className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white text-lg rounded-md transition-colors duration-200 shadow-md"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Explore Our Collection
-                </motion.button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+				{/* Quote */}
+				<motion.div
+					initial={{ opacity: 0, scale: 0.95 }}
+					whileInView={{ opacity: 1, scale: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.8 }}
+					className="text-center"
+				>
+					<blockquote className="text-2xl font-playfair gold-shine-text italic">
+						"Every sip tells a story of heritage and tradition"
+					</blockquote>
+				</motion.div>
+			</div>
+		</section>
+	);
 };
 
 export default AboutSection;
