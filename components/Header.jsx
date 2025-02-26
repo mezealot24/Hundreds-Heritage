@@ -55,12 +55,10 @@ const Header = () => {
 				</div>
 
 				{/* Mobile Navbar */}
-				<div className="md:hidden">
-					<MobileNav
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-						isScrolled={isScrolled}
-					/>
+				<div className="md:hidden flex items-center justify-between h-14 mb-0">
+					<div className="flex-1 flex justify-end">
+						<MobileNav />
+					</div>
 				</div>
 			</div>
 		</header>

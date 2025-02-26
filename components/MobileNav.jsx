@@ -1,6 +1,11 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+	Sheet,
+	SheetContent,
+	SheetTrigger,
+	SheetTitle,
+} from "@/components/ui/sheet"; // เพิ่ม SheetTitle
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IconMenuDeep } from "@tabler/icons-react";
@@ -14,12 +19,12 @@ const MobileNav = () => {
 				<IconMenuDeep className="text-[32px] text-accent" />
 			</SheetTrigger>
 			<SheetContent className="flex flex-col">
+				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>{" "}
+				{/* เพิ่มบรรทัดนี้ */}
 				{/* logo */}
 				<div className="mt-32 mb-40 text-center text-2xl">
 					<Link href="/">
-						<h1 className="text-4xl font-semibold">
-							Wiriya<span className="text-accent">.</span>
-						</h1>
+						<h1 className="text-4xl font-semibold">Hundreds Herritage</h1>
 					</Link>
 				</div>
 				{/* nav links */}

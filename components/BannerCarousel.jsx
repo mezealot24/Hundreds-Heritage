@@ -15,7 +15,10 @@ const BannerCarousel = () => {
 	];
 	return (
 		<div className="relative">
-			<ImagesSlider className="h-[50rem] -top-4 z-20" images={bannerImages}>
+			<ImagesSlider
+				className="h-[50rem] top-0 md:-top-4 z-20"
+				images={bannerImages}
+			>
 				<motion.div
 					initial={{
 						opacity: 0,

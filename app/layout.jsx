@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 		<html lang="en" className={`${inter.variable} ${playfair.variable}`}>
 			<body className="antialiased min-h-screen flex flex-col">
 				<Header />
-				<div className="pt-32 md:pt-36 flex-grow">
+				<div className="pt-16 md:pt-36 flex-grow">
 					<main>{children}</main>
 				</div>
 				<Footer />
