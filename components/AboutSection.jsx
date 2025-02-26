@@ -6,11 +6,11 @@ const AboutSection = () => {
 	return (
 		<section className="relative w-full min-h-screen py-24 overflow-hidden">
 			{/* Pattern Background - ปรับให้เต็มพื้นที่ */}
-			<div className="fixed inset-0 w-full h-full -z-10">
+			<div className="fixed inset-0 w-full h-full ">
 				<img
 					src="/pattern.svg"
 					alt="Pattern Background"
-					className="w-full h-full object-cover opacity-20"
+					className="w-full h-full object-cover opacity-20 -z-10"
 					style={{
 						position: "fixed",
 						top: 0,
@@ -18,16 +18,16 @@ const AboutSection = () => {
 						width: "100vw",
 						height: "100vh",
 						objectFit: "cover",
-						zIndex: -1,
+						zIndex: -10,
 					}}
 				/>
 			</div>
 
 			{/* Content Container - เพิ่ม glass effect */}
-			<div className="relative z-10 container mx-auto px-4 glass-card rounded-lg py-8">
+			<div className="relative z-10 px-4 py-8 glass-card rounded-lg ">
 				{/* Certificates */}
 				<motion.div
-					className="flex justify-center items-center gap-4 mb-16"
+					className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-16"
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
@@ -64,7 +64,7 @@ const AboutSection = () => {
 					className="mb-16"
 				>
 					<h2 className="text-4xl font-playfair text-center mb-8">
-						<span className="hover-underline gold-shine-text">Background</span>
+						<span className="font-semibold gold-shine-text">Background</span>
 					</h2>
 					<div className="max-w-3xl mx-auto space-y-6 text-lg text-tea-text-secondary">
 						<p>
@@ -90,14 +90,11 @@ const AboutSection = () => {
 					transition={{ duration: 0.8 }}
 					className="mb-16"
 				>
-					<h2 className="text-4xl font-playfair text-center mb-8">
-						<span className="hover-underline gold-shine-text">Our Story</span>
-					</h2>
 					<div className="max-w-3xl mx-auto relative">
 						<img
 							src="/images/logo_HH.svg"
 							alt="Hundreds Heritage Logo"
-							className="float-right ml-8 mb-8 w-48 opacity-80"
+							className="float-left mr-8 mb-8 w-48 opacity-80"
 						/>
 						<div className="space-y-6 text-lg text-tea-text-secondary">
 							<p>
