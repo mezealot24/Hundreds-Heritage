@@ -5,25 +5,7 @@ import AutoUnderline from "@/components/ui/AutoUnderline";
 
 const AboutSection = () => {
 	return (
-		<section className="relative w-full min-h-screen py-12 md:py-24 overflow-hidden">
-			{/* Pattern Background - ปรับให้เต็มพื้นที่ */}
-			<div className="fixed inset-0 w-full h-full">
-				<img
-					src="/pattern.svg"
-					alt="Pattern Background"
-					className="w-full h-full object-cover opacity-20 -z-10"
-					style={{
-						position: "fixed",
-						top: 0,
-						left: 0,
-						width: "100vw",
-						height: "100vh",
-						objectFit: "cover",
-						zIndex: -10,
-					}}
-				/>
-			</div>
-
+		<section className="relative w-full min-h-screen py-8 md:py-16 overflow-hidden mt-[-2rem] md:mt-[-4rem]">
 			{/* Content Container - เพิ่ม glass effect */}
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
 				<h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-center mb-8 md:mb-16">
@@ -125,13 +107,15 @@ const AboutSection = () => {
 							to share their remarkable essence with the world, ensuring their
 							timeless value is recognized and celebrated across generations.
 						</p>
-						<div className="max-w-3xl mx-auto relative pt-4">
-							<img
-								src="/images/logo_HH.svg"
-								alt="Hundreds Heritage Logo"
-								className="float-left mr-4 sm:mr-8 mb-6 sm:mb-12 w-32 sm:w-48 opacity-80"
-							/>
-							<div className="space-y-4 md:space-y-6">
+						<div className="max-w-3xl mx-auto relative pt-4 grid grid-cols-1 sm:grid-cols-4 gap-4">
+							<div className="sm:col-span-1">
+								<img
+									src="/images/logo_HH.svg"
+									alt="Hundreds Heritage Logo"
+									className="w-32 sm:w-48 opacity-80 mx-auto sm:mx-0"
+								/>
+							</div>
+							<div className="sm:col-span-3 space-y-4">
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 									Hundreds Heritage is a tribute to well-being, authenticity,
 									and inspiration. Our emblem, the peacock, symbolizes grace,

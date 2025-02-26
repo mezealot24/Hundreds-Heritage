@@ -1,4 +1,3 @@
-// layout.jsx - ปรับปรุงการใช้ Font
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -25,10 +24,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-			<body className="antialiased min-h-screen flex flex-col">
+			<body className="antialiased min-h-screen flex flex-col overflow-x-hidden">
 				<Header />
-				<div className="pt-16 md:pt-36 flex-grow">
-					<main>{children}</main>
+				<div className="pt-16 md:pt-28 flex-grow w-full">
+					<main className="w-full">{children}</main>
 				</div>
 				<Footer />
 			</body>

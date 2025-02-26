@@ -19,8 +19,7 @@ const MobileNav = () => {
 				<IconMenuDeep className="text-[32px] text-accent" />
 			</SheetTrigger>
 			<SheetContent className="flex flex-col">
-				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>{" "}
-				{/* เพิ่มบรรทัดนี้ */}
+				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 				{/* logo */}
 				<div className="mt-32 mb-40 text-center text-2xl">
 					<Link href="/">
@@ -34,7 +33,7 @@ const MobileNav = () => {
 							key={index}
 							href={link.href}
 							className={`${
-								pathname === link.href ? "text-accent" : "text-white"
+								pathname === link.href ? "text-accent" : "text-secondary"
 							} text-2xl capitalize`}
 						>
 							{link.title}

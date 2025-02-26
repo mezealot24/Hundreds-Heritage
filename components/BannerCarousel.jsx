@@ -14,11 +14,11 @@ const BannerCarousel = () => {
 		{ src: "/images/banner-6.jpg", alt: "Banner 6" },
 	];
 	return (
-		<div className="relative">
+		<div className="relative md:mt-[-36px] mt-[-16px]">
 			<ImagesSlider
-				className="md:h-[50rem] h-[30rem] top-0 md:-top-4 z-20"
+				className="md:h-[50rem] h-[30rem] z-20"
 				images={bannerImages}
-				mobileAspectRatio="3/4" // ปรับสัดส่วนภาพสำหรับมือถือ (คุณสามารถเปลี่ยนเป็น "16/9", "1/1" หรือค่าอื่นๆ ตามต้องการ)
+				mobileAspectRatio="3/4"
 			>
 				<motion.div
 					initial={{
