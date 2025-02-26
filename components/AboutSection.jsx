@@ -5,9 +5,9 @@ import AutoUnderline from "@/components/ui/AutoUnderline";
 
 const AboutSection = () => {
 	return (
-		<section className="relative w-full min-h-screen py-24 overflow-hidden">
+		<section className="relative w-full min-h-screen py-12 md:py-24 overflow-hidden">
 			{/* Pattern Background - ปรับให้เต็มพื้นที่ */}
-			<div className="fixed inset-0 w-full h-full ">
+			<div className="fixed inset-0 w-full h-full">
 				<img
 					src="/pattern.svg"
 					alt="Pattern Background"
@@ -25,15 +25,15 @@ const AboutSection = () => {
 			</div>
 
 			{/* Content Container - เพิ่ม glass effect */}
-			<div className="relative z-10 px-4 py-8 glass-card rounded-lg ">
-				<h2 className="text-4xl font-playfair text-center mb-16">
+			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-center mb-8 md:mb-16">
 					<AutoUnderline as="span" className="font-semibold gold-shine-text">
 						Savor the Essence of Siames Wisdom
 					</AutoUnderline>
 				</h2>
 
 				{/* Certificates for Large Screens */}
-				<div className="hidden md:flex justify-center items-center gap-8 mb-16 ">
+				<div className="hidden md:flex justify-center items-center gap-8 mb-16">
 					{[...Array(5)].map((_, index) => (
 						<div
 							key={index}
@@ -53,7 +53,7 @@ const AboutSection = () => {
 				</div>
 
 				{/* Certificates for Mobile Screens */}
-				<div className="flex md:hidden justify-center items-center gap-4 mb-16">
+				<div className="flex md:hidden justify-center items-center gap-4 mb-10">
 					{[...Array(5)].map((_, index) => (
 						<div
 							key={index}
@@ -78,10 +78,10 @@ const AboutSection = () => {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.8 }}
-					className="mb-16"
+					className="mb-10 md:mb-16"
 				>
-					<div className="container max-w-3xl mx-auto space-y-6 text-lg text-tea-text-secondary">
-						<h2 className="container mx-auto text-4xl font-playfair text-start mb-8">
+					<div className="container px-4 max-w-3xl mx-auto space-y-4 md:space-y-6">
+						<h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-start mb-4 md:mb-8">
 							<AutoUnderline
 								as="span"
 								className="font-semibold gold-shine-text"
@@ -89,7 +89,7 @@ const AboutSection = () => {
 								Background
 							</AutoUnderline>
 						</h2>
-						<p>
+						<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 							Hundreds Heritage is inspired by a passion to share Thailand's
 							rich cultural heritage of tea drinking—a tradition deeply rooted
 							in centuries of wisdom and natural abundance. For hundreds of
@@ -102,7 +102,7 @@ const AboutSection = () => {
 							dishes like Tom Yum transform food into both nourishment and a
 							natural remedy.
 						</p>
-						<p>
+						<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 							One of Thailand's most significant milestones in tea cultivation
 							dates back to the reign of His Majesty King Bhumibol Adulyadej
 							(Rama IX). Recognizing the potential of tea as a sustainable
@@ -116,7 +116,7 @@ const AboutSection = () => {
 							that the art of tea-making remains in harmony with the
 							environment.
 						</p>
-						<p>
+						<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 							Hundreds Heritage holds deep gratitude for this royal benevolence
 							and is devoted to uplifting highland communities and organic
 							farmers. With a profound respect for Thailand's rich traditions,
@@ -125,14 +125,14 @@ const AboutSection = () => {
 							to share their remarkable essence with the world, ensuring their
 							timeless value is recognized and celebrated across generations.
 						</p>
-						<div className="max-w-3xl mx-auto relative pt-4 ">
+						<div className="max-w-3xl mx-auto relative pt-4">
 							<img
 								src="/images/logo_HH.svg"
 								alt="Hundreds Heritage Logo"
-								className=" float-left mr-8 mb-12 w-48 opacity-80 "
+								className="float-left mr-4 sm:mr-8 mb-6 sm:mb-12 w-32 sm:w-48 opacity-80"
 							/>
-							<div className="space-y-6 text-lg text-tea-text-secondary">
-								<p>
+							<div className="space-y-4 md:space-y-6">
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 									Hundreds Heritage is a tribute to well-being, authenticity,
 									and inspiration. Our emblem, the peacock, symbolizes grace,
 									wisdom, prosperity, auspiciousness, and longevity—values we
@@ -151,9 +151,9 @@ const AboutSection = () => {
 					whileInView={{ opacity: 1, scale: 1 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.8 }}
-					className="text-center"
+					className="text-center px-4"
 				>
-					<blockquote className="text-2xl font-playfair gold-shine-text italic">
+					<blockquote className="text-xl sm:text-2xl font-playfair gold-shine-text italic">
 						<p delay={0.4}>
 							Every sip of Hundreds Heritage is a voyage—one that honors the
 							past, embraces the present, and enriches the future.

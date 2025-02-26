@@ -10,6 +10,7 @@ export const ImagesSlider = ({
 	overlayClassName,
 	className,
 	autoplay = true,
+	mobileAspectRatio = "4/3", // เพิ่มตัวเลือกสำหรับอัตราส่วนภาพบนมือถือ
 }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [loading, setLoading] = useState(false);
@@ -142,10 +143,32 @@ export const ImagesSlider = ({
 						animate="visible"
 						exit="exit"
 						variants={fadeZoomVariants}
-						className="image h-full w-full absolute inset-0 object-cover object-center z-10"
+						className={cn(
+							"image h-full w-full absolute inset-0 object-cover z-10",
+							// ปรับตำแหน่งและสัดส่วนของรูปภาพตามขนาดหน้าจอ
+							"md:object-center", // บนจอขนาดกลางและใหญ่ใช้ object-center
+							"object-center" // ค่าเริ่มต้นสำหรับมือถือ
+							// สามารถปรับเพิ่มเติมตามต้องการได้
+						)}
+						style={{
+							// ปรับอัตราส่วนของรูปภาพเฉพาะบนอุปกรณ์มือถือ
+							"--mobile-aspect-ratio": mobileAspectRatio,
+						}}
 					/>
 				</AnimatePresence>
 			)}
+
+			{/* เพิ่ม CSS สำหรับควบคุมอัตราส่วนของรูปภาพบนมือถือ */}
+			<style jsx global>{`
+				@media (max-width: 768px) {
+					.image {
+						aspect-ratio: var(--mobile-aspect-ratio, 4/3);
+						height: auto !important;
+						max-height: 100%;
+						width: 100%;
+					}
+				}
+			`}</style>
 		</div>
 	);
 };

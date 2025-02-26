@@ -16,8 +16,9 @@ const BannerCarousel = () => {
 	return (
 		<div className="relative">
 			<ImagesSlider
-				className="h-[50rem] top-0 md:-top-4 z-20"
+				className="md:h-[50rem] h-[30rem] top-0 md:-top-4 z-20"
 				images={bannerImages}
+				mobileAspectRatio="3/4" // ปรับสัดส่วนภาพสำหรับมือถือ (คุณสามารถเปลี่ยนเป็น "16/9", "1/1" หรือค่าอื่นๆ ตามต้องการ)
 			>
 				<motion.div
 					initial={{
@@ -31,7 +32,7 @@ const BannerCarousel = () => {
 					transition={{
 						duration: 0.6,
 					}}
-					className="z-50 flex flex-col justify-center items-center"
+					className="z-50 flex flex-col justify-center items-center px-4" // เพิ่ม padding ด้านข้างเพื่อให้ข้อความไม่ชิดขอบจอบนมือถือ
 				>
 					<motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 ">
 						The Art of Waiting <br />
