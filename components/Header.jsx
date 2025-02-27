@@ -7,7 +7,6 @@ import { SocialIcons } from "./Header/SocialIcons";
 import MobileNav from "./MobileNav";
 
 const Header = () => {
-	const [isOpen, setIsOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
 
 	useEffect(() => {
