@@ -2,9 +2,9 @@
 import React from "react";
 import AboutSection from "@/components/AboutSection";
 import ProductPreview from "@/components/ProductPreview";
-import TestimonialSection from "@/components/TestimonialSection";
 import BannerCarousel from "@/components/BannerCarousel";
 import OurStorySection from "@/components/OurstorySection";
+import ContactUs from "@/components/Contact";
 
 const HomePage = () => {
 	return (
@@ -13,7 +13,7 @@ const HomePage = () => {
 			<AboutSection />
 			<OurStorySection />
 			<ProductPreview />
-			<TestimonialSection />
+			<ContactUs />
 		</div>
 	);
 };

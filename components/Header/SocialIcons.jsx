@@ -7,9 +7,15 @@ import {
 } from "@tabler/icons-react";
 
 const socialIcons = [
-	{ Icon: IconBrandInstagram, href: "https://instagram.com" },
-	{ Icon: IconBrandFacebook, href: "https://facebook.com" },
-	{ Icon: IconBrandLine, href: "https://line.me" },
+	{
+		Icon: IconBrandInstagram,
+		href: "https://www.instagram.com/hundredsheritage_th?igsh=djNjcjMxczdo&utm_source=qr",
+	},
+	{
+		Icon: IconBrandFacebook,
+		href: "hhttps://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
+	},
+	{ Icon: IconBrandLine, href: "https://lin.ee/Rxte6r9" },
 	{ Icon: IconBrandTiktok, href: "https://tiktok.com" },
 ];
 

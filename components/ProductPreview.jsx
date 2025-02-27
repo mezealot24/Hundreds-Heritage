@@ -1,9 +1,11 @@
-// ProductPreviewSection.js
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ProductCard from "@/components/ui/ProductCard";
 import { teaProducts } from "@/data/teaData";
 import HeaderProduct from "./ui/HeaderProduct";
+
+// Import ProductGrid component which now conditionally renders as a carousel on mobile
+import ProductGrid from "./ui/ProductGrid";
 
 const ProductPreviewSection = () => {
 	const [activeProduct, setActiveProduct] = useState(null);
@@ -32,7 +34,7 @@ const ProductPreviewSection = () => {
 	};
 
 	return (
-		<section className="relative py-24 overflow-hidden radial-gradient-bg">
+		<section className="relative py-16 md:py-24 overflow-hidden radial-gradient-bg">
 			{/* Background Pattern */}
 			<BackgroundPattern />
 
@@ -43,7 +45,7 @@ const ProductPreviewSection = () => {
 					description="Discover the exquisite taste of Thailand's finest teas, crafted with ancient wisdom and modern elegance."
 				/>
 
-				{/* Products Grid */}
+				{/* Products Grid with Mobile Carousel */}
 				<ProductGrid
 					products={teaProducts}
 					handleProductHover={handleProductHover}
@@ -59,7 +61,6 @@ const ProductPreviewSection = () => {
 };
 
 // BackgroundPattern.js
-
 const BackgroundPattern = () => (
 	<>
 		{/* Left Side Pattern */}
@@ -86,37 +87,9 @@ const BackgroundPattern = () => (
 	</>
 );
 
-// ProductGrid Component
-const ProductGrid = ({
-	products,
-	handleProductHover,
-	containerVariants,
-	itemVariants,
-}) => (
-	<motion.div
-		className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-		variants={containerVariants}
-		initial="hidden"
-		whileInView="visible"
-		viewport={{ once: true, margin: "-100px" }}
-	>
-		{products.map((product) => (
-			<motion.div
-				key={product.id}
-				variants={itemVariants}
-				className="relative"
-				onMouseEnter={() => handleProductHover(product.id)}
-				onMouseLeave={() => handleProductHover(null)}
-			>
-				<ProductCard product={product} />
-			</motion.div>
-		))}
-	</motion.div>
-);
-
 // CallToAction Component
 const CallToAction = ({ href, text }) => (
-	<div className="mt-16 text-center">
+	<div className="mt-12 md:mt-16 text-center">
 		<a
 			href={href}
 			className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#746835] to-[#A48957] text-white font-medium hover:from-[#A48957] hover:to-[#746835] transition-all duration-300 shadow-lg hover:shadow-xl"

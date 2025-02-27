@@ -26,7 +26,7 @@ const socialIcons = [
 const Motto = ({ isScrolled }) => {
 	return (
 		<motion.p
-			className={`text-tea-text-secondary font-playfair transition-all duration-300 ${
+			className={`brand-tagline transition-all duration-300 ${
 				isScrolled ? "text-lg" : "text-xl"
 			}`}
 			initial={{ opacity: 0, y: -20 }}

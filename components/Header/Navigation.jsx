@@ -15,7 +15,7 @@ export const Navigation = () => {
 	return (
 		<div className="flex-grow flex justify-center">
 			<div className="h-full flex items-center w-full max-w-[800px]">
-				<div className="flex flex-wrap gap-y-2 justify-center items-center w-full">
+				<div className="flex flex-wrap gap-y-2 justify-center items-center w-full uppercase">
 					{navItems.map((item) => (
 						<motion.div
 							key={item.title}

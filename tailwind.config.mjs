@@ -13,6 +13,10 @@ export default {
 			padding: "1rem",
 		},
 		extend: {
+			fontFamily: {
+				sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+				serif: ["var(--font-playfair)", "Georgia", "serif"],
+			},
 			colors: {
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
