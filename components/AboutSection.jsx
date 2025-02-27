@@ -5,13 +5,13 @@ import AutoUnderline from "@/components/ui/AutoUnderline";
 
 const AboutSection = () => {
 	return (
-		<section className="relative w-full min-h-screen py-8 md:py-16 overflow-hidden mt-[-2rem] md:mt-[-4rem]">
+		<section className="relative w-full min-h-screen py-8 md:py-16 overflow-hidden lg:top-14 mt-[-2rem] md:mt-[-4rem]">
 			{/* Content Container - เพิ่ม glass effect */}
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
 				<h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-center mb-8 md:mb-16">
-					<AutoUnderline as="span" className="font-semibold gold-shine-text">
+					<span className="font-semibold gold-shine-text">
 						Savor the Essence of Siames Wisdom
-					</AutoUnderline>
+					</span>
 				</h2>
 
 				{/* Certificates for Large Screens */}

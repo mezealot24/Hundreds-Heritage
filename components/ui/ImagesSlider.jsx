@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 export const ImagesSlider = ({
 	images,
@@ -10,11 +11,13 @@ export const ImagesSlider = ({
 	overlayClassName,
 	className,
 	autoplay = true,
-	mobileAspectRatio = "4/3", // เพิ่มตัวเลือกสำหรับอัตราส่วนภาพบนมือถือ
+	mobileAspectRatio = "4/3",
+	onImagesLoaded,
 }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [loadedImages, setLoadedImages] = useState([]);
+	const [loadProgress, setLoadProgress] = useState(0);
 
 	const handleNext = () => {
 		setCurrentIndex((prevIndex) =>
@@ -28,32 +31,22 @@ export const ImagesSlider = ({
 		);
 	};
 
+	// Process images on component mount
 	useEffect(() => {
-		loadImages();
-	}, []);
+		// Since we're using Next.js Image, we don't need to manually preload
+		// but we'll still keep track of images for our slider
+		setLoadedImages(images);
 
-	const loadImages = () => {
-		setLoading(true);
-		const loadPromises = images.map((image) => {
-			// Check if image is an object with src property or a direct string URL
-			const imageUrl =
-				typeof image === "object" && image.src ? image.src : image;
+		// Set a short timeout to simulate loading and ensure UI is rendered
+		const timer = setTimeout(() => {
+			setLoading(false);
+			if (typeof onImagesLoaded === "function") {
+				onImagesLoaded(images);
+			}
+		}, 500);
 
-			return new Promise((resolve, reject) => {
-				const img = new Image();
-				img.src = imageUrl;
-				img.onload = () => resolve(image); // Resolve with original image (object or string)
-				img.onerror = reject;
-			});
-		});
-
-		Promise.all(loadPromises)
-			.then((loadedImages) => {
-				setLoadedImages(loadedImages);
-				setLoading(false);
-			})
-			.catch((error) => console.error("Failed to load images", error));
-	};
+		return () => clearTimeout(timer);
+	}, [images, onImagesLoaded]);
 
 	useEffect(() => {
 		const handleKeyDown = (event) => {
@@ -68,7 +61,7 @@ export const ImagesSlider = ({
 
 		// autoplay
 		let interval;
-		if (autoplay) {
+		if (autoplay && !loading) {
 			interval = setInterval(() => {
 				handleNext();
 			}, 5000);
@@ -78,9 +71,9 @@ export const ImagesSlider = ({
 			window.removeEventListener("keydown", handleKeyDown);
 			clearInterval(interval);
 		};
-	}, []);
+	}, [loading]);
 
-	// New animation variants for fade in/out with zoom
+	// Animation variants for fade in/out with zoom
 	const fadeZoomVariants = {
 		initial: {
 			opacity: 0,
@@ -88,7 +81,7 @@ export const ImagesSlider = ({
 		},
 		visible: {
 			opacity: 1,
-			scale: 1.05, // Subtle zoom effect
+			scale: 1.05,
 			transition: {
 				opacity: { duration: 2, ease: "easeInOut" },
 				scale: { duration: 5, ease: "linear" },
@@ -102,23 +95,39 @@ export const ImagesSlider = ({
 		},
 	};
 
-	const areImagesLoaded = loadedImages.length > 0;
+	const areImagesLoaded = loadedImages.length > 0 && !loading;
 
-	// Get current image URL regardless of whether it's an object or string
-	const getCurrentImageUrl = () => {
+	// Get current image data
+	const getCurrentImage = () => {
 		const currentImage = loadedImages[currentIndex];
-		return typeof currentImage === "object" && currentImage.src
-			? currentImage.src
-			: currentImage;
+		if (!currentImage) return null;
+
+		return {
+			src:
+				typeof currentImage === "object" && currentImage.src
+					? currentImage.src
+					: currentImage,
+			alt:
+				typeof currentImage === "object" && currentImage.alt
+					? currentImage.alt
+					: "",
+		};
 	};
 
-	// Get alt text if available
-	const getCurrentImageAlt = () => {
-		const currentImage = loadedImages[currentIndex];
-		return typeof currentImage === "object" && currentImage.alt
-			? currentImage.alt
-			: "";
-	};
+	// Loading indicator component
+	const LoadingIndicator = () => (
+		<div className="absolute inset-0 bg-gray-900/80 z-40 flex flex-col items-center justify-center">
+			<div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+				<div
+					className="h-full bg-emerald-500 transition-all duration-300 ease-out"
+					style={{ width: `${loadProgress}%` }}
+				></div>
+			</div>
+			<div className="text-gray-300 mt-4 text-sm">กำลังโหลด...</div>
+		</div>
+	);
+
+	const currentImage = getCurrentImage();
 
 	return (
 		<div
@@ -127,42 +136,51 @@ export const ImagesSlider = ({
 				className
 			)}
 		>
+			{loading && <LoadingIndicator />}
+
 			{areImagesLoaded && children}
+
 			{areImagesLoaded && overlay && (
 				<div
 					className={cn("absolute inset-0 bg-black/60 z-20", overlayClassName)}
 				/>
 			)}
-			{areImagesLoaded && (
+
+			{areImagesLoaded && currentImage && (
 				<AnimatePresence mode="wait">
-					<motion.img
+					<motion.div
 						key={currentIndex}
-						src={getCurrentImageUrl()}
-						alt={getCurrentImageAlt()}
 						initial="initial"
 						animate="visible"
 						exit="exit"
 						variants={fadeZoomVariants}
-						className={cn(
-							"image h-full w-full absolute inset-0 object-cover z-10",
-							// ปรับตำแหน่งและสัดส่วนของรูปภาพตามขนาดหน้าจอ
-							"md:object-center", // บนจอขนาดกลางและใหญ่ใช้ object-center
-							"object-center" // ค่าเริ่มต้นสำหรับมือถือ
-							// สามารถปรับเพิ่มเติมตามต้องการได้
-						)}
-						style={{
-							// ปรับอัตราส่วนของรูปภาพเฉพาะบนอุปกรณ์มือถือ
-							"--mobile-aspect-ratio": mobileAspectRatio,
-						}}
-					/>
+						className="h-full w-full absolute inset-0 z-10"
+					>
+						<Image
+							src={currentImage.src}
+							alt={currentImage.alt}
+							fill
+							priority={currentIndex === 0} // ให้ priority กับรูปแรก
+							sizes="100vw"
+							quality={85}
+							className={cn(
+								"object-cover",
+								"md:object-center",
+								"object-center"
+							)}
+							style={{
+								objectPosition: "center center",
+							}}
+						/>
+					</motion.div>
 				</AnimatePresence>
 			)}
 
-			{/* เพิ่ม CSS สำหรับควบคุมอัตราส่วนของรูปภาพบนมือถือ */}
+			{/* ใช้ CSS module หรือ global styles แทน jsx style */}
 			<style jsx global>{`
 				@media (max-width: 768px) {
-					.image {
-						aspect-ratio: var(--mobile-aspect-ratio, 4/3);
+					.image-container {
+						aspect-ratio: ${mobileAspectRatio};
 						height: auto !important;
 						max-height: 100%;
 						width: 100%;

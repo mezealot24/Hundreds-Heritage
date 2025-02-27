@@ -16,7 +16,7 @@ const MobileNav = () => {
 	return (
 		<Sheet>
 			<SheetTrigger className="flex justify-center items-center">
-				<IconMenuDeep className="text-[32px] text-accent" />
+				<IconMenuDeep className="text-[32px] text-yellow-50" />
 			</SheetTrigger>
 			<SheetContent className="flex flex-col">
 				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>
