@@ -10,10 +10,10 @@ import {
 } from "@tabler/icons-react";
 
 const navItems = [
-	{ title: "Background", href: "/background" },
-	{ title: "Our Story", href: "/our-story" },
-	{ title: "Our Collection", href: "/collection" },
-	{ title: "Contact Us", href: "/contact" },
+	{ title: "Background", href: "#background" },
+	{ title: "Our Story", href: "#our-story" },
+	{ title: "Our Collection", href: "#our-collection" },
+	{ title: "Contact Us", href: "#contact-us" },
 ];
 
 const socialIcons = [
@@ -25,16 +25,16 @@ const socialIcons = [
 
 const Motto = ({ isScrolled }) => {
 	return (
-		<motion.p
-			className={`brand-tagline transition-all duration-300 ${
+		<motion.h2
+			className={`brand-heading transition-all duration-300 ${
 				isScrolled ? "text-lg" : "text-xl"
 			}`}
 			initial={{ opacity: 0, y: -20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
 		>
-			"THE WONDER OF SIAMES WISDOM TEA"
-		</motion.p>
+			"THE WONDER OF SIAMESE WISDOM TEA"
+		</motion.h2>
 	);
 };
 
@@ -50,9 +50,7 @@ const Navbar = () => {
 					<motion.img
 						src="/images/logo_HH.svg"
 						alt="Hundreds Heritage"
-						className={`transition-all duration-300 ${
-							isScrolled ? "h-20" : "h-24"
-						} w-auto gold-shine-svg`}
+						className={`transition-all duration-300 h-24 w-auto gold-shine-svg`}
 						whileHover={{ scale: 1.05 }}
 					/>
 				</Link>
@@ -85,7 +83,7 @@ const Navbar = () => {
 				{/* Bottom Row */}
 				<div className="flex px-4 h-16">
 					{/* Logo */}
-					<Link href="/" className="flex-shrink-0  w-auto">
+					<Link href="/" className="flex-shrink-0 w-auto">
 						<motion.img
 							src="/images/logo_HH.svg"
 							alt="Hundreds Heritage"

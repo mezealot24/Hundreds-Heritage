@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Remove redundant Google Fonts import */
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap'); */
+@font-face {
+  font-family: "Bookman Old Style";
+  src: url("/fonts/bookmanoldstyle.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Bookman Old Style Italic";
+  src: url("/fonts/bookmanoldstyle_italic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Bookman Old Style Bold";
+  src: url("/fonts/bookmanoldstyle_bold.  ttf") format("ttf");
+}
 
 @layer base {
   :root {
-    --background: 18 38% 17%;
-    --foreground: 36 30% 90%;
+    --background: 18, 46%, 16%;
+    --foreground: 36, 30%, 90%;
 
     --card: 30 25% 15%;
     --card-foreground: 36 30% 90%;
@@ -49,6 +61,16 @@
     --tea-text-primary: 45 40% 90%;
     --tea-text-secondary: 45 30% 70%;
     --tea-border-accent: 45 40% 40%;
+
+    .site-section {
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+.section-connector {
+  margin-top: -3rem; /* ใช้เชื่อมต่อ section ให้ไม่มีช่องว่าง */
+}
   }
 
   * {
@@ -56,29 +78,42 @@
   }
 
   body {
-    @apply font-sans text-foreground bg-background;
+    font-family: var(--font-bookman-old-style);    
+  }
+ 
+  h1 {
+    font-family: "Bookman Old Style";
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
   }
 
-  h1, h2, h3, .brand-heading {
-    @apply font-serif tracking-wide; /* ใช้ font-serif ซึ่งจะเชื่อมโยงกับ --font-stix */
-  }
-
-  /* ลบส่วนของ @font-face เดิมที่ไม่จำเป็น */
-  /* @font-face {
-    font-family: "CustomFont";
-    src: url("static/fonts/") format("truetype");
+  h2 {
+    font-family: "Bookman Old Style";   
     font-weight: 400;
-    font-style: normal;
-  } */
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
 
-  /* ลบหรือปรับ .custom-font ถ้าไม่ใช้ */
-  /* .custom-font {
-    font-family: "CustomFont", serif;
-  } */
+  h3 {
+      font-family: "Bookman Old Style";
+      font-weight: 400;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.2;
+  }
 
-  /* เพิ่มการใช้งาน STIX Two Text ผ่านตัวแปร CSS */
-  .font-stix {
-    font-family: var(--font-stix), serif;
+  h4 {
+    font-family: var(--font-bookman-old-style);
+  }
+
+  p {
+    font-family: var(--font-sukhumvit-set);
   }
 }
 
@@ -86,21 +121,18 @@
 @layer components {
   /* Brand name styling - for the "HUNDREDS HERITAGE" text */
   .brand-name {
-    @apply font-serif font-bold tracking-wider text-gold-500 uppercase font-stix; /* ใช้ font-stix */
+    @apply font-bold tracking-wider text-gold-500 uppercase ; /* ใช้  */
   }
 
-  /* Tagline styling - for the "THE WONDER OF SIAMESE WISDOM TEA" text */
-  .brand-tagline {
-    @apply font-serif font-normal tracking-wide text-gold-500 font-stix; /* ใช้ font-stix */
-  }
 
   /* Product name styling - for tea names like "TOM YUM TEA" */
   .product-name {
-    @apply font-sans font-bold tracking-tight;
+    @apply font-bold tracking-tight;
   }
 
   /* Luxury gold accents */
   .gold-accent {
+    font-family: "Bookman Old Style";
     color: hsl(45, 80%, 60%);
   }
 

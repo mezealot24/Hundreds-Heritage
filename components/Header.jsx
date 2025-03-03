@@ -18,20 +18,20 @@ const Header = () => {
 	}, []);
 
 	return (
-		<header
-			className={`fixed w-full z-50 transition-all duration-300 ${
-				isScrolled
-					? "bg-background/95 backdrop-blur-sm shadow-sm"
-					: "bg-background/80"
-			}`}
-		>
-			<div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
-				{/* Desktop Navbar */}
-				<div className="hidden md:block">
+		<>
+			{/* Desktop Header - Hidden on mobile */}
+			<header
+				className={`fixed w-full z-30 transition-all duration-300 hidden md:block ${
+					isScrolled
+						? "bg-background/95 backdrop-blur-sm shadow-sm fixed top-0 left-0 right-0"
+						: "bg-background/50" // Changed from 80 to 50 for more transparency at start
+				}`}
+			>
+				<div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
 					<div className="grid grid-cols-12 gap-4">
 						{/* Logo Column */}
-						<div className="col-span-2 relative">
-							<Logo isScrolled={isScrolled} />
+						<div className="col-span-2 flex items-center justify-end relative">
+							<Logo />
 						</div>
 
 						{/* Center Content */}
@@ -41,26 +41,46 @@ const Header = () => {
 								<Motto isScrolled={isScrolled} />
 							</div>
 							{/* Bottom Row - Navigation */}
-							<div className="flex justify-center items-center h-16">
+							<div
+								className={`flex justify-center items-center h-16 transition-all duration-300 transform ${
+									isScrolled ? "translate-y-[-30px]" : "translate-y-0"
+								}`}
+							>
 								<Navigation />
 							</div>
 						</div>
 
 						{/* Social Icons Column */}
-						<div className="col-span-2 flex items-center justify-end h-16">
+						<div className="col-span-2 flex items-center justify-center h-16 mt-8">
 							<SocialIcons />
 						</div>
 					</div>
 				</div>
+			</header>
 
-				{/* Mobile Navbar */}
-				<div className="md:hidden flex items-center justify-between h-14 mb-0">
-					<div className="flex-1 flex justify-end">
+			{/* Mobile Header - Only visible on mobile */}
+			<header className="fixed top-0 left-0 right-0 h-24 md:hidden z-30 w-full bg-background">
+				<div className="flex items-center justify-between h-24 px-4">
+					{/* Empty div to maintain space balance (Left) */}
+					<div className="w-10 h-10" aria-hidden="true" />
+
+					{/* Centered Mobile Logo */}
+					<div className="absolute left-1/2 transform -translate-x-1/2 z-40">
+						<a href="/">
+							<img
+								src="/images/logo_HH.svg"
+								alt="Hundreds Heritage"
+								className="h-24 w-auto pb-2"
+							/>
+						</a>
+					</div>
+					{/* Mobile Nav (Right) */}
+					<div className="z-50">
 						<MobileNav />
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
+		</>
 	);
 };
 

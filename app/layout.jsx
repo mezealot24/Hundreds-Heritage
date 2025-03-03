@@ -1,61 +1,32 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
 import localFont from "next/font/local";
+import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-// นำเข้า Inter จาก Google Fonts
-const inter = Inter({
-	subsets: ["latin"],
-	variable: "--font-inter",
-	display: "swap",
-});
-
-const stixTwoText = localFont({
+const bookmanOldStyle = localFont({
 	src: [
 		{
-			path: "./fonts/STIXTwoText-Regular.ttf",
+			path: "./fonts/bookmanoldstyle.ttf",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "./fonts/STIXTwoText-Italic.ttf",
+			path: "./fonts/bookmanoldstyle_italic.ttf",
 			weight: "400",
 			style: "italic",
 		},
 		{
-			path: "./fonts/STIXTwoText-Medium.ttf",
-			weight: "500",
-			style: "normal",
-		},
-		{
-			path: "./fonts/STIXTwoText-MediumItalic.ttf",
-			weight: "500",
-			style: "italic",
-		},
-		{
-			path: "./fonts/STIXTwoText-Bold.ttf",
+			path: "./fonts/bookmanoldstyle_bold.ttf",
 			weight: "700",
 			style: "normal",
-		},
-		{
-			path: "./fonts/STIXTwoText-BoldItalic.ttf",
-			weight: "700",
-			style: "italic",
-		},
-		{
-			path: "./fonts/STIXTwoText-SemiBold.ttf",
-			weight: "600",
-			style: "normal",
-		},
-		{
-			path: "./fonts/STIXTwoText-SemiBoldItalic.ttf",
-			weight: "600",
-			style: "italic",
 		},
 	],
-	variable: "--font-stix",
-	display: "swap",
+	variable: "--font-bookman-old-style",
+});
+
+const sukhumvitSet = localFont({
+	src: "./fonts/SukhumvitSet-Regular.woff2",
+	variable: "--font-sukhumvit-set",
 });
 
 export const metadata = {
@@ -66,7 +37,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className={stixTwoText.variable}>
+		<html
+			lang="en"
+			className={`${bookmanOldStyle.variable} ${sukhumvitSet.variable}`}
+		>
 			<body className="antialiased min-h-screen flex flex-col overflow-x-hidden">
 				<Header />
 				<div className="pt-16 md:pt-28 flex-grow w-full">

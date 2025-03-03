@@ -2,34 +2,63 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
+// Define navigation items
 export const navItems = [
-	{ title: "Background", href: "/background" },
-	{ title: "Our Story", href: "/our-story" },
-	{ title: "Our Collection", href: "/collection" },
-	{ title: "Contact Us", href: "/contact" },
+	{ href: "#background", label: "Background" },
+	{ href: "#our-story", label: "Our Story" },
+	{ href: "#our-collection", label: "Our Collection" },
+	{ href: "#contact-us", label: "Contact Us" },
 ];
 
-export const Navigation = () => {
+// Define the component
+export const Navigation = ({ mobile, onClick, className }) => {
 	const [activeItem, setActiveItem] = useState(null);
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		const href = e.currentTarget.getAttribute("href");
+		const target = document.querySelector(href || "");
+
+		if (target) {
+			target.scrollIntoView({ behavior: "smooth" });
+			if (onClick) onClick();
+		}
+	};
 
 	return (
 		<div className="flex-grow flex justify-center">
 			<div className="h-full flex items-center w-full max-w-[800px]">
-				<div className="flex flex-wrap gap-y-2 justify-center items-center w-full uppercase">
-					{navItems.map((item) => (
+				<div
+					className="flex flex-wrap gap-y-2 justify-center items-center w-full uppercase transition-all duration-300 transform"
+					style={
+						mobile
+							? {
+									animationDelay: `${index * 100}ms`,
+									transform: isScrolled ? "translateY(-5vh)" : "translateY(0)",
+							  }
+							: undefined
+					}
+				>
+					{navItems.map((item, index) => (
 						<motion.div
-							key={item.title}
-							onHoverStart={() => setActiveItem(item.title)}
+							key={item.href}
+							onHoverStart={() => setActiveItem(item.label)}
 							onHoverEnd={() => setActiveItem(null)}
 							className="relative px-4 py-1"
+							style={
+								mobile ? { animationDelay: `${index * 100}ms` } : undefined
+							}
 						>
-							<Link
+							<a
 								href={item.href}
-								className="text-tea-text-secondary hover:text-primary transition-colors whitespace-nowrap"
+								onClick={handleClick}
+								className={`text-tea-text-secondary hover:text-primary transition-colors whitespace-nowrap group ${
+									className || ""
+								}`}
 							>
-								{item.title}
-							</Link>
-							{activeItem === item.title && (
+								{item.label}
+							</a>
+							{activeItem === item.label && (
 								<motion.div
 									className="absolute -bottom-1 left-4 right-4 h-0.5 bg-primary"
 									layoutId="navbar-underline"
@@ -45,3 +74,6 @@ export const Navigation = () => {
 		</div>
 	);
 };
+
+// Export default for convenience
+export default Navigation;

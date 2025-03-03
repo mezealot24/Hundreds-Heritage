@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => {
 				{/* Product Info with Enhanced Luxury Elements */}
 				<div className="p-6 pt-4 border-t border-primary/10">
 					<h3
-						className="font-playfair text-xl mb-2 transition-all duration-300 group-hover:tracking-wide"
+						className=" text-xl mb-2 transition-all duration-300 group-hover:tracking-wide"
 						style={{
 							background: `linear-gradient(to right, #dfd6bd, ${product.color}dd)`,
 							WebkitBackgroundClip: "text",

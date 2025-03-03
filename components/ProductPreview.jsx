@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import ProductCard from "@/components/ui/ProductCard";
 import { teaProducts } from "@/data/teaData";
-import HeaderProduct from "./ui/HeaderProduct";
 
 // Import ProductGrid component which now conditionally renders as a carousel on mobile
 import ProductGrid from "./ui/ProductGrid";
@@ -34,16 +32,32 @@ const ProductPreviewSection = () => {
 	};
 
 	return (
-		<section className="relative py-16 md:py-24 overflow-hidden radial-gradient-bg">
+		<section
+			id="our-collection"
+			className="relative py-16 md:py-24 overflow-hidden radial-gradient-bg"
+		>
 			{/* Background Pattern */}
 			<BackgroundPattern />
 
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-1">
 				{/* Section Header */}
-				<HeaderProduct
-					title="Our Collection Blends"
-					description="Discover the exquisite taste of Thailand's finest teas, crafted with ancient wisdom and modern elegance."
-				/>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.7 }}
+					className="text-center mb-16"
+				>
+					<h2 className="text-3xl sm:text-4xl md:text-5xl mb-3">
+						<span className="gold-shine-text font-semibold">
+							Our Collection Blends
+						</span>
+					</h2>
+					<p className="text-lg sm:text-xl italic text-tea-text-secondary mx-auto max-w-2xl">
+						Discover the exquisite taste of Thailand's finest teas, crafted with
+						ancient wisdom and modern elegance.
+					</p>
+				</motion.div>
 
 				{/* Products Grid with Mobile Carousel */}
 				<ProductGrid
@@ -52,9 +66,6 @@ const ProductPreviewSection = () => {
 					containerVariants={containerVariants}
 					itemVariants={itemVariants}
 				/>
-
-				{/* Call to Action */}
-				<CallToAction href="/collections" text="Explore Full Collection" />
 			</div>
 		</section>
 	);

@@ -33,7 +33,7 @@ export const SocialIcons = () => (
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.3, delay: index * 0.1 }}
 			>
-				<Icon size={24} stroke={1.5} />
+				<Icon size={36} stroke={1.5} />
 			</motion.a>
 		))}
 	</div>

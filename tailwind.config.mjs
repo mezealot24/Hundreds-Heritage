@@ -14,8 +14,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-				serif: ["var(--font-playfair)", "Georgia", "serif"],
+				bookmanoldstyle: ["Bookman Old Style", "serif"],
 			},
 			colors: {
 				background: "hsl(var(--background))",
