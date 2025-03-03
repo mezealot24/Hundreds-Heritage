@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { teaProducts } from "@/data/teaData";
 
-// Import ProductGrid component which now conditionally renders as a carousel on mobile
-import ProductGrid from "./ui/ProductGrid";
+// Import FlavorCarousel component directly
+import FlavorCarousel from "./ui/FlavorCarousel";
 
 const ProductPreviewSection = () => {
-	const [activeProduct, setActiveProduct] = useState(null);
-
 	const containerVariants = {
 		hidden: { opacity: 0 },
 		visible: {
@@ -18,14 +16,7 @@ const ProductPreviewSection = () => {
 		},
 	};
 
-	const itemVariants = {
-		hidden: { opacity: 0, y: 20 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: { duration: 0.6 },
-		},
-	};
+	const [activeProduct, setActiveProduct] = useState(null);
 
 	const handleProductHover = (id) => {
 		setActiveProduct(id);
@@ -59,19 +50,26 @@ const ProductPreviewSection = () => {
 					</p>
 				</motion.div>
 
-				{/* Products Grid with Mobile Carousel */}
-				<ProductGrid
-					products={teaProducts}
-					handleProductHover={handleProductHover}
-					containerVariants={containerVariants}
-					itemVariants={itemVariants}
-				/>
+				{/* Replace ProductGrid with FlavorCarousel */}
+				<motion.div
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true }}
+					className="w-full"
+				>
+					<FlavorCarousel
+						products={teaProducts}
+						handleProductHover={handleProductHover}
+						activeProduct={activeProduct}
+					/>
+				</motion.div>
 			</div>
 		</section>
 	);
 };
 
-// BackgroundPattern.js
+// BackgroundPattern.js - Kept as is
 const BackgroundPattern = () => (
 	<>
 		{/* Left Side Pattern */}
@@ -96,18 +94,6 @@ const BackgroundPattern = () => (
 			}}
 		></div>
 	</>
-);
-
-// CallToAction Component
-const CallToAction = ({ href, text }) => (
-	<div className="mt-12 md:mt-16 text-center">
-		<a
-			href={href}
-			className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#746835] to-[#A48957] text-white font-medium hover:from-[#A48957] hover:to-[#746835] transition-all duration-300 shadow-lg hover:shadow-xl"
-		>
-			{text}
-		</a>
-	</div>
 );
 
 export default ProductPreviewSection;

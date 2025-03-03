@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 // สร้าง Skeleton component
 const BannerSkeleton = () => (
-	<div className="relative md:mt-[-36px] mt-[-16px] md:h-[50rem] h-[30rem] lg:top-14 bg-gradient-to-b from-gray-800 to-gray-900 animate-pulse flex flex-col justify-center items-center">
+	<div className="relative h-[30rem] md:h-[40rem] bg-gradient-to-b from-gray-800 to-gray-900 animate-pulse flex flex-col justify-center items-center">
 		<div className="h-16 w-3/4 md:h-20 md:w-2/3 bg-gray-700/50 rounded-lg mb-4"></div>
 		<div className="h-16 w-2/3 md:h-20 md:w-1/2 bg-gray-700/50 rounded-lg mb-8"></div>
 		<div className="h-10 w-40 bg-gray-700/50 rounded-full"></div>
@@ -17,12 +17,12 @@ const BannerCarousel = () => {
 	const [imagesLoaded, setImagesLoaded] = useState(false);
 
 	const bannerImages = [
-		{ src: "/images/banner/banner-1.jpg", alt: "Banner 1" },
-		{ src: "/images/banner/banner-2.jpg", alt: "Banner 2" },
-		{ src: "/images/banner/banner-3.jpg", alt: "Banner 3" },
-		{ src: "/images/banner/banner-4.jpg", alt: "Banner 4" },
-		{ src: "/images/banner/banner-5.jpg", alt: "Banner 5" },
-		{ src: "/images/banner/banner-6.jpg", alt: "Banner 6" },
+		{ src: "/images/banner/banner-1.webp", alt: "Banner 1" },
+		{ src: "/images/banner/banner-2.webp", alt: "Banner 2" },
+		{ src: "/images/banner/banner-3.webp", alt: "Banner 3" },
+		{ src: "/images/banner/banner-4.webp", alt: "Banner 4" },
+		{ src: "/images/banner/banner-5.webp", alt: "Banner 5" },
+		{ src: "/images/banner/banner-6.webp", alt: "Banner 6" },
 	];
 
 	const handleImagesLoaded = () => {
@@ -39,7 +39,7 @@ const BannerCarousel = () => {
 				}`}
 			>
 				<ImagesSlider
-					className="md:h-[60rem] h-[30rem] lg:-top-20 z-20"
+					className="md:h-[50rem] h-[30rem] z-20"
 					images={bannerImages}
 					mobileAspectRatio="3/4"
 					onImagesLoaded={handleImagesLoaded}

@@ -59,7 +59,7 @@ const TextGenerateEffect = ({
 
 const LoadingSkeleton = () => {
 	return (
-		<div className="relative w-full min-h-screen py-8 md:py-16 overflow-hidden lg:top-14 mt-[-2rem] md:mt-[-4rem]">
+		<div className="site-section section-connector relative w-full min-h-screen overflow-hidden lg:top-14">
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
 				{/* Title skeleton */}
 				<div className="text-center mb-16 md:mb-24">
@@ -156,14 +156,14 @@ const AboutSection = () => {
 	return (
 		<section
 			id="background"
-			className="relative w-full min-h-screen py-8 md:py-16 overflow-hidden lg:top-14 mt-[-2rem] md:mt-[-4rem]"
+			className="site-section section-connector relative w-full min-h-screen overflow-hidden"
 		>
 			{/* Content Container - glass effect */}
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
-					className="text-3xl uppercase sm:text-4xl md:text-5xl text-center mb-16 md:mb-24"
+					className="text-3xl uppercase sm:text-4xl md:text-5xl text-center mb-16 md:mt-[3rem]"
 				/>
 
 				{/* Main Content */}

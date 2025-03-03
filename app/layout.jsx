@@ -42,11 +42,11 @@ export default function RootLayout({ children }) {
 			className={`${bookmanOldStyle.variable} ${sukhumvitSet.variable}`}
 		>
 			<body className="antialiased min-h-screen flex flex-col overflow-x-hidden">
-				<Header />
-				<div className="pt-16 md:pt-28 flex-grow w-full">
+				<div className=" flex-grow w-full">
+					<Header />
 					<main className="w-full">{children}</main>
+					<Footer />
 				</div>
-				<Footer />
 			</body>
 		</html>
 	);
