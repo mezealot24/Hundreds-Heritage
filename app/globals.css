@@ -73,6 +73,24 @@
 }
   }
 
+  /* Section Spacing */
+section[id] {
+  scroll-margin-top: 0px; /* Adjust based on your header height */
+}
+
+div[id]{
+  scroll-margin-top: 100px; /* Adjust based on your header height */
+}
+
+/* Section IDs */
+#background,
+#our-story-section,
+#product-preview,
+
+#contact-us {
+  position: relative;
+}
+
   * {
     @apply border-border outline-ring/50;
   }

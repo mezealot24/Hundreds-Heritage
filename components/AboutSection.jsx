@@ -154,10 +154,7 @@ const AboutSection = () => {
 	}
 
 	return (
-		<section
-			id="background"
-			className="site-section section-connector relative w-full min-h-screen overflow-hidden"
-		>
+		<section className="site-section section-connector py-6 px-4 sm:p-6 md:py-10 md:px-8">
 			{/* Content Container - glass effect */}
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
 				{/* Title with Animation */}
@@ -167,7 +164,7 @@ const AboutSection = () => {
 				/>
 
 				{/* Main Content */}
-				<div className="container px-4 max-w-3xl mx-auto">
+				<div id="background" className="container px-4 max-w-7xl mx-auto">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -211,13 +208,8 @@ const AboutSection = () => {
 							</div>
 						</div>
 						{/* H2 Title */}
-						<h2 className="text-3xl sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
-							<AutoUnderline
-								as="span"
-								className="font-semibold gold-shine-text"
-							>
-								Background
-							</AutoUnderline>
+						<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
+							Background
 						</h2>
 
 						{/* Paragraph 1 - Image Left, Content Right */}
@@ -240,20 +232,25 @@ const AboutSection = () => {
 										Cultural Heritage
 									</AutoUnderline>
 								</h2>
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary">
-									Hundreds Heritage is inspired by a passion to share Thailand's
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+									Hundreds Heritage is inspired by a passion to share Thailand’s
 									rich cultural heritage of tea drinking—a tradition deeply
 									rooted in centuries of wisdom and natural abundance. For
 									hundreds of years, tea has been an integral part of Thai
 									culture, with ancient tea trees still thriving in the misty
-									highlands of the north.
+									highlands of the north. Beyond tea leaves, Thai people have
+									long embraced nature’s gifts, crafting herbal infusions from
+									local plants and aromatic ingredients. This tradition of
+									blending herbs for both flavor and wellness is reflected in
+									Thailand’s world-renowned cuisine, where dishes like Tom Yum
+									transform food into both nourishment and a natural remedy.
 								</p>
 							</div>
 						</div>
 
 						{/* Paragraph 2 - Image Right, Content Left */}
 						<div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 mb-12">
-							<div className="md:w-1/3">
+							<div className="md:w-1/3 md:-mt-[12rem]">
 								<Image
 									src="/images/tea-ingredients.jpg"
 									alt="Royal Tea Initiative"
@@ -271,20 +268,33 @@ const AboutSection = () => {
 										Royal Legacy
 									</AutoUnderline>
 								</h2>
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary">
-									One of Thailand's most significant milestones in tea
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+									One of Thailand’s most significant milestones in tea
 									cultivation dates back to the reign of His Majesty King
 									Bhumibol Adulyadej (Rama IX). Recognizing the potential of tea
 									as a sustainable livelihood, His Majesty introduced the first
 									tea plants to highland communities, encouraging them to
 									cultivate tea as an alternative to opium farming and
-									slash-and-burn agriculture.
+									slash-and-burn agriculture. This royal initiative transformed
+									lives, providing generations of farmers with a stable income
+									while preserving the delicate balance of nature. Even today,
+									many of these tea farms continue to honor sustainability by
+									relying on clean hydropower energy, ensuring that the art of
+									tea-making remains in harmony with the environment.
 								</p>
 							</div>
 						</div>
 
 						{/* Paragraph 3 - Full Paragraph */}
 						<div className="mb-12">
+							<h2 className="text-xl sm:text-2xl mb-4">
+								<AutoUnderline
+									as="span"
+									className="font-medium gold-shine-text"
+								>
+									Tradition Empowered
+								</AutoUnderline>
+							</h2>
 							<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 								Hundreds Heritage holds deep gratitude for this royal
 								benevolence and is devoted to uplifting highland communities and
@@ -298,17 +308,18 @@ const AboutSection = () => {
 						</div>
 
 						{/* Paragraph 4 - Left Picture, Right Full Paragraph */}
-						<div className="flex flex-col md:flex-row gap-6 md:gap-10">
-							<div className="md:w-2/4 w-full relative h-auto">
+						<div className="flex flex-col md:flex-row gap-6 md:gap-10 h-auto">
+							<div className="md:w-1/2 w-full flex justify-center items-center h-auto">
 								<Image
 									src="/images/logo_section.png"
 									alt="Hundreds Heritage Logo"
-									fill
-									style={{ objectFit: "cover" }}
+									width={450}
+									height={450}
+									className="object-contain w-full h-auto"
 								/>
 							</div>
-							<div className="md:w-2/4">
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary">
+							<div className="md:w-1/2 w-full flex items-center">
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary leading-relaxed">
 									Hundreds Heritage is a tribute to well-being, authenticity,
 									and inspiration. Our emblem, the peacock, symbolizes grace,
 									wisdom, prosperity, auspiciousness, and longevity—values we
@@ -323,19 +334,27 @@ const AboutSection = () => {
 					</motion.div>
 
 					{/* Quote */}
+					{/* Modern quote display */}
 					<motion.div
 						initial={{ opacity: 0, scale: 0.95 }}
 						whileInView={{ opacity: 1, scale: 1 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.8 }}
-						className="text-center px-4"
+						transition={{ duration: 1 }}
+						className="relative py-10 my-12 bg-[#231c15] rounded-xl px-8"
 					>
-						<blockquote className="text-xl sm:text-2xl gold-shine-text italic">
+						<div className="absolute text-8xl opacity-10 left-4 top-2 font-serif text-primary/30">
+							"
+						</div>
+						<blockquote className="text-xl sm:text-2xl text-center mx-auto max-w-2xl gold-shine-text italic">
 							<p>
 								Every sip of Hundreds Heritage is a voyage—one that honors the
 								past, embraces the present, and enriches the future.
 							</p>
 						</blockquote>
+						<div className="absolute text-8xl opacity-10 right-4 bottom-2 font-serif text-primary/30">
+							"
+						</div>
+						<div className="w-16 h-1 bg-primary/40 mx-auto mt-6"></div>
 					</motion.div>
 				</div>
 			</div>

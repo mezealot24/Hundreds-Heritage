@@ -41,14 +41,14 @@ const MobileNav = () => {
 						<motion.img
 							src="/images/logo_HH.svg"
 							alt="Hundreds Heritage"
-							className="h-[200px] w-auto mx-auto gold-shine-svg"
+							className="h-[300px] w-auto mx-auto gold-shine-svg"
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5 }}
 						/>
 
 						<motion.h2
-							className="text-sm font-semibold gold-shine-text mt-2"
+							className="text-md font-semibold gold-shine-text mt-2"
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5, delay: 0.2 }}
@@ -75,7 +75,7 @@ const MobileNav = () => {
 				</nav>
 				{/* social icons */}
 				<motion.div
-					className="mt-auto mb-8"
+					className="flex justify-center items-center gap-6 mb-8"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5, delay: 0.5 }}

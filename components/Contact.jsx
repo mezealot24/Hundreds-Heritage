@@ -1,11 +1,33 @@
 "use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import emailjs from "@emailjs/browser";
 import Image from "next/image";
+
+import {
+	IconBrandInstagram,
+	IconBrandFacebook,
+	IconBrandLine,
+	IconBrandTiktok,
+} from "@tabler/icons-react";
+
+const socialIcons = [
+	{
+		Icon: IconBrandInstagram,
+		href: "https://www.instagram.com/hundredsheritage_th?igsh=djNjcjMxczdo&utm_source=qr",
+	},
+	{
+		Icon: IconBrandFacebook,
+		href: "https://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
+	},
+	{ Icon: IconBrandLine, href: "https://lin.ee/Rxte6r9" },
+	{
+		Icon: IconBrandTiktok,
+		href: "https://www.tiktok.com/@hundredsheritage?_t=ZS-8uJMm5x0Hua&_r=1",
+	},
+];
 
 const ContactUs = () => {
 	const [formData, setFormData] = useState({
@@ -45,15 +67,15 @@ const ContactUs = () => {
 	};
 
 	return (
-		<div id="contact-us" className="w-full py-16 bg-secondary">
+		<div id="contact-us" className="w-full py-16 bg-background">
 			<section className="rounded-lg shadow-xl mx-auto max-w-5xl">
 				{/* Contact Us heading and text - moved from right column */}
-				<h2 className="text-xl md:text-2xl font-bold text-center mb-4 brand-heading gold-shine-text">
+				<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
 					Contact Us
 				</h2>
 				<div className="flex flex-col md:flex-row">
 					{/* Left Column - Logo and Info */}
-					<div className="p-6 md:p-8 flex flex-col items-center justify-center w-full md:w-2/5 bg-primary/5">
+					<div className="p-6 md:p-8 flex flex-col items-center justify-center w-full md:w-2/5">
 						{/* Logo */}
 						<div className="mb-6 md:mb-8 flex justify-center w-32 md:w-48">
 							<Image
@@ -101,7 +123,7 @@ const ContactUs = () => {
 					</div>
 
 					{/* Right Column - Contact Form */}
-					<div className="p-6 md:p-8 w-full md:w-3/5">
+					<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
 						<p className="text-center mb-6 font-bold text-lg">
 							Thank you for savoring our blend.
 						</p>
@@ -115,7 +137,7 @@ const ContactUs = () => {
 									value={formData.name}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 								/>
 								<Input
 									type="email"
@@ -124,7 +146,7 @@ const ContactUs = () => {
 									value={formData.email}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 								/>
 							</div>
 
@@ -136,7 +158,7 @@ const ContactUs = () => {
 									value={formData.phone}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 								/>
 								<Input
 									type="text"
@@ -145,7 +167,7 @@ const ContactUs = () => {
 									value={formData.subject}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 								/>
 							</div>
 
@@ -197,39 +219,18 @@ const ContactUs = () => {
 						</form>
 
 						{/* Social Icons moved to right column */}
-						<div className="flex justify-center space-x-4 md:space-x-6 mt-6">
-							<a
-								href="https://www.instagram.com/hundredsheritage_th"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
-							>
-								<i className="ti ti-brand-instagram text-xl md:text-2xl"></i>
-							</a>
-							<a
-								href="https://www.facebook.com/share/19QRjTRofu"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
-							>
-								<i className="ti ti-brand-facebook text-xl md:text-2xl"></i>
-							</a>
-							<a
-								href="https://lin.ee/Rxte6r9"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
-							>
-								<i className="ti ti-brand-line text-xl md:text-2xl"></i>
-							</a>
-							<a
-								href="https://tiktok.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
-							>
-								<i className="ti ti-brand-tiktok text-xl md:text-2xl"></i>
-							</a>
+						<div className="flex justify-center space-x-4 md:space-x-6 md:mt-8">
+							{socialIcons.map(({ Icon, href }, index) => (
+								<a
+									key={index}
+									href={href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
+								>
+									<Icon size={28} />
+								</a>
+							))}
 						</div>
 
 						{submitStatus && (

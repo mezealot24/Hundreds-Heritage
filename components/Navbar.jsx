@@ -17,10 +17,19 @@ const navItems = [
 ];
 
 const socialIcons = [
-	{ Icon: IconBrandInstagram, href: "https://instagram.com" },
-	{ Icon: IconBrandFacebook, href: "https://facebook.com" },
-	{ Icon: IconBrandLine, href: "https://line.me" },
-	{ Icon: IconBrandTiktok, href: "https://tiktok.com" },
+	{
+		Icon: IconBrandInstagram,
+		href: "https://www.instagram.com/hundredsheritage_th?igsh=djNjcjMxczdo&utm_source=qr",
+	},
+	{
+		Icon: IconBrandFacebook,
+		href: "https://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
+	},
+	{ Icon: IconBrandLine, href: "https://lin.ee/Rxte6r9" },
+	{
+		Icon: IconBrandTiktok,
+		href: "https://www.tiktok.com/@hundredsheritage?_t=ZS-8uJMm5x0Hua&_r=1",
+	},
 ];
 
 const Motto = ({ isScrolled }) => {
