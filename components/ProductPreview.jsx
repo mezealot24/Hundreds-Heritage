@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import ProductGallery from "./ui/ProductGallery"; // Import the new gallery component
+import React from "react";
+import { motion, useInView } from "framer-motion";
+import ProductGallery from "@/components/ProductGallery";
+import Image from "next/image";
 
 const ProductPreviewSection = () => {
 	const containerVariants = {
@@ -8,13 +9,17 @@ const ProductPreviewSection = () => {
 		visible: {
 			opacity: 1,
 			transition: {
-				staggerChildren: 0.1,
+				staggerChildren: 0.5, // แสดงสินค้าทีละตัว ห่างกัน 0.1 วินาที
 			},
 		},
 	};
 
-	// Sample data from your provided code
 	const flavors = [
+		{
+			name: "All Products",
+			color: "#f1d180",
+			image: "/images/products/hh_allproduct.jpg",
+		},
 		{
 			name: "Tom Yum Tea",
 			color: "#e8782e",
@@ -57,22 +62,21 @@ const ProductPreviewSection = () => {
 		},
 	];
 
-	const [activeProduct, setActiveProduct] = useState(null);
+	// สร้าง ref เพื่ออ้างอิง section
+	const sectionRef = React.useRef(null);
 
-	const handleProductHover = (id) => {
-		setActiveProduct(id);
-	};
+	// ใช้ useInView เพื่อตรวจจับว่า section อยู่ใน viewport หรือไม่
+	const inView = useInView(sectionRef, { once: true });
 
+	// การ render UI
 	return (
 		<section
 			id="our-collection"
-			className="relative py-16 md:py-24 overflow-hidden radial-gradient-bg"
+			ref={sectionRef}
+			className="relative py-16 md:py-24 radial-gradient-bg"
 		>
-			{/* Background Pattern */}
-			<BackgroundPattern />
-
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-1">
-				{/* Section Header */}
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+				{/* Heading กับแอนิเมชัน fade-in */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
@@ -81,54 +85,22 @@ const ProductPreviewSection = () => {
 					className="text-center mb-16"
 				>
 					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
-						Collection Blends
+						Our Collection Blends
 					</h2>
 				</motion.div>
 
-				{/* Replace FlavorCarousel with ProductGallery */}
+				{/* แสดงสินค้าอื่นๆ ทีละขั้นเมื่อ section อยู่ใน viewport */}
 				<motion.div
 					variants={containerVariants}
 					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
+					animate={inView ? "visible" : "hidden"}
 					className="w-full"
 				>
-					<ProductGallery
-						products={flavors}
-						handleProductHover={handleProductHover}
-						activeProduct={activeProduct}
-					/>
+					<ProductGallery products={flavors} />
 				</motion.div>
 			</div>
 		</section>
 	);
 };
-
-// BackgroundPattern.js - Kept as is
-const BackgroundPattern = () => (
-	<>
-		{/* Left Side Pattern */}
-		<div
-			className="absolute top-0 bottom-0 left-0 w-1/6 opacity-30 pointer-events-none"
-			style={{
-				backgroundImage: "url('/pattern.svg')",
-				backgroundSize: "cover",
-				backgroundPosition: "left center",
-				zIndex: "0",
-			}}
-		></div>
-
-		{/* Right Side Pattern */}
-		<div
-			className="absolute top-0 bottom-0 right-0 w-1/6 opacity-30 pointer-events-none"
-			style={{
-				backgroundImage: "url('/pattern.svg')",
-				backgroundSize: "cover",
-				backgroundPosition: "right center",
-				zIndex: "0",
-			}}
-		></div>
-	</>
-);
 
 export default ProductPreviewSection;

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 // สร้าง Skeleton component
 const BannerSkeleton = () => (
-	<div className="relative h-[30rem] md:h-[40rem] bg-gradient-to-b from-gray-800 to-gray-900 animate-pulse flex flex-col justify-center items-center">
+	<div className="relative w-full h-[30rem] md:h-[40rem] lg:h-screen bg-gradient-to-b from-gray-800 to-gray-900 animate-pulse flex flex-col justify-center items-center">
 		<div className="h-16 w-3/4 md:h-20 md:w-2/3 bg-gray-700/50 rounded-lg mb-4"></div>
 		<div className="h-16 w-2/3 md:h-20 md:w-1/2 bg-gray-700/50 rounded-lg mb-8"></div>
 		<div className="h-10 w-40 bg-gray-700/50 rounded-full"></div>
@@ -33,35 +33,20 @@ const BannerCarousel = () => {
 		<>
 			{!imagesLoaded && <BannerSkeleton />}
 
-			<div
-				className={`relative md:mt-[-36px] mt-[-16px] ${
-					!imagesLoaded ? "hidden" : ""
-				}`}
-			>
+			<div className={`relative w-full  ${!imagesLoaded ? "hidden" : ""}`}>
 				<ImagesSlider
-					className="md:h-[50rem] h-[30rem] z-20"
+					className="w-full h-[30rem] md:h-[50rem] lg:h-screen z-20"
 					images={bannerImages}
 					mobileAspectRatio="3/4"
 					onImagesLoaded={handleImagesLoaded}
 				>
 					<motion.div
-						initial={{
-							opacity: 0,
-							y: -80,
-						}}
-						animate={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-						}}
+						initial={{ opacity: 0, y: -80 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
 						className="z-50 flex flex-col justify-center items-center px-4"
 					>
-						{/* <button className="px-4 py-2 backdrop-blur-sm border btn-gold gold-shine-text mx-auto text-center rounded-full relative mt-4">
-							<span>Our Collection. →</span>
-							<div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-						</button> */}
+						{/* ปรับเนื้อหาหรือปุ่มเพิ่มเติมได้ที่นี่ */}
 					</motion.div>
 				</ImagesSlider>
 			</div>

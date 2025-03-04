@@ -5,29 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import emailjs from "@emailjs/browser";
 import Image from "next/image";
-
-import {
-	IconBrandInstagram,
-	IconBrandFacebook,
-	IconBrandLine,
-	IconBrandTiktok,
-} from "@tabler/icons-react";
-
-const socialIcons = [
-	{
-		Icon: IconBrandInstagram,
-		href: "https://www.instagram.com/hundredsheritage_th?igsh=djNjcjMxczdo&utm_source=qr",
-	},
-	{
-		Icon: IconBrandFacebook,
-		href: "https://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
-	},
-	{ Icon: IconBrandLine, href: "https://lin.ee/Rxte6r9" },
-	{
-		Icon: IconBrandTiktok,
-		href: "https://www.tiktok.com/@hundredsheritage?_t=ZS-8uJMm5x0Hua&_r=1",
-	},
-];
+import { SocialIcons } from "@/components/Header/SocialIcons";
 
 const ContactUs = () => {
 	const [formData, setFormData] = useState({
@@ -67,188 +45,322 @@ const ContactUs = () => {
 	};
 
 	return (
-		<div id="contact-us" className="w-full py-16 bg-background">
-			<section className="rounded-lg shadow-xl mx-auto max-w-5xl">
-				{/* Contact Us heading and text - moved from right column */}
-				<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
-					Contact Us
-				</h2>
-				<div className="flex flex-col md:flex-row">
-					{/* Left Column - Logo and Info */}
-					<div className="p-6 md:p-8 flex flex-col items-center justify-center w-full md:w-2/5">
-						{/* Logo */}
-						<div className="mb-6 md:mb-8 flex justify-center w-32 md:w-48">
-							<Image
-								src="/images/logo_HH.svg"
-								alt="Hundreds Heritage"
-								width={150}
-								height={150}
-								className="w-full h-auto gold-shine-svg"
-							/>
+		<>
+			{/* Desktop Section */}
+			<div className="hidden md:block">
+				<section
+					id="contact-us"
+					className="rounded-lg shadow-xl mx-auto max-w-5xl pt-12"
+				>
+					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
+						Contact Us
+					</h2>
+					<div className="flex flex-col md:flex-row">
+						{/* Left Column - Logo and Info */}
+						<div className="p-6 md:p-8 flex flex-col items-center justify-center w-full md:w-2/5">
+							<div className="mb-6 md:mb-8 flex justify-center w-32 md:w-48">
+								<Image
+									src="/images/logo_HH.svg"
+									alt="Hundreds Heritage"
+									width={150}
+									height={150}
+									className="w-full h-auto gold-shine-svg"
+								/>
+							</div>
+							<div className="text-center space-y-2">
+								<p className="text-base md:text-lg">
+									Greenrich Worldwide Company Limited
+								</p>
+								<p className="text-sm md:text-base">
+									Email: hundredsheritage.th@gmail.com
+								</p>
+								<p className="text-sm md:text-base">
+									www.hundreds-heritage.com
+								</p>
+							</div>
+							<div className="relative my-8">
+								<div className="text-center">
+									<p className="my-2 text-tea-text-secondary">ORDER HERE</p>
+									<Image
+										src="/images/line-qr.png"
+										alt="Order QR Code"
+										width={112}
+										height={112}
+										className="mx-auto"
+									/>
+								</div>
+							</div>
 						</div>
 
-						<p className="text-center mb-6 text-sm md:text-base">
-							Hundreds Heritage is crafted with 100% organic ingredients,
-							honoring nature&apos;s purest offerings, supporting local
-							communities, and savoring the timeless wisdom of Thailand
-						</p>
-
-						{/* Company Info */}
-						<div className="text-center space-y-2">
-							<p className="font-semibold text-lg md:text-xl">
+						{/* Right Column - Contact Form */}
+						<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
+							<p className="font-semibold text-center mb-4 text-lg md:text-xl">
 								Blended & Branded by
 							</p>
-							<p className="text-base md:text-lg">
-								Greenrich Worldwide Company Limited
+							<p className="text-center mb-6 text-sm md:text-lg">
+								Hundreds Heritage is crafted with 100% organic ingredients,
+								honoring nature's purest offerings, supporting local
+								communities, and savoring the timeless wisdom of Thailand
 							</p>
-							<p className="text-sm md:text-base">
-								Email: hundredsheritage.th@gmail.com
-							</p>
-							<p className="text-sm md:text-base">www.hundreds-heritage.com</p>
-						</div>
+							<h2 className="text-center mb-6 font-bold text-lg  gold-accent ">
+								Thank you for savoring our blends.
+							</h2>
 
-						{/* Order Here Section */}
-						<div className="relative my-8">
-							<div className="text-center">
-								<p className="my-2 text-tea-text-secondary">ORDER HERE</p>
-								<Image
-									src="/images/line-qr.png"
-									alt="Order QR Code"
-									width={112}
-									height={112}
-									className="mx-auto"
-								/>
-							</div>
-						</div>
-					</div>
-
-					{/* Right Column - Contact Form */}
-					<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
-						<p className="text-center mb-6 font-bold text-lg">
-							Thank you for savoring our blend.
-						</p>
-
-						<form onSubmit={handleSubmit} className="space-y-4">
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-								<Input
-									type="text"
-									name="name"
-									placeholder="Name"
-									value={formData.name}
+							<form onSubmit={handleSubmit} className="space-y-4">
+								<div className="flex gap-4">
+									<Input
+										type="text"
+										name="name"
+										placeholder="Name"
+										value={formData.name}
+										onChange={handleChange}
+										required
+										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									/>
+								</div>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<Input
+										type="email"
+										name="email"
+										placeholder="Email"
+										value={formData.email}
+										onChange={handleChange}
+										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									/>
+									<Input
+										type="tel"
+										name="phone"
+										placeholder="TEL"
+										value={formData.phone}
+										onChange={handleChange}
+										required
+										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									/>
+								</div>
+								<div className="flex gap-4">
+									<Input
+										type="text"
+										name="subject"
+										placeholder="Subject"
+										value={formData.subject}
+										onChange={handleChange}
+										required
+										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									/>
+								</div>
+								<Textarea
+									name="message"
+									placeholder="Message"
+									value={formData.message}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[120px] text-tea-text-secondary placeholder-tea-text-secondary/50"
 								/>
-								<Input
-									type="email"
-									name="email"
-									placeholder="Email"
-									value={formData.email}
-									onChange={handleChange}
-									required
-									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
-								/>
-							</div>
-
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-								<Input
-									type="tel"
-									name="phone"
-									placeholder="TEL"
-									value={formData.phone}
-									onChange={handleChange}
-									required
-									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
-								/>
-								<Input
-									type="text"
-									name="subject"
-									placeholder="Subject"
-									value={formData.subject}
-									onChange={handleChange}
-									required
-									className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
-								/>
-							</div>
-
-							<Textarea
-								name="message"
-								placeholder="Message"
-								value={formData.message}
-								onChange={handleChange}
-								required
-								className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[120px] text-tea-text-secondary placeholder-tea-text-secondary/50"
-							/>
-
-							<Button
-								type="submit"
-								className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#D4AF37] hover:bg-[#BF9B30] text-white font-medium"
-								disabled={isSubmitting}
-							>
-								{isSubmitting ? (
-									<span className="flex items-center justify-center gap-2">
-										<svg
-											className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-										>
-											<circle
-												className="opacity-25"
-												cx="12"
-												cy="12"
-												r="10"
-												stroke="currentColor"
-												strokeWidth="4"
-											></circle>
-											<path
-												className="opacity-75"
-												fill="currentColor"
-												d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-											></path>
-										</svg>
-										Sending...
-									</span>
-								) : (
-									<span className="flex items-center justify-center gap-2">
-										<span>Submit</span>
-										<i className="ti ti-send"></i>
-									</span>
-								)}
-							</Button>
-						</form>
-
-						{/* Social Icons moved to right column */}
-						<div className="flex justify-center space-x-4 md:space-x-6 md:mt-8">
-							{socialIcons.map(({ Icon, href }, index) => (
-								<a
-									key={index}
-									href={href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-tea-text-secondary hover:text-primary transition-all hover:-translate-y-1"
+								<Button
+									type="submit"
+									className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium"
+									disabled={isSubmitting}
 								>
-									<Icon size={28} />
-								</a>
-							))}
-						</div>
+									{isSubmitting ? (
+										<span className="flex items-center justify-center gap-2">
+											<svg
+												className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 24 24"
+											>
+												<circle
+													className="opacity-25"
+													cx="12"
+													cy="12"
+													r="10"
+													stroke="currentColor"
+													strokeWidth="4"
+												></circle>
+												<path
+													className="opacity-75"
+													fill="currentColor"
+													d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+												></path>
+											</svg>
+											Sending...
+										</span>
+									) : (
+										<span className="flex items-center justify-center gap-2">
+											<span>Submit</span>
+											<i className="ti ti-send"></i>
+										</span>
+									)}
+								</Button>
+							</form>
 
-						{submitStatus && (
-							<div
-								id="formStatus"
-								className={`mt-4 p-3 rounded-md text-center ${
-									submitStatus.includes("success")
-										? "bg-green-100 text-green-800"
-										: "bg-red-100 text-red-800"
-								}`}
-							>
-								{submitStatus}
+							<div className="flex justify-center space-x-4 md:space-x-6 md:mt-8">
+								<SocialIcons />
 							</div>
-						)}
+
+							{submitStatus && (
+								<div
+									id="formStatus"
+									className={`mt-4 p-3 rounded-md text-center ${
+										submitStatus.includes("success")
+											? "bg-green-100 text-green-800"
+											: "bg-red-100 text-red-800"
+									}`}
+								>
+									{submitStatus}
+								</div>
+							)}
+						</div>
 					</div>
-				</div>
-			</section>
-		</div>
+				</section>
+			</div>
+
+			{/* Mobile Section */}
+			<div className="md:hidden block w-full py-8 bg-background">
+				<section className="flex flex-col items-center px-4">
+					<h2 className="text-3xl font-semibold gold-shine-text text-center mb-8">
+						Contact Us
+					</h2>
+					<div className="mb-6 flex justify-center w-32">
+						<Image
+							src="/images/logo_HH.svg"
+							alt="Hundreds Heritage"
+							width={150}
+							height={150}
+							className="w-full h-auto gold-shine-svg"
+						/>
+					</div>
+					<div className="text-center mb-6">
+						<p className="font-semibold mb-4 text-lg">Blended & Branded by</p>
+						<p className="mb-6 text-sm">
+							Hundreds Heritage is crafted with 100% organic ingredients,
+							honoring nature's purest offerings, supporting local communities,
+							and savoring the timeless wisdom of Thailand
+						</p>
+						<h2 className="mb-6 font-bold text-lg font-bookmanoldstyle">
+							Thank you for savoring our blends.
+						</h2>
+					</div>
+					<div className="text-center space-y-2 mb-6">
+						<p className="text-base">Greenrich Worldwide Company Limited</p>
+						<p className="text-sm">Email: hundredsheritage.th@gmail.com</p>
+						<p className="text-sm">www.hundreds-heritage.com</p>
+					</div>
+					<div className="relative my-6">
+						<div className="text-center">
+							<p className="my-2 text-tea-text-secondary">ORDER HERE</p>
+							<Image
+								src="/images/line-qr.png"
+								alt="Order QR Code"
+								width={155}
+								height={155}
+								className="mx-auto"
+							/>
+						</div>
+					</div>
+
+					<form onSubmit={handleSubmit} className="w-full space-y-4">
+						<Input
+							type="text"
+							name="name"
+							placeholder="Name"
+							value={formData.name}
+							onChange={handleChange}
+							required
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+						/>
+						<Input
+							type="email"
+							name="email"
+							placeholder="Email"
+							value={formData.email}
+							onChange={handleChange}
+							required
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+						/>
+						<Input
+							type="tel"
+							name="phone"
+							placeholder="TEL"
+							value={formData.phone}
+							onChange={handleChange}
+							required
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+						/>
+						<Input
+							type="text"
+							name="subject"
+							placeholder="Subject"
+							value={formData.subject}
+							onChange={handleChange}
+							required
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+						/>
+						<Textarea
+							name="message"
+							placeholder="Message"
+							value={formData.message}
+							onChange={handleChange}
+							required
+							className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[120px] text-tea-text-secondary placeholder-tea-text-secondary/50"
+						/>
+						<Button
+							type="submit"
+							className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#D4AF37] hover:bg-[#BF9B30] text-white font-medium"
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? (
+								<span className="flex items-center justify-center gap-2">
+									<svg
+										className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+									>
+										<circle
+											className="opacity-25"
+											cx="12"
+											cy="12"
+											r="10"
+											stroke="currentColor"
+											strokeWidth="4"
+										></circle>
+										<path
+											className="opacity-75"
+											fill="currentColor"
+											d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+										></path>
+									</svg>
+									Sending...
+								</span>
+							) : (
+								<span className="flex items-center justify-center gap-2">
+									<span>Submit</span>
+									<i className="ti ti-send"></i>
+								</span>
+							)}
+						</Button>
+					</form>
+
+					<div className="flex justify-center space-x-4 mt-6">
+						<SocialIcons />
+					</div>
+
+					{submitStatus && (
+						<div
+							id="formStatus"
+							className={`mt-4 p-3 rounded-md text-center w-full ${
+								submitStatus.includes("success")
+									? "bg-green-100 text-green-800"
+									: "bg-red-100 text-red-800"
+							}`}
+						>
+							{submitStatus}
+						</div>
+					)}
+				</section>
+			</div>
+		</>
 	);
 };
 

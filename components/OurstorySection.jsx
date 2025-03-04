@@ -6,7 +6,7 @@ const OurStorySection = () => {
 	return (
 		<section
 			id="our-story"
-			className="relative w-full py-16 -mt-12 bg-[#2a231c] overflow-hidden"
+			className="relative w-full p-12 h-full bg-[#2a231c] "
 		>
 			<div className="container max-w-4xl mx-auto px-4">
 				{/* Header with animated title */}
@@ -17,12 +17,9 @@ const OurStorySection = () => {
 					transition={{ duration: 0.7 }}
 					className="text-center mb-16"
 				>
-					<h2 className="text-3xl sm:text-4xl md:text-5xl mb-3">
-						<span className="gold-shine-text font-semibold">Our Story</span>
+					<h2 className=" text-3xl sm:text-4xl md:text-5xl mb-3 gold-shine-text font-semibold ">
+						Our Story
 					</h2>
-					<p className="text-lg sm:text-xl italic text-tea-text-secondary mx-auto max-w-2xl">
-						The Wonder of Siamese Wisdom Tea
-					</p>
 				</motion.div>
 
 				{/* Main content with full paragraphs */}
@@ -34,7 +31,7 @@ const OurStorySection = () => {
 					className="mb-16"
 				>
 					<div className="prose prose-lg prose-invert max-w-none">
-						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed mb-6">
+						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed mb-6 text-justify">
 							Hundreds Heritage – Where the essence of tradition and the
 							richness of nature converge to create an unparalleled tea and
 							herbal experience. Our journey begins in the lush, high-altitude
@@ -46,7 +43,7 @@ const OurStorySection = () => {
 							colors, and scents.
 						</p>
 
-						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed">
+						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed text-justify">
 							Hundreds Heritage transcends its role as a mere beverage, becoming
 							a living testament to the deep cultural roots of tea-drinking from
 							antiquity to the present day. Blending wisdom from centuries-old
@@ -58,13 +55,13 @@ const OurStorySection = () => {
 					</div>
 				</motion.div>
 
-				{/* Image section with animation */}
+				{/* Image section with full-width animation */}
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 1.2 }}
-					className="w-full max-w-4xl mx-auto h-64 md:h-80 bg-[url('/images/ourstory/ourstory-1.jpg')] bg-cover bg-center rounded-lg overflow-hidden"
+					className="w-full h-64 md:h-80 bg-[url('/images/ourstory/ourstory-1.PNG')] bg-cover bg-center"
 				/>
 			</div>
 		</section>

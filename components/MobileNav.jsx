@@ -31,9 +31,9 @@ const MobileNav = () => {
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger className="flex justify-center items-center">
-				<IconMenuDeep className="text-[32px] text-yellow-50" />
+				<IconMenuDeep className="text-[32px] text-yellow-100" />
 			</SheetTrigger>
-			<SheetContent className="flex flex-col bg-background/95 backdrop-blur-sm">
+			<SheetContent className="flex flex-col bg-primary backdrop-blur-sm">
 				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 				{/* logo */}
 				<div className="mt-12 mb-16 text-center">
@@ -48,7 +48,7 @@ const MobileNav = () => {
 						/>
 
 						<motion.h2
-							className="text-md font-semibold gold-shine-text mt-2"
+							className="text-md font-semibold gold-shine-text mt-4"
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5, delay: 0.2 }}

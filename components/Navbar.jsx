@@ -12,7 +12,7 @@ import {
 const navItems = [
 	{ title: "Background", href: "#background" },
 	{ title: "Our Story", href: "#our-story" },
-	{ title: "Our Collection", href: "#our-collection" },
+	{ title: "Collection Blends", href: "#our-collection" },
 	{ title: "Contact Us", href: "#contact-us" },
 ];
 

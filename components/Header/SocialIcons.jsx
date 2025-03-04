@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import {
 	IconBrandInstagram,
 	IconBrandFacebook,
-	IconBrandLine,
 	IconBrandTiktok,
 } from "@tabler/icons-react";
+import LineIcon from "@/components/LineIcon";
 
 const socialIcons = [
 	{
@@ -15,7 +15,7 @@ const socialIcons = [
 		Icon: IconBrandFacebook,
 		href: "hhttps://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
 	},
-	{ Icon: IconBrandLine, href: "https://lin.ee/Rxte6r9" },
+	{ Icon: LineIcon, href: "https://lin.ee/Rxte6r9" },
 	{ Icon: IconBrandTiktok, href: "https://tiktok.com" },
 ];
 
@@ -28,7 +28,7 @@ export const SocialIcons = () => (
 				target="_blank"
 				rel="noopener noreferrer"
 				whileHover={{ scale: 1.1 }}
-				className="text-tea-text-secondary hover:text-primary transition-colors"
+				className="text-[#f1d180]"
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.3, delay: index * 0.1 }}

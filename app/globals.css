@@ -29,7 +29,7 @@
     --popover-foreground: 36 30% 90%;
 
     /* Darker golden brown */
-    --primary: 36 30% 40%;
+    --primary: 18, 46%, 16%;
     --primary-foreground: 36 30% 95%;
 
     --secondary: 30 15% 20%;
@@ -62,20 +62,14 @@
     --tea-text-secondary: 45 30% 70%;
     --tea-border-accent: 45 40% 40%;
 
-    .site-section {
-      padding: 3rem 0;
-      position: relative;
-      overflow: hidden;
-    }
 
-.section-connector {
-  margin-top: -3rem; /* ใช้เชื่อมต่อ section ให้ไม่มีช่องว่าง */
-}
+
+
   }
 
   /* Section Spacing */
 section[id] {
-  scroll-margin-top: 0px; /* Adjust based on your header height */
+  scroll-margin-top: 200px; /* Adjust based on your header height */
 }
 
 div[id]{
@@ -119,9 +113,8 @@ div[id]{
 
   h3 {
       font-family: "Bookman Old Style";
-      font-weight: 400;
-      font-size: 1.25rem;
-      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 1.25rem;      
       letter-spacing: 0.1em;
       line-height: 1.2;
   }
@@ -132,6 +125,8 @@ div[id]{
 
   p {
     font-family: var(--font-sukhumvit-set);
+    font-weight: 300;
+    
     color:#f1d180;
   }
 }
@@ -194,7 +189,7 @@ div[id]{
   .glass-card {
     background: #40241c;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);    
+       
   }
 
   /* Animated underline effect for navigation */

@@ -154,17 +154,51 @@ const AboutSection = () => {
 	}
 
 	return (
-		<section className="site-section section-connector py-6 px-4 sm:p-6 md:py-10 md:px-8">
-			{/* Content Container - glass effect */}
-			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
+		<section className="site-section section-connector bg-primary py-6 px-4 sm:p-6 md:py-10 md:px-8">
+			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 rounded-lg">
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
 					className="text-3xl uppercase sm:text-4xl md:text-5xl text-center mb-16 md:mt-[3rem]"
 				/>
+				{/* Desktop version - certificates */}
+				<div className="hidden md:flex justify-center items-center mb-16">
+					<div className="relative w-full max-w-4xl h-40 lg:h-52">
+						<Image
+							src="/images/certificates.png"
+							alt="Organic and Non-GMO Certificates"
+							fill
+							style={{ objectFit: "contain" }}
+							sizes="(max-width: 768px) 0vw, (max-width: 1024px) 768px, 896px"
+							priority
+						/>
+					</div>
+				</div>
+				{/* Mobile version*/}
+				<div className="flex flex-col md:hidden justify-center items-center mb-8">
+					<div className="relative w-screen h-[7rem]">
+						<Image
+							src="/images/hero-image.webp"
+							alt="ingredients and tea leaves"
+							fill
+							style={{ objectFit: "cover" }}
+							sizes="100vw"
+						/>
+					</div>
+					<div className="relative w-full h-28 px-4">
+						<Image
+							src="/images/certificates.png"
+							alt="Organic and Non-GMO Certificates"
+							fill
+							style={{ objectFit: "contain" }}
+							sizes="100vw"
+							priority
+						/>
+					</div>
+				</div>
 
 				{/* Main Content */}
-				<div id="background" className="container px-4 max-w-7xl mx-auto">
+				<section id="background" className="container pt-6 lg:pt-8 max-w-7xl">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -172,65 +206,15 @@ const AboutSection = () => {
 						transition={{ duration: 0.8 }}
 						className="mb-10 md:mb-16"
 					>
-						{/* Desktop version - certificates */}
-						<div className="hidden md:flex justify-center items-center mb-16">
-							<div className="relative w-full max-w-4xl h-40 lg:h-52">
-								<Image
-									src="/images/certificates.png"
-									alt="Organic and Non-GMO Certificates"
-									fill
-									style={{ objectFit: "contain" }}
-									sizes="(max-width: 768px) 0vw, (max-width: 1024px) 768px, 896px"
-									priority
-								/>
-							</div>
-						</div>
-						{/* Mobile version*/}
-						<div className="flex flex-col md:hidden justify-center items-center mb-8">
-							<div className="relative w-screen h-[7rem]">
-								<Image
-									src="/images/hero-image.webp"
-									alt="ingredients and tea leaves"
-									fill
-									style={{ objectFit: "cover" }}
-									sizes="100vw"
-								/>
-							</div>
-							<div className="relative w-full h-28 px-4">
-								<Image
-									src="/images/certificates.png"
-									alt="Organic and Non-GMO Certificates"
-									fill
-									style={{ objectFit: "contain" }}
-									sizes="100vw"
-									priority
-								/>
-							</div>
-						</div>
 						{/* H2 Title */}
 						<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
 							Background
 						</h2>
-
-						{/* Paragraph 1 - Image Left, Content Right */}
+						{/* Paragraph 1- Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
-							<div className="md:w-1/3">
-								<Image
-									src="/images/background-1.jpg"
-									alt="Thai Tea Tradition"
-									width={300}
-									height={300}
-									className="rounded-lg w-full h-auto"
-								/>
-							</div>
-							<div className="md:w-2/3">
-								<h2 className="text-xl sm:text-2xl mb-4">
-									<AutoUnderline
-										as="span"
-										className="font-medium gold-shine-text"
-									>
-										Cultural Heritage
-									</AutoUnderline>
+							<div className="w-full">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+									Cultural Heritage
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 									Hundreds Heritage is inspired by a passion to share Thailand’s
@@ -248,25 +232,11 @@ const AboutSection = () => {
 							</div>
 						</div>
 
-						{/* Paragraph 2 - Image Right, Content Left */}
-						<div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 mb-12">
-							<div className="md:w-1/3 md:-mt-[12rem]">
-								<Image
-									src="/images/tea-ingredients.jpg"
-									alt="Royal Tea Initiative"
-									width={300}
-									height={300}
-									className="rounded-lg w-full h-auto"
-								/>
-							</div>
-							<div className="md:w-2/3">
-								<h2 className="text-xl sm:text-2xl mb-4">
-									<AutoUnderline
-										as="span"
-										className="font-medium gold-shine-text"
-									>
-										Royal Legacy
-									</AutoUnderline>
+						{/* Paragraph 2 - Full Paragraph */}
+						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
+							<div className="w-full">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+									Royal Legacy
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 									One of Thailand’s most significant milestones in tea
@@ -287,13 +257,8 @@ const AboutSection = () => {
 
 						{/* Paragraph 3 - Full Paragraph */}
 						<div className="mb-12">
-							<h2 className="text-xl sm:text-2xl mb-4">
-								<AutoUnderline
-									as="span"
-									className="font-medium gold-shine-text"
-								>
-									Tradition Empowered
-								</AutoUnderline>
+							<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+								Tradition Empowered
 							</h2>
 							<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
 								Hundreds Heritage holds deep gratitude for this royal
@@ -307,7 +272,7 @@ const AboutSection = () => {
 							</p>
 						</div>
 
-						{/* Paragraph 4 - Left Picture, Right Full Paragraph */}
+						{/* Paragraph 4 */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 h-auto">
 							<div className="md:w-1/2 w-full flex justify-center items-center h-auto">
 								<Image
@@ -333,30 +298,35 @@ const AboutSection = () => {
 						</div>
 					</motion.div>
 
-					{/* Quote */}
 					{/* Modern quote display */}
 					<motion.div
 						initial={{ opacity: 0, scale: 0.95 }}
 						whileInView={{ opacity: 1, scale: 1 }}
 						viewport={{ once: true }}
 						transition={{ duration: 1 }}
-						className="relative py-10 my-12 bg-[#231c15] rounded-xl px-8"
+						className="relative py-10 my-12 rounded-xl px-8"
 					>
-						<div className="absolute text-8xl opacity-10 left-4 top-2 font-serif text-primary/30">
-							"
-						</div>
 						<blockquote className="text-xl sm:text-2xl text-center mx-auto max-w-2xl gold-shine-text italic">
 							<p>
 								Every sip of Hundreds Heritage is a voyage—one that honors the
 								past, embraces the present, and enriches the future.
 							</p>
 						</blockquote>
-						<div className="absolute text-8xl opacity-10 right-4 bottom-2 font-serif text-primary/30">
-							"
+
+						<div className="w-16 h-1 bg-secondary/80 mx-auto mt-6"></div>
+
+						<div className="relative w-full h-28 px-4">
+							<Image
+								src="/images/certificates.png"
+								alt="Organic and Non-GMO Certificates"
+								fill
+								style={{ objectFit: "contain" }}
+								sizes="100vw"
+								priority
+							/>
 						</div>
-						<div className="w-16 h-1 bg-primary/40 mx-auto mt-6"></div>
 					</motion.div>
-				</div>
+				</section>
 			</div>
 		</section>
 	);

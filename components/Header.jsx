@@ -19,38 +19,32 @@ const Header = () => {
 
 	return (
 		<>
-			{/* Desktop Header - Hidden on mobile */}
+			{/* Desktop Header - Visible on medium screens and above */}
 			<header
 				className={`fixed w-full z-30 transition-all duration-300 hidden md:block ${
 					isScrolled
-						? "bg-background/95 backdrop-blur-sm shadow-sm fixed top-0 left-0 right-0"
-						: "bg-background/50" // Changed from 80 to 50 for more transparency at start
+						? "bg-background/95 backdrop-blur-sm shadow-sm -translate-y-2"
+						: "bg-background/50"
 				}`}
 			>
 				<div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
 					<div className="grid grid-cols-12 gap-4">
-						{/* Logo Column */}
-						<div className="col-span-2 flex items-center justify-end relative">
-							<Logo />
+						{/* Logo Section */}
+						<div className="col-span-2 flex items-center justify-end">
+							<Logo isScrolled={isScrolled} />
 						</div>
-
-						{/* Center Content */}
+						{/* Center Content: Motto and Navigation */}
 						<div className="col-span-8">
-							{/* Top Row - Motto */}
-							<div className="flex justify-center items-center h-16">
-								<Motto isScrolled={isScrolled} />
+							{/* Motto Row - Height increased by ~10% on md: screens */}
+							<div className="flex justify-center items-center h-16 md:h-[70px]">
+								<Motto />
 							</div>
-							{/* Bottom Row - Navigation */}
-							<div
-								className={`flex justify-center items-center h-16 transition-all duration-300 transform ${
-									isScrolled ? "translate-y-[-30px]" : "translate-y-0"
-								}`}
-							>
+							{/* Navigation Row with scroll effect - Height increased by ~10% on md: screens */}
+							<div className="flex justify-center items-center h-16 md:h-[70px] transition-all duration-300 transform">
 								<Navigation />
 							</div>
 						</div>
-
-						{/* Social Icons Column */}
+						{/* Social Icons Section */}
 						<div className="col-span-2 flex items-center justify-center h-16 mt-8">
 							<SocialIcons />
 						</div>
@@ -58,12 +52,11 @@ const Header = () => {
 				</div>
 			</header>
 
-			{/* Mobile Header - Only visible on mobile */}
+			{/* Mobile Header - Visible below medium screens */}
 			<header className="fixed top-0 left-0 right-0 h-24 md:hidden z-30 w-full bg-background">
 				<div className="flex items-center justify-between h-24 px-4">
-					{/* Empty div to maintain space balance (Left) */}
+					{/* Empty div for layout balance */}
 					<div className="w-10 h-10" aria-hidden="true" />
-
 					{/* Centered Mobile Logo */}
 					<div className="absolute left-1/2 transform -translate-x-1/2 z-40">
 						<a href="/">
@@ -74,7 +67,7 @@ const Header = () => {
 							/>
 						</a>
 					</div>
-					{/* Mobile Nav (Right) */}
+					{/* Mobile Navigation */}
 					<div className="z-50">
 						<MobileNav />
 					</div>
