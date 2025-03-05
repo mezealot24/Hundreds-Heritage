@@ -16,7 +16,10 @@ const socialIcons = [
 		href: "hhttps://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
 	},
 	{ Icon: LineIcon, href: "https://lin.ee/Rxte6r9" },
-	{ Icon: IconBrandTiktok, href: "https://tiktok.com" },
+	{
+		Icon: IconBrandTiktok,
+		href: "https://www.tiktok.com/@hundredsheritage?_t=ZS-8uJMm5x0Hua&_r=1",
+	},
 ];
 
 export const SocialIcons = () => (

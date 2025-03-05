@@ -6,9 +6,9 @@ const OurStorySection = () => {
 	return (
 		<section
 			id="our-story"
-			className="relative w-full p-12 h-full bg-[#2a231c] "
+			className="h-max w-full md:min-h-[calc(100vh-110px-88px)] bg-[#2a231c] "
 		>
-			<div className="container max-w-4xl mx-auto px-4">
+			<div className="container max-w-7xl pb-16 pt-20 md:pt-32">
 				{/* Header with animated title */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ const OurStorySection = () => {
 					transition={{ duration: 0.7 }}
 					className="text-center mb-16"
 				>
-					<h2 className=" text-3xl sm:text-4xl md:text-5xl mb-3 gold-shine-text font-semibold ">
+					<h2 className="pt-12 text-3xl sm:text-4xl md:text-5xl mb-3 gold-shine-text font-semibold ">
 						Our Story
 					</h2>
 				</motion.div>
@@ -43,7 +43,7 @@ const OurStorySection = () => {
 							colors, and scents.
 						</p>
 
-						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed text-justify">
+						<p className="text-tea-text-secondary text-base sm:text-lg leading-relaxed mb-6 text-justify">
 							Hundreds Heritage transcends its role as a mere beverage, becoming
 							a living testament to the deep cultural roots of tea-drinking from
 							antiquity to the present day. Blending wisdom from centuries-old
@@ -54,14 +54,14 @@ const OurStorySection = () => {
 						</p>
 					</div>
 				</motion.div>
-
-				{/* Image section with full-width animation */}
+			</div>
+			<div className="w-full">
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 1.2 }}
-					className="w-full h-64 md:h-80 bg-[url('/images/ourstory/ourstory-1.PNG')] bg-cover bg-center"
+					className="w-full min-h-[300px] sm:min-h-[400px] md:h-80 bg-[url('/images/ourstory/ourstory-1.PNG')] bg-cover bg-center"
 				/>
 			</div>
 		</section>

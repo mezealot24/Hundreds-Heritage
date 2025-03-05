@@ -8,13 +8,13 @@ import ContactUs from "@/components/Contact";
 
 const HomePage = () => {
 	return (
-		<div className="w-full mx-auto">
+		<>
 			<BannerCarousel />
 			<AboutSection />
 			<OurStorySection />
 			<ProductPreview />
 			<ContactUs />
-		</div>
+		</>
 	);
 };
 

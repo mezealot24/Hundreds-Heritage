@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import Image from "next/image";
-import AutoUnderline from "@/components/ui/AutoUnderline";
+
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -59,8 +59,8 @@ const TextGenerateEffect = ({
 
 const LoadingSkeleton = () => {
 	return (
-		<div className="site-section section-connector relative w-full min-h-screen overflow-hidden lg:top-14">
-			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 glass-card rounded-lg">
+		<div className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
+			<div className="relative z-10 glass-card rounded-lg">
 				{/* Title skeleton */}
 				<div className="text-center mb-16 md:mb-24">
 					<Skeleton className="h-10 w-3/4 mx-auto" />
@@ -154,38 +154,55 @@ const AboutSection = () => {
 	}
 
 	return (
-		<section className="site-section section-connector bg-primary py-6 px-4 sm:p-6 md:py-10 md:px-8">
+		<section className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
 			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 rounded-lg">
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
 					className="text-3xl uppercase sm:text-4xl md:text-5xl text-center mb-16 md:mt-[3rem]"
 				/>
-				{/* Desktop version - certificates */}
-				<div className="hidden md:flex justify-center items-center mb-16">
-					<div className="relative w-full max-w-4xl h-40 lg:h-52">
-						<Image
-							src="/images/certificates.png"
-							alt="Organic and Non-GMO Certificates"
-							fill
-							style={{ objectFit: "contain" }}
-							sizes="(max-width: 768px) 0vw, (max-width: 1024px) 768px, 896px"
-							priority
-						/>
+				{/* Desktop version */}
+				<div className="hidden md:flex justify-center items-center w-full h-full mb-16">
+					<div className="relative flex-col w-full max-w-5xl flex space-y-4">
+						{/* Hero Image Column - Increased height */}
+						<div className="w-full relative h-[30rem] lg:h-[40rem]">
+							<Image
+								src="/images/hero-image-lg.png"
+								alt="ingredients and tea leaves"
+								fill
+								style={{ objectFit: "cover" }}
+								sizes="100vw"
+								className="rounded-lg shadow-lg"
+							/>
+						</div>
+
+						{/* Certificates Column - Increased height and width */}
+						<div className="w-full relative h-[20rem] lg:h-[25rem]">
+							<Image
+								src="/images/certificates.png"
+								alt="Organic and Non-GMO Certificates"
+								fill
+								style={{ objectFit: "contain", objectPosition: "center" }}
+								sizes="100vw"
+								priority
+								className="rounded-lg"
+							/>
+						</div>
 					</div>
 				</div>
 				{/* Mobile version*/}
-				<div className="flex flex-col md:hidden justify-center items-center mb-8">
-					<div className="relative w-screen h-[7rem]">
+				<div className="flex flex-col md:hidden justify-center items-center mb-8 space-y-4">
+					<div className="relative w-screen h-[20rem]">
 						<Image
 							src="/images/hero-image.webp"
 							alt="ingredients and tea leaves"
 							fill
 							style={{ objectFit: "cover" }}
 							sizes="100vw"
+							className="rounded-lg shadow-md"
 						/>
 					</div>
-					<div className="relative w-full h-28 px-4">
+					<div className="relative w-full h-[15rem] px-4">
 						<Image
 							src="/images/certificates.png"
 							alt="Organic and Non-GMO Certificates"
@@ -193,12 +210,17 @@ const AboutSection = () => {
 							style={{ objectFit: "contain" }}
 							sizes="100vw"
 							priority
+							className="rounded-lg"
 						/>
 					</div>
 				</div>
-
+			</div>
+			<div className="relative  md:px-4 py-6 sm:py-8 rounded-lg">
 				{/* Main Content */}
-				<section id="background" className="container pt-6 lg:pt-8 max-w-7xl">
+				<section
+					id="background"
+					className="w-full h-auto pt-6 lg:pt-8 max-w-7xl mx-auto"
+				>
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -212,7 +234,7 @@ const AboutSection = () => {
 						</h2>
 						{/* Paragraph 1- Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
-							<div className="w-full">
+							<div className="w-full px-4">
 								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
 									Cultural Heritage
 								</h2>
@@ -234,7 +256,7 @@ const AboutSection = () => {
 
 						{/* Paragraph 2 - Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
-							<div className="w-full">
+							<div className="w-full px-4">
 								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
 									Royal Legacy
 								</h2>
@@ -256,20 +278,22 @@ const AboutSection = () => {
 						</div>
 
 						{/* Paragraph 3 - Full Paragraph */}
-						<div className="mb-12">
-							<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
-								Tradition Empowered
-							</h2>
-							<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
-								Hundreds Heritage holds deep gratitude for this royal
-								benevolence and is devoted to uplifting highland communities and
-								organic farmers. With a profound respect for Thailand's rich
-								traditions, we strive to preserve and showcase the nation's
-								distinctive cultural heritage and precious natural ingredients.
-								Our mission is to share their remarkable essence with the world,
-								ensuring their timeless value is recognized and celebrated
-								across generations.
-							</p>
+						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
+							<div className="w-full px-4">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+									Tradition Empowered
+								</h2>
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+									Hundreds Heritage holds deep gratitude for this royal
+									benevolence and is devoted to uplifting highland communities
+									and organic farmers. With a profound respect for Thailand's
+									rich traditions, we strive to preserve and showcase the
+									nation's distinctive cultural heritage and precious natural
+									ingredients. Our mission is to share their remarkable essence
+									with the world, ensuring their timeless value is recognized
+									and celebrated across generations.
+								</p>
+							</div>
 						</div>
 
 						{/* Paragraph 4 */}
@@ -284,7 +308,7 @@ const AboutSection = () => {
 								/>
 							</div>
 							<div className="md:w-1/2 w-full flex items-center">
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary leading-relaxed">
+								<p className="text-sm sm:text-base px-4 md:text-lg text-tea-text-secondary leading-relaxed text-justify">
 									Hundreds Heritage is a tribute to well-being, authenticity,
 									and inspiration. Our emblem, the peacock, symbolizes grace,
 									wisdom, prosperity, auspiciousness, and longevity—values we

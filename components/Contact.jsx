@@ -50,7 +50,7 @@ const ContactUs = () => {
 			<div className="hidden md:block">
 				<section
 					id="contact-us"
-					className="rounded-lg shadow-xl mx-auto max-w-5xl pt-12"
+					className="rounded-lg  mx-auto max-w-5xl pt-12"
 				>
 					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
 						Contact Us
