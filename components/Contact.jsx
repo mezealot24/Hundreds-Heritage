@@ -231,17 +231,17 @@ const ContactUs = () => {
 						/>
 					</div>
 					<div className="text-center mb-6">
-						<p className="font-semibold mb-4 text-lg">Blended & Branded by</p>
-						<p className="mb-6 text-sm">
+						<p className="mb-6 text-base">
 							Hundreds Heritage is crafted with 100% organic ingredients,
 							honoring nature's purest offerings, supporting local communities,
 							and savoring the timeless wisdom of Thailand
 						</p>
-						<h2 className="mb-6 font-bold text-lg font-bookmanoldstyle">
+						<p className="m-6 font-bold text-lg font-bookmanoldstyle">
 							Thank you for savoring our blends.
-						</h2>
+						</p>
 					</div>
 					<div className="text-center space-y-2 mb-6">
+						<p className="mb-4 text-base">Blended & Branded by</p>
 						<p className="text-base">Greenrich Worldwide Company Limited</p>
 						<p className="text-sm">Email: hundredsheritage.th@gmail.com</p>
 						<p className="text-sm">www.hundreds-heritage.com</p>

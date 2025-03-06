@@ -13,7 +13,7 @@ const socialIcons = [
 	},
 	{
 		Icon: IconBrandFacebook,
-		href: "hhttps://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
+		href: "https://www.facebook.com/share/19QRjTRofu/?mibextid=wwXIfr",
 	},
 	{ Icon: LineIcon, href: "https://lin.ee/Rxte6r9" },
 	{
