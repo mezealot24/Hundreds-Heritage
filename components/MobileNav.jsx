@@ -73,7 +73,7 @@ const MobileNav = () => {
 				<IconMenuDeep className="text-[32px] text-yellow-100" />
 			</SheetTrigger>
 			<SheetContent
-				className="flex flex-col bg-primary backdrop-blur-sm overflow-y-auto"
+				className="flex flex-col bg-primary backdrop-blur-sm overflow-y-auto w-[85vw] max-w-md sm:max-w-md"
 				side="right"
 			>
 				<SheetTitle className="sr-only">Navigation Menu</SheetTitle>
@@ -105,7 +105,7 @@ const MobileNav = () => {
 										/>
 
 										<motion.h2
-											className="text-md font-semibold gold-shine-text mt-4"
+											className="text-xs font-medium gold-shine-text mt-3 whitespace-nowrap px-2 mx-auto max-w-[95%]"
 											initial={{ opacity: 0, y: -20 }}
 											animate={{ opacity: 1, y: 0 }}
 											transition={{ duration: 0.3, delay: 0.2 }}

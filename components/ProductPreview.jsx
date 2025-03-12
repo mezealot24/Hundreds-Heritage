@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, useInView } from "framer-motion";
 import ProductGallery from "@/components/ProductGallery";
-import Image from "next/image";
 
 const ProductPreviewSection = () => {
 	const containerVariants = {
@@ -85,7 +84,7 @@ const ProductPreviewSection = () => {
 					className="text-center mb-16"
 				>
 					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
-						Our Collection Blends
+						Collection Blends
 					</h2>
 				</motion.div>
 

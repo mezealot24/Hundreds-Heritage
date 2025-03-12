@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import emailjs from "@emailjs/browser";
 import Image from "next/image";
 import { SocialIcons } from "@/components/Header/SocialIcons";
 
@@ -29,14 +28,30 @@ const ContactUs = () => {
 		setSubmitStatus(null);
 
 		try {
-			await emailjs.send(
-				"service_afxnb1o",
-				"template_6izagbg",
-				formData,
-				"gXwzgYe7BIyW0Z-x4"
+			const response = await fetch(
+				"https://hundreds-heritage.com/send-email.php",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: new URLSearchParams(formData).toString(),
+				}
 			);
-			setSubmitStatus("Message sent successfully!");
-			setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+
+			const result = await response.json();
+			if (result.status === "success") {
+				setSubmitStatus("Message sent successfully!");
+				setFormData({
+					name: "",
+					email: "",
+					phone: "",
+					subject: "",
+					message: "",
+				});
+			} else {
+				setSubmitStatus("Failed to send message. Please try again later.");
+			}
 		} catch (error) {
 			setSubmitStatus("Failed to send message. Please try again later.");
 		} finally {
@@ -68,6 +83,9 @@ const ContactUs = () => {
 								/>
 							</div>
 							<div className="text-center space-y-2">
+								<p className="font-semibold text-center mb-4 text-lg md:text-xl">
+									Blended & Branded by
+								</p>
 								<p className="text-base md:text-lg">
 									Greenrich Worldwide Company Limited
 								</p>
@@ -94,15 +112,12 @@ const ContactUs = () => {
 
 						{/* Right Column - Contact Form */}
 						<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
-							<p className="font-semibold text-center mb-4 text-lg md:text-xl">
-								Blended & Branded by
-							</p>
 							<p className="text-center mb-6 text-sm md:text-lg">
 								Hundreds Heritage is crafted with 100% organic ingredients,
 								honoring nature's purest offerings, supporting local
 								communities, and savoring the timeless wisdom of Thailand
 							</p>
-							<h2 className="text-center mb-6 font-bold text-lg  gold-accent ">
+							<h2 className="text-center mb-6 font-bold text-lg gold-shine-text">
 								Thank you for savoring our blends.
 							</h2>
 
@@ -217,7 +232,7 @@ const ContactUs = () => {
 
 			{/* Mobile Section */}
 			<div className="md:hidden block w-full py-8 bg-background">
-				<section className="flex flex-col items-center px-4">
+				<section id="contact-us" className="flex flex-col items-center px-4">
 					<h2 className="text-3xl font-semibold gold-shine-text text-center mb-8">
 						Contact Us
 					</h2>
@@ -236,7 +251,7 @@ const ContactUs = () => {
 							honoring nature's purest offerings, supporting local communities,
 							and savoring the timeless wisdom of Thailand
 						</p>
-						<p className="m-6 font-bold text-lg font-bookmanoldstyle">
+						<p className="m-6 font-bold text-lg  gold-shine-text">
 							Thank you for savoring our blends.
 						</p>
 					</div>
