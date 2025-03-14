@@ -5,24 +5,13 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import ProductImageModal from "@/components/ProductImageModal";
 
-// ProductGallery Component
 const ProductGallery = ({ products, handleProductHover }) => {
 	const [selectedProduct, setSelectedProduct] = useState(null);
 
-	// Animation variants
-	const galleryVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.1,
-			},
-		},
-	};
-
+	// Animation variants สำหรับแต่ละผลิตภัณฑ์
 	const itemVariants = {
-		hidden: { opacity: 0, x: -20 },
-		visible: { opacity: 1, x: 0 },
+		hidden: { opacity: 0, y: 20 },
+		visible: { opacity: 1, y: 0 },
 	};
 
 	const handleImageClick = (product) => {
@@ -31,17 +20,14 @@ const ProductGallery = ({ products, handleProductHover }) => {
 
 	return (
 		<>
-			<motion.div
-				variants={galleryVariants}
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true }}
-				className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8"
-			>
+			<div className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
 				{products.map((product, index) => (
 					<motion.div
 						key={product.name || index}
 						variants={itemVariants}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true, margin: "0px 0px -200px 0px" }} // เริ่ม animation ก่อนเข้าสู่ viewport 200px
 						transition={{ duration: 0.5 }}
 						className="relative w-full"
 						onMouseEnter={() =>
@@ -59,14 +45,14 @@ const ProductGallery = ({ products, handleProductHover }) => {
 										src={product.image}
 										alt={product.name || `Product ${index + 1}`}
 										className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-										loading="lazy"
+										loading="lazy" // Lazy loading รูปภาพ
 									/>
 								</div>
 							</div>
 						</div>
 					</motion.div>
 				))}
-			</motion.div>
+			</div>
 
 			<AnimatePresence>
 				{selectedProduct && (

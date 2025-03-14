@@ -60,13 +60,10 @@ const ContactUs = () => {
 	};
 
 	return (
-		<>
+		<div id="contact-us">
 			{/* Desktop Section */}
 			<div className="hidden md:block">
-				<section
-					id="contact-us"
-					className="rounded-lg  mx-auto max-w-5xl pt-12"
-				>
+				<section className="rounded-lg  mx-auto max-w-5xl pt-12">
 					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
 						Contact Us
 					</h2>
@@ -112,7 +109,7 @@ const ContactUs = () => {
 
 						{/* Right Column - Contact Form */}
 						<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
-							<p className="text-center mb-6 text-sm md:text-lg">
+							<p className="text-center my-8 text-sm md:text-xl">
 								Hundreds Heritage is crafted with 100% organic ingredients,
 								honoring nature's purest offerings, supporting local
 								communities, and savoring the timeless wisdom of Thailand
@@ -140,6 +137,7 @@ const ContactUs = () => {
 										placeholder="Email"
 										value={formData.email}
 										onChange={handleChange}
+										required
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 									<Input
@@ -148,7 +146,6 @@ const ContactUs = () => {
 										placeholder="TEL"
 										value={formData.phone}
 										onChange={handleChange}
-										required
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 								</div>
@@ -232,7 +229,7 @@ const ContactUs = () => {
 
 			{/* Mobile Section */}
 			<div className="md:hidden block w-full py-8 bg-background">
-				<section id="contact-us" className="flex flex-col items-center px-4">
+				<section className="flex flex-col items-center px-4">
 					<h2 className="text-3xl font-semibold gold-shine-text text-center mb-8">
 						Contact Us
 					</h2>
@@ -299,7 +296,6 @@ const ContactUs = () => {
 							placeholder="TEL"
 							value={formData.phone}
 							onChange={handleChange}
-							required
 							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
@@ -375,7 +371,7 @@ const ContactUs = () => {
 					)}
 				</section>
 			</div>
-		</>
+		</div>
 	);
 };
 

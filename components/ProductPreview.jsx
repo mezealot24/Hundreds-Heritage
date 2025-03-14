@@ -1,18 +1,8 @@
 import React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import ProductGallery from "@/components/ProductGallery";
 
 const ProductPreviewSection = () => {
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.5, // แสดงสินค้าทีละตัว ห่างกัน 0.1 วินาที
-			},
-		},
-	};
-
 	const flavors = [
 		{
 			name: "All Products",
@@ -61,21 +51,12 @@ const ProductPreviewSection = () => {
 		},
 	];
 
-	// สร้าง ref เพื่ออ้างอิง section
-	const sectionRef = React.useRef(null);
-
-	// ใช้ useInView เพื่อตรวจจับว่า section อยู่ใน viewport หรือไม่
-	const inView = useInView(sectionRef, { once: true });
-
-	// การ render UI
 	return (
 		<section
 			id="our-collection"
-			ref={sectionRef}
 			className="relative py-16 md:py-24 radial-gradient-bg"
 		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-				{/* Heading กับแอนิเมชัน fade-in */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
@@ -88,15 +69,7 @@ const ProductPreviewSection = () => {
 					</h2>
 				</motion.div>
 
-				{/* แสดงสินค้าอื่นๆ ทีละขั้นเมื่อ section อยู่ใน viewport */}
-				<motion.div
-					variants={containerVariants}
-					initial="hidden"
-					animate={inView ? "visible" : "hidden"}
-					className="w-full"
-				>
-					<ProductGallery products={flavors} />
-				</motion.div>
+				<ProductGallery products={flavors} />
 			</div>
 		</section>
 	);

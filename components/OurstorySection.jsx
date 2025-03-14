@@ -55,13 +55,13 @@ const OurStorySection = () => {
 					</div>
 				</motion.div>
 			</div>
-			<div className="w-full">
+			<div className="w-full ">
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 1.2 }}
-					className="w-full min-h-[300px] sm:min-h-[400px] md:h-80 bg-[url('/images/ourstory/ourstory-1.PNG')] bg-cover bg-center"
+					className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[768px] bg-[url('/images/ourstory/ourstory-1.PNG')] bg-center bg-contain md:object-fill md:aspect-auto bg-no-repeat"
 				/>
 			</div>
 		</section>
