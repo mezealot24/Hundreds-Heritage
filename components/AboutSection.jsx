@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -13,20 +13,28 @@ const TextGenerateEffect = ({
 	duration = 0.5,
 }) => {
 	const [scope, animate] = useAnimate();
+	const [ref, inView] = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+	});
 	let wordsArray = words.split(" ");
+
 	useEffect(() => {
-		animate(
-			"span",
-			{
-				opacity: 1,
-				filter: filter ? "blur(0px)" : "none",
-			},
-			{
-				duration: duration ? duration : 1,
-				delay: stagger(0.2),
-			}
-		);
-	}, [scope.current]);
+		if (inView) {
+			animate(
+				"span",
+				{
+					opacity: 1,
+					filter: filter ? "blur(0px)" : "none",
+				},
+				{
+					duration: duration ? duration : 1,
+					delay: stagger(0.2),
+				}
+			);
+		}
+	}, [inView, scope.current]);
+
 	const renderWords = () => {
 		return (
 			<motion.div ref={scope}>
@@ -46,10 +54,11 @@ const TextGenerateEffect = ({
 			</motion.div>
 		);
 	};
+
 	return (
-		<div className={cn("font-bold", className)}>
+		<div ref={ref} className={cn("font-bold", className)}>
 			<div className="mt-4">
-				<div className="gold-accent text-lg md:text-5xl leading-snug tracking-wide">
+				<div className="gold-accent text-lg md:text-3xl leading-snug tracking-wide">
 					{renderWords()}
 				</div>
 			</div>
@@ -159,7 +168,7 @@ const AboutSection = () => {
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
-					className="text-3xl uppercase sm:text-4xl md:text-5xl text-center mb-16 md:mt-[3rem]"
+					className="text-2xl uppercase text-center mb-16 md:mt-[3rem]"
 				/>
 				{/* Desktop version */}
 				<div className="hidden md:flex justify-center items-center w-full h-full mb-16">

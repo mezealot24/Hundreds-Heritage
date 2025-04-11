@@ -74,8 +74,8 @@ const ContactUs = () => {
 								<Image
 									src="/images/logo_HH.svg"
 									alt="Hundreds Heritage"
-									width={150}
-									height={150}
+									width={200}
+									height={200}
 									className="w-full h-auto gold-shine-svg"
 								/>
 							</div>
@@ -109,10 +109,14 @@ const ContactUs = () => {
 
 						{/* Right Column - Contact Form */}
 						<div className="p-6 md:p-8 w-full md:w-3/5 bg-background/50">
-							<p className="text-center my-8 text-sm md:text-xl">
-								Hundreds Heritage is crafted with 100% organic ingredients,
-								honoring nature's purest offerings, supporting local
-								communities, and savoring the timeless wisdom of Thailand
+							<p className="my-8 text-md align-middle indent-8 text-justify">
+								Handpicked and handcrafted with 100% organic herbs, botanicals,
+								and tea leaves, HUNDREDS HERITAGE honors nature's purest
+								offerings while supporting local communities and prioritizing
+								sustainability. With every sip, immerse yourself in timeless
+								wisdom and savor the harmonious blend of inspiration,
+								meaningfulness, and a gentle whisper of luxury. May your day be
+								filled with wellness, and may happiness flourish within you.
 							</p>
 							<h2 className="text-center mb-6 font-bold text-lg gold-shine-text">
 								Thank you for savoring our blends.
