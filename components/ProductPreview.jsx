@@ -56,7 +56,7 @@ const ProductPreviewSection = () => {
 			id="our-collection"
 			className="relative py-16 md:py-24 radial-gradient-bg"
 		>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+			<div className="w-full relative z-10">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}

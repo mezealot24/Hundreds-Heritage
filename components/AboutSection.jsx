@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, stagger, useAnimate, useInView } from "framer-motion";
+import { motion, stagger, useAnimate } from "framer-motion";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -13,28 +13,20 @@ const TextGenerateEffect = ({
 	duration = 0.5,
 }) => {
 	const [scope, animate] = useAnimate();
-	const [ref, inView] = useInView({
-		triggerOnce: true,
-		threshold: 0.1,
-	});
 	let wordsArray = words.split(" ");
-
 	useEffect(() => {
-		if (inView) {
-			animate(
-				"span",
-				{
-					opacity: 1,
-					filter: filter ? "blur(0px)" : "none",
-				},
-				{
-					duration: duration ? duration : 1,
-					delay: stagger(0.2),
-				}
-			);
-		}
-	}, [inView, scope.current]);
-
+		animate(
+			"span",
+			{
+				opacity: 1,
+				filter: filter ? "blur(0px)" : "none",
+			},
+			{
+				duration: duration ? duration : 1,
+				delay: stagger(0.2),
+			}
+		);
+	}, [scope.current]);
 	const renderWords = () => {
 		return (
 			<motion.div ref={scope}>
@@ -54,9 +46,8 @@ const TextGenerateEffect = ({
 			</motion.div>
 		);
 	};
-
 	return (
-		<div ref={ref} className={cn("font-bold", className)}>
+		<div className={cn("font-bold", className)}>
 			<div className="mt-4">
 				<div className="gold-accent text-lg md:text-3xl leading-snug tracking-wide">
 					{renderWords()}
@@ -168,10 +159,10 @@ const AboutSection = () => {
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
-					className="text-2xl uppercase text-center mb-16 md:mt-[3rem]"
+					className="text-2xl uppercase text-center mb-[2.1rem] md:mt-[3rem]"
 				/>
 				{/* Desktop version */}
-				<div className="hidden md:flex justify-center items-center w-full h-full mb-16">
+				<div className="hidden md:flex justify-center items-center w-full h-full mb-0">
 					<div className="relative flex-col w-full max-w-5xl flex space-y-4">
 						{/* Hero Image Column - Increased height */}
 						<div className="w-full relative h-[30rem] lg:h-[40rem]">

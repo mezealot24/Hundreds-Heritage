@@ -63,14 +63,15 @@ const ContactUs = () => {
 		<div id="contact-us">
 			{/* Desktop Section */}
 			<div className="hidden md:block">
-				<section className="rounded-lg  mx-auto max-w-5xl pt-12">
-					<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
+				<section className="rounded-lg mx-auto max-w-5xl pt-12">
+					<h2 className="text-3xl font-semibold gold-shine-text md:text-5xl text-center mb-12">
 						Contact Us
 					</h2>
-					<div className="flex flex-col md:flex-row">
+					<div className="flex flex-row">
 						{/* Left Column - Logo and Info */}
-						<div className="p-6 md:p-8 flex flex-col items-center justify-center w-full md:w-2/5">
-							<div className="mb-6 md:mb-8 flex justify-center w-32 md:w-48">
+						<div className="p-6 flex flex-col items-center w-full md:w-2/5">
+							{/* Moved the logo higher by adding negative margin-top */}
+							<div className="w-32 md:w-48 mb-6">
 								<Image
 									src="/images/logo_HH.svg"
 									alt="Hundreds Heritage"
@@ -104,6 +105,9 @@ const ContactUs = () => {
 										className="mx-auto"
 									/>
 								</div>
+							</div>
+							<div className="flex justify-center space-x-4 md:space-x-6 md:mt-8">
+								<SocialIcons />
 							</div>
 						</div>
 
@@ -209,10 +213,6 @@ const ContactUs = () => {
 									)}
 								</Button>
 							</form>
-
-							<div className="flex justify-center space-x-4 md:space-x-6 md:mt-8">
-								<SocialIcons />
-							</div>
 
 							{submitStatus && (
 								<div

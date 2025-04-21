@@ -85,6 +85,7 @@ div[id]{
   position: relative;
 }
 
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -137,7 +138,9 @@ div[id]{
   .brand-name {
     @apply font-bold tracking-wider text-gold-500 uppercase ; /* ใช้  */
   }
-
+  .product-gallery-container {
+    scroll-behavior: smooth;
+  }
 
   /* Product name styling - for tea names like "TOM YUM TEA" */
   .product-name {
