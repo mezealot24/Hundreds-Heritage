@@ -137,6 +137,23 @@ const LoadingSkeleton = () => {
 	);
 };
 
+// Reusable Certificate component
+const CertificateDisplay = ({ className = "" }) => {
+	return (
+		<div className={`relative w-full h-28 md:h-32 lg:h-40 px-4 ${className}`}>
+			<Image
+				src="/images/certificates.png"
+				alt="Organic and Non-GMO Certificates"
+				fill
+				style={{ objectFit: "contain", objectPosition: "center" }}
+				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+				priority
+				className="rounded-lg"
+			/>
+		</div>
+	);
+};
+
 const AboutSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -161,9 +178,10 @@ const AboutSection = () => {
 					words="Savor the essence of Siamese Wisdom"
 					className="text-2xl uppercase text-center mb-[2.1rem] md:mt-[3rem]"
 				/>
+
 				{/* Desktop version */}
 				<div className="hidden md:flex justify-center items-center w-full h-full mb-0">
-					<div className="relative flex-col w-full max-w-5xl flex space-y-4">
+					<div className="relative flex-col w-full flex space-y-4">
 						{/* Hero Image Column - Increased height */}
 						<div className="w-full relative h-[30rem] lg:h-[40rem]">
 							<Image
@@ -172,24 +190,14 @@ const AboutSection = () => {
 								fill
 								style={{ objectFit: "cover" }}
 								sizes="100vw"
-								className="rounded-lg shadow-lg"
+								className="rounded-lg shadow-lg overflow-x-visible"
 							/>
 						</div>
-
-						{/* Certificates Column - Increased height and width */}
-						<div className="w-full relative h-[20rem] lg:h-[25rem]">
-							<Image
-								src="/images/certificates.png"
-								alt="Organic and Non-GMO Certificates"
-								fill
-								style={{ objectFit: "contain", objectPosition: "center" }}
-								sizes="100vw"
-								priority
-								className="rounded-lg"
-							/>
-						</div>
+						{/* Top Certificate for Desktop */}
+						<CertificateDisplay className="md:h-28 lg:h-32" />
 					</div>
 				</div>
+
 				{/* Mobile version*/}
 				<div className="flex flex-col md:hidden justify-center items-center mb-8 space-y-4">
 					<div className="relative w-screen h-[20rem]">
@@ -202,20 +210,11 @@ const AboutSection = () => {
 							className="rounded-lg shadow-md"
 						/>
 					</div>
-					<div className="relative w-full h-[15rem] px-4">
-						<Image
-							src="/images/certificates.png"
-							alt="Organic and Non-GMO Certificates"
-							fill
-							style={{ objectFit: "contain" }}
-							sizes="100vw"
-							priority
-							className="rounded-lg"
-						/>
-					</div>
+					{/* Top Certificate for Mobile */}
+					<CertificateDisplay />
 				</div>
 			</div>
-			<div className="relative  md:px-4 py-6 sm:py-8 rounded-lg">
+			<div className="relative md:px-4 py-6 sm:py-8 rounded-lg">
 				{/* Main Content */}
 				<section
 					id="background"
@@ -239,16 +238,16 @@ const AboutSection = () => {
 									Cultural Heritage
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
-									Hundreds Heritage is inspired by a passion to share Thailand’s
+									Hundreds Heritage is inspired by a passion to share Thailand's
 									rich cultural heritage of tea drinking—a tradition deeply
 									rooted in centuries of wisdom and natural abundance. For
 									hundreds of years, tea has been an integral part of Thai
 									culture, with ancient tea trees still thriving in the misty
 									highlands of the north. Beyond tea leaves, Thai people have
-									long embraced nature’s gifts, crafting herbal infusions from
+									long embraced nature's gifts, crafting herbal infusions from
 									local plants and aromatic ingredients. This tradition of
 									blending herbs for both flavor and wellness is reflected in
-									Thailand’s world-renowned cuisine, where dishes like Tom Yum
+									Thailand's world-renowned cuisine, where dishes like Tom Yum
 									transform food into both nourishment and a natural remedy.
 								</p>
 							</div>
@@ -261,7 +260,7 @@ const AboutSection = () => {
 									Royal Legacy
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
-									One of Thailand’s most significant milestones in tea
+									One of Thailand's most significant milestones in tea
 									cultivation dates back to the reign of His Majesty King
 									Bhumibol Adulyadej (Rama IX). Recognizing the potential of tea
 									as a sustainable livelihood, His Majesty introduced the first
@@ -338,19 +337,10 @@ const AboutSection = () => {
 						</blockquote>
 
 						<div className="w-16 h-1 bg-secondary/80 mx-auto mt-6"></div>
-
-						<div className="relative w-full h-28 px-4">
-							<Image
-								src="/images/certificates.png"
-								alt="Organic and Non-GMO Certificates"
-								fill
-								style={{ objectFit: "contain" }}
-								sizes="100vw"
-								priority
-							/>
-						</div>
 					</motion.div>
+					{/* Bottom Certificate - Consistent with top certificate */}
 				</section>
+				<CertificateDisplay className="-mt-8" />
 			</div>
 		</section>
 	);
