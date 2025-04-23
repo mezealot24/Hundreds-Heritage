@@ -49,7 +49,7 @@ const TextGenerateEffect = ({
 	return (
 		<div className={cn("font-bold", className)}>
 			<div className="mt-4">
-				<div className="gold-accent text-lg md:text-3xl leading-snug tracking-wide">
+				<div className="gold-accent text-sm md:text-3xl leading-snug tracking-wide">
 					{renderWords()}
 				</div>
 			</div>
@@ -140,7 +140,7 @@ const LoadingSkeleton = () => {
 // Reusable Certificate component
 const CertificateDisplay = ({ className = "" }) => {
 	return (
-		<div className={`relative w-full h-28 md:h-32 lg:h-40 px-4 ${className}`}>
+		<div className={`relative w-full h-16 md:h-24 lg:h-36 px-4 ${className}`}>
 			<Image
 				src="/images/certificates.png"
 				alt="Organic and Non-GMO Certificates"
@@ -148,7 +148,6 @@ const CertificateDisplay = ({ className = "" }) => {
 				style={{ objectFit: "contain", objectPosition: "center" }}
 				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
 				priority
-				className="rounded-lg"
 			/>
 		</div>
 	);
@@ -172,11 +171,11 @@ const AboutSection = () => {
 
 	return (
 		<section className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
-			<div className="relative z-10 px-2 sm:px-4 py-6 sm:py-8 rounded-lg">
+			<div className="relative z-10 px-4 md:px-0 py-6 sm:py-8">
 				{/* Title with Animation */}
 				<TextGenerateEffect
 					words="Savor the essence of Siamese Wisdom"
-					className="text-2xl uppercase text-center mb-[2.1rem] md:mt-[3rem]"
+					className="uppercase text-center mb-[2.1rem] md:mt-[3rem]"
 				/>
 
 				{/* Desktop version */}
@@ -190,7 +189,6 @@ const AboutSection = () => {
 								fill
 								style={{ objectFit: "cover" }}
 								sizes="100vw"
-								className="rounded-lg shadow-lg overflow-x-visible"
 							/>
 						</div>
 						{/* Top Certificate for Desktop */}
@@ -340,7 +338,7 @@ const AboutSection = () => {
 					</motion.div>
 					{/* Bottom Certificate - Consistent with top certificate */}
 				</section>
-				<CertificateDisplay className="-mt-8" />
+				<CertificateDisplay className="bottom-8 p-4" />
 			</div>
 		</section>
 	);

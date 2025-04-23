@@ -21,7 +21,7 @@ const Header = () => {
 		<>
 			{/* Desktop Header - Visible on medium screens and above */}
 			<header
-				className={`fixed w-full z-30 transition-all duration-300 hidden md:block ${
+				className={`fixed w-full z-30 transition-all duration-300 hidden sm:block ${
 					isScrolled
 						? "bg-background/95 backdrop-blur-sm shadow-sm -translate-y-2"
 						: "bg-background/50"
@@ -53,7 +53,7 @@ const Header = () => {
 			</header>
 
 			{/* Mobile Header - Visible below medium screens */}
-			<header className="fixed top-0 left-0 right-0 h-24 md:hidden z-30 w-full bg-background">
+			<header className="fixed top-0 left-0 right-0 h-24 lg:hidden z-30 w-full bg-background">
 				<div className="flex items-center justify-between h-24 px-4">
 					{/* Empty div for layout balance */}
 					<div className="w-10 h-10" aria-hidden="true" />

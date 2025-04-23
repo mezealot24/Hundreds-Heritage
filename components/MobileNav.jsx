@@ -34,19 +34,6 @@ const mobileNavVariants = {
 	},
 };
 
-const navItemVariants = {
-	hidden: { opacity: 0, x: 20 },
-	visible: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			type: "spring",
-			stiffness: 300,
-			damping: 20,
-		},
-	},
-};
-
 const MobileNav = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -119,17 +106,16 @@ const MobileNav = () => {
 							{/* Nav Links */}
 							<nav className="flex flex-col justify-center items-center gap-6 mb-8 flex-grow">
 								{navItems.map((item, index) => (
-									<motion.a
+									<Link
 										key={index}
 										href={item.href}
 										onClick={handleNavClick}
-										variants={navItemVariants}
 										className="text-tea-text-secondary text-xl uppercase 
                                             touch-manipulation active:scale-95 
                                             transition-transform hover:text-yellow-100"
 									>
 										{item.label}
-									</motion.a>
+									</Link>
 								))}
 							</nav>
 
