@@ -233,7 +233,7 @@ const ContactUs = () => {
 
 			{/* Mobile Section */}
 			<div className="md:hidden block w-full py-8 bg-background">
-				<section className="flex flex-col items-center px-4">
+				<section className="flex flex-col items-center px-4 sm:px-6">
 					<h2 className="text-3xl font-semibold gold-shine-text text-center mb-8">
 						Contact Us
 					</h2>
@@ -247,35 +247,41 @@ const ContactUs = () => {
 						/>
 					</div>
 					<div className="text-center mb-6">
-						<p className="mb-6 text-base">
-							Hundreds Heritage is crafted with 100% organic ingredients,
-							honoring nature's purest offerings, supporting local communities,
-							and savoring the timeless wisdom of Thailand
+						<p className="mb-6 text-base leading-relaxed px-4 text-justify">
+							Handpicked and handcrafted with 100% organic herbs, botanicals,
+							and tea leaves, HUNDREDS HERITAGE honors nature's purest offerings
+							while supporting local communities and prioritizing
+							sustainability. With every sip, immerse yourself in timeless
+							wisdom and savor the harmonious blend of inspiration,
+							meaningfulness, and a gentle whisper of luxury. May your day be
+							filled with wellness, and may happiness flourish within you.
 						</p>
-						<p className="m-6 font-bold text-lg  gold-shine-text">
+						<p className="my-6 font-bold text-lg gold-shine-text">
 							Thank you for savoring our blends.
 						</p>
 					</div>
 					<div className="text-center space-y-2 mb-6">
-						<p className="mb-4 text-base">Blended & Branded by</p>
+						<p className="mb-3 text-base font-medium">Blended & Branded by</p>
 						<p className="text-base">Greenrich Worldwide Company Limited</p>
 						<p className="text-sm">Email: hundredsheritage.th@gmail.com</p>
 						<p className="text-sm">www.hundreds-heritage.com</p>
 					</div>
 					<div className="relative my-6">
 						<div className="text-center">
-							<p className="my-2 text-tea-text-secondary">ORDER HERE</p>
+							<p className="mb-3 text-tea-text-secondary font-medium">
+								ORDER HERE
+							</p>
 							<Image
 								src="/images/line-qr.png"
 								alt="Order QR Code"
-								width={155}
-								height={155}
+								width={140}
+								height={140}
 								className="mx-auto"
 							/>
 						</div>
 					</div>
 
-					<form onSubmit={handleSubmit} className="w-full space-y-4">
+					<form onSubmit={handleSubmit} className="w-full space-y-6 px-4 mt-8">
 						<Input
 							type="text"
 							name="name"
@@ -283,7 +289,7 @@ const ContactUs = () => {
 							value={formData.name}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Input
 							type="email"
@@ -292,7 +298,7 @@ const ContactUs = () => {
 							value={formData.email}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Input
 							type="tel"
@@ -300,7 +306,7 @@ const ContactUs = () => {
 							placeholder="TEL"
 							value={formData.phone}
 							onChange={handleChange}
-							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Input
 							type="text"
@@ -309,7 +315,7 @@ const ContactUs = () => {
 							value={formData.subject}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
+							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Textarea
 							name="message"
@@ -317,11 +323,11 @@ const ContactUs = () => {
 							value={formData.message}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[120px] text-tea-text-secondary placeholder-tea-text-secondary/50"
+							className="w-full px-4 py-3 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[150px] text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Button
 							type="submit"
-							className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#D4AF37] hover:bg-[#BF9B30] text-white font-medium"
+							className="w-full py-4 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium text-lg mt-4"
 							disabled={isSubmitting}
 						>
 							{isSubmitting ? (
