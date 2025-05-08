@@ -1,157 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
-import { cn } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
-
-const TextGenerateEffect = ({
-	words,
-	className,
-	filter = true,
-	duration = 0.5,
-}) => {
-	const [scope, animate] = useAnimate();
-	let wordsArray = words.split(" ");
-	useEffect(() => {
-		animate(
-			"span",
-			{
-				opacity: 1,
-				filter: filter ? "blur(0px)" : "none",
-			},
-			{
-				duration: duration ? duration : 1,
-				delay: stagger(0.2),
-			}
-		);
-	}, [scope.current]);
-	const renderWords = () => {
-		return (
-			<motion.div ref={scope}>
-				{wordsArray.map((word, idx) => {
-					return (
-						<motion.span
-							key={word + idx}
-							className="gold-accent"
-							style={{
-								filter: filter ? "blur(10px)" : "none",
-							}}
-						>
-							{word}{" "}
-						</motion.span>
-					);
-				})}
-			</motion.div>
-		);
-	};
-	return (
-		<div className={cn("font-bold", className)}>
-			<div className="mt-4">
-				<div className="gold-accent text-sm md:text-3xl leading-snug tracking-wide">
-					{renderWords()}
-				</div>
-			</div>
-		</div>
-	);
-};
-
-const LoadingSkeleton = () => {
-	return (
-		<div className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
-			<div className="relative z-10 glass-card rounded-lg">
-				{/* Title skeleton */}
-				<div className="text-center mb-16 md:mb-24">
-					<Skeleton className="h-10 w-3/4 mx-auto" />
-				</div>
-
-				{/* Main Content skeleton */}
-				<div className="container px-4 max-w-3xl mx-auto">
-					<div className="mb-10 md:mb-16">
-						{/* H2 Title skeleton */}
-						<div className="text-center mb-8 md:mb-12">
-							<Skeleton className="h-8 w-1/3 mx-auto" />
-						</div>
-
-						{/* Paragraph 1 skeleton - Image Left, Content Right */}
-						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
-							<div className="md:w-1/3">
-								<Skeleton className="w-full h-[300px] rounded-lg" />
-							</div>
-							<div className="md:w-2/3">
-								<Skeleton className="h-6 w-1/3 mb-4" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-4/5" />
-							</div>
-						</div>
-
-						{/* Paragraph 2 skeleton - Image Right, Content Left */}
-						<div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 mb-12">
-							<div className="md:w-1/3">
-								<Skeleton className="w-full h-[300px] rounded-lg" />
-							</div>
-							<div className="md:w-2/3">
-								<Skeleton className="h-6 w-1/3 mb-4" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-4/5" />
-							</div>
-						</div>
-
-						{/* Paragraph 3 skeleton - Full Paragraph */}
-						<div className="mb-12">
-							<Skeleton className="h-4 w-full mb-2" />
-							<Skeleton className="h-4 w-full mb-2" />
-							<Skeleton className="h-4 w-full mb-2" />
-							<Skeleton className="h-4 w-4/5" />
-						</div>
-
-						{/* Paragraph 4 skeleton - Left Picture, Right Full Paragraph */}
-						<div className="flex flex-col md:flex-row gap-6 md:gap-10">
-							<div className="md:w-1/4">
-								<Skeleton className="w-32 sm:w-48 h-32 mx-auto sm:mx-0" />
-							</div>
-							<div className="md:w-3/4">
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-full mb-2" />
-								<Skeleton className="h-4 w-4/5" />
-							</div>
-						</div>
-					</div>
-
-					{/* Quote skeleton */}
-					<div className="text-center px-4">
-						<Skeleton className="h-6 w-3/4 mx-auto mb-2" />
-						<Skeleton className="h-6 w-2/3 mx-auto mb-16" />
-						{/* Certificates skeleton */}
-						<Skeleton className="h-40 lg:h-52 w-full max-w-4xl mx-auto" />
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
-
-// Reusable Certificate component
-const CertificateDisplay = ({ className = "" }) => {
-	return (
-		<div className={`relative w-full h-16 md:h-24 lg:h-36 px-4 ${className}`}>
-			<Image
-				src="/images/certificates.png"
-				alt="Organic and Non-GMO Certificates"
-				fill
-				style={{ objectFit: "contain", objectPosition: "center" }}
-				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-				priority
-			/>
-		</div>
-	);
-};
+// Import separated components
+import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
+import { AboutSkeleton } from "@/components/about/AboutSkeleton";
+import { CertificateDisplay } from "@/components/about/CertificateDisplay";
 
 const AboutSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -166,52 +21,52 @@ const AboutSection = () => {
 	}, []);
 
 	if (isLoading) {
-		return <LoadingSkeleton />;
+		return <AboutSkeleton />;
 	}
 
 	return (
 		<section className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
-			<div className="relative z-10 px-4 md:px-0 py-6 sm:py-8">
-				{/* Title with Animation */}
-				<TextGenerateEffect
-					words="Savor the essence of Siamese Wisdom"
-					className="uppercase text-center mb-[2.1rem] md:mt-[3rem]"
-				/>
+			{/* Title with Animation - Now centered by default */}
+			<TextGenerateEffect
+				words="Savor the essence of Siamese Wisdom"
+				className="uppercase text-center my-8 sm:my-10 md:my-12 lg:my-16"
+				textAlign="center"
+			/>
 
-				{/* Desktop version */}
-				<div className="hidden md:flex justify-center items-center w-full h-full mb-0">
-					<div className="relative flex-col w-full flex space-y-4">
-						{/* Hero Image Column - Increased height */}
-						<div className="w-full relative h-[30rem] lg:h-[40rem]">
-							<Image
-								src="/images/hero-image-lg.png"
-								alt="ingredients and tea leaves"
-								fill
-								style={{ objectFit: "cover" }}
-								sizes="100vw"
-							/>
-						</div>
-						{/* Top Certificate for Desktop */}
-						<CertificateDisplay className="md:h-28 lg:h-32" />
-					</div>
-				</div>
-
-				{/* Mobile version*/}
-				<div className="flex flex-col md:hidden justify-center items-center mb-8 space-y-4">
-					<div className="relative w-screen h-[20rem]">
+			{/* Desktop version */}
+			<div className="hidden md:flex justify-center items-center w-full h-full mb-0">
+				<div className="relative flex-col w-full flex space-y-16">
+					{/* Hero Image Column - Increased height */}
+					<div className="w-full relative h-[30rem] lg:h-[40rem]">
 						<Image
-							src="/images/hero-image.webp"
+							src="/images/hero-image-lg.png"
 							alt="ingredients and tea leaves"
 							fill
 							style={{ objectFit: "cover" }}
 							sizes="100vw"
-							className="rounded-lg shadow-md"
 						/>
 					</div>
-					{/* Top Certificate for Mobile */}
-					<CertificateDisplay />
+					{/* Top Certificate for Desktop */}
+					<CertificateDisplay className="md:h-20 lg:h-24" size="normal" />
 				</div>
 			</div>
+
+			{/* Mobile version*/}
+			<div className="flex flex-col md:hidden justify-center items-center mb-8 space-y-4">
+				<div className="relative w-screen h-[20rem]">
+					<Image
+						src="/images/hero-image.webp"
+						alt="ingredients and tea leaves"
+						fill
+						style={{ objectFit: "cover" }}
+						sizes="100vw"
+						className="rounded-lg shadow-md"
+					/>
+				</div>
+				{/* Top Certificate for Mobile */}
+				<CertificateDisplay size="normal" />
+			</div>
+
 			<div className="relative md:px-4 py-6 sm:py-8 rounded-lg">
 				{/* Main Content */}
 				<section
@@ -325,7 +180,7 @@ const AboutSection = () => {
 						whileInView={{ opacity: 1, scale: 1 }}
 						viewport={{ once: true }}
 						transition={{ duration: 1 }}
-						className="relative py-10 my-12 rounded-xl px-8"
+						className="relative my-8 rounded-xl px-8"
 					>
 						<blockquote className="text-xl sm:text-2xl text-center mx-auto max-w-2xl gold-shine-text italic">
 							<p>
@@ -336,9 +191,12 @@ const AboutSection = () => {
 
 						<div className="w-16 h-1 bg-secondary/80 mx-auto mt-6"></div>
 					</motion.div>
-					{/* Bottom Certificate - Consistent with top certificate */}
+
+					{/* Bottom Certificate - Using flex column for spacing */}
+					<div className="flex flex-col items-center mb-8">
+						<CertificateDisplay size="small" />
+					</div>
 				</section>
-				<CertificateDisplay className="bottom-8 p-4" />
 			</div>
 		</section>
 	);

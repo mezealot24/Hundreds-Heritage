@@ -1,58 +1,104 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ProductImageModal from "@/components/ProductImageModal";
 
 const ProductGallery = ({ products }) => {
 	const [selectedProduct, setSelectedProduct] = useState(null);
+	const [expandedView, setExpandedView] = useState(false);
 
 	const itemVariants = {
-		hidden: { opacity: 0, y: 20 },
-		visible: { opacity: 1, y: 0 },
+		hidden: { opacity: 0, y: 30 },
+		visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 	};
 
 	const handleImageClick = (product) => {
-		if (window.innerWidth < 768) {
-			setSelectedProduct(product);
-		}
+		setSelectedProduct(product);
+		setExpandedView(true);
 	};
 
 	return (
 		<>
-			{/* Grid container */}
-			<div className="grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 w-full">
+			{/* Single Column Layout with Animations */}
+			<div className="w-full max-w-4xl mx-auto space-y-16 md:space-y-24">
 				{products.map((product, index) => (
 					<motion.div
 						key={product.name || index}
 						variants={itemVariants}
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, margin: "0px 0px -200px 0px" }}
-						transition={{ duration: 0.5 }}
+						viewport={{ once: true, margin: "-100px" }}
 						className="w-full"
 					>
-						{/* Card */}
-						<div className="w-full p-0 sm:p-2">
-							<div className="aspect-[13/9] w-full h-full relative overflow-hidden border border-accent">
-								<img
-									src={product.image}
-									alt={product.name || `Product ${index + 1}`}
-									className="absolute inset-0 w-full h-full object-fill md:cursor-default"
-									loading="lazy"
-									onClick={() => handleImageClick(product)}
-								/>
-							</div>
-						</div>
+						<motion.div
+							className="w-full relative overflow-hidden cursor-pointer"
+							onClick={() => handleImageClick(product)}
+							whileHover={{ scale: 1.02 }}
+							transition={{ type: "spring", stiffness: 300, damping: 20 }}
+						>
+							<img
+								src={product.image || "/placeholder.svg"}
+								alt={product.name || `Product ${index + 1}`}
+								className="w-full h-auto object-contain"
+								loading={index > 1 ? "lazy" : "eager"}
+							/>
+						</motion.div>
 					</motion.div>
 				))}
 			</div>
 
+			{/* Expanded View Modal with Animations */}
 			<AnimatePresence>
-				{selectedProduct && (
-					<ProductImageModal
-						product={selectedProduct}
-						onClose={() => setSelectedProduct(null)}
-					/>
+				{expandedView && selectedProduct && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+						onClick={() => setExpandedView(false)}
+					>
+						<motion.div
+							initial={{ scale: 0.9, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							exit={{ scale: 0.9, opacity: 0 }}
+							transition={{ type: "spring", damping: 25, stiffness: 300 }}
+							className="relative max-w-5xl w-full max-h-[90vh] overflow-auto bg-background rounded-lg"
+							onClick={(e) => e.stopPropagation()}
+						>
+							<motion.button
+								onClick={() => setExpandedView(false)}
+								className="absolute top-4 right-4 z-10 bg-background/80 p-2 rounded-full"
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								>
+									<line x1="18" y1="6" x2="6" y2="18"></line>
+									<line x1="6" y1="6" x2="18" y2="18"></line>
+								</svg>
+							</motion.button>
+
+							<div className="p-0">
+								<motion.img
+									initial={{ opacity: 0.8 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 0.3 }}
+									src={selectedProduct.image || "/placeholder.svg"}
+									alt={selectedProduct.name}
+									className="w-full h-auto"
+								/>
+							</div>
+						</motion.div>
+					</motion.div>
 				)}
 			</AnimatePresence>
 		</>
