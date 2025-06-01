@@ -29,7 +29,7 @@ const AboutSection = () => {
 			{/* Title with Animation - Now centered by default */}
 			<TextGenerateEffect
 				words="Savor the essence of Siamese Wisdom"
-				className="uppercase text-center my-8 sm:my-10 md:my-12 lg:my-16"
+				className="uppercase gold-shine-text text-center my-8 sm:my-10 md:my-12 lg:my-16"
 				textAlign="center"
 			/>
 

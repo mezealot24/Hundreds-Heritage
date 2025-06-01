@@ -1,10 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect
 import { motion, AnimatePresence } from "framer-motion";
+import ObservedImage from "./ObservedImage"; // Import the new component
+
+const useMediaQuery = (query) => {
+	const [matches, setMatches] = useState(false);
+	useEffect(() => {
+		const media = window.matchMedia(query);
+		if (media.matches !== matches) {
+			setMatches(media.matches);
+		}
+		const listener = () => setMatches(media.matches);
+		window.addEventListener("resize", listener);
+		return () => window.removeEventListener("resize", listener);
+	}, [matches, query]);
+	return matches;
+};
 
 const ProductGallery = ({ products }) => {
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [expandedView, setExpandedView] = useState(false);
+	const isDesktop = useMediaQuery("(min-width: 1024px)"); // Tailwind's lg breakpoint
 
 	const itemVariants = {
 		hidden: { opacity: 0, y: 30 },
@@ -16,10 +32,28 @@ const ProductGallery = ({ products }) => {
 		setExpandedView(true);
 	};
 
+	// Handle case where product.image might be the old string or new object
+	const getProductImageSrc = (product) => {
+		if (typeof product.image === "string") {
+			// Fallback for old data structure if needed, or assume new structure
+			return product.image;
+		}
+		return isDesktop ? product.imageDesktop : product.imageMobile;
+	};
+
+	const getSelectedProductImageSrc = (product) => {
+		if (!product) return "/placeholder.svg";
+		if (typeof product.image === "string") {
+			return product.image;
+		}
+		// Modal usually benefits from the larger image
+		return product.imageDesktop || product.imageMobile;
+	};
+
 	return (
 		<>
 			{/* Single Column Layout with Animations */}
-			<div className="w-full max-w-4xl mx-auto space-y-16 md:space-y-24">
+			<div className="w-full max-w-4xl lg:max-w-6xl mx-auto space-y-8 md:space-y-24">
 				{products.map((product, index) => (
 					<motion.div
 						key={product.name || index}
@@ -35,11 +69,12 @@ const ProductGallery = ({ products }) => {
 							whileHover={{ scale: 1.02 }}
 							transition={{ type: "spring", stiffness: 300, damping: 20 }}
 						>
-							<img
-								src={product.image || "/placeholder.svg"}
+							<ObservedImage
+								src={getProductImageSrc(product) || "/placeholder.svg"}
 								alt={product.name || `Product ${index + 1}`}
 								className="w-full h-auto object-contain"
-								loading={index > 1 ? "lazy" : "eager"}
+								eagerLoad={index <= 1} // Eager load first 2 images
+								fetchpriority={index <= 1 ? "high" : "auto"}
 							/>
 						</motion.div>
 					</motion.div>
@@ -92,7 +127,7 @@ const ProductGallery = ({ products }) => {
 									initial={{ opacity: 0.8 }}
 									animate={{ opacity: 1 }}
 									transition={{ duration: 0.3 }}
-									src={selectedProduct.image || "/placeholder.svg"}
+									src={getSelectedProductImageSrc(selectedProduct)}
 									alt={selectedProduct.name}
 									className="w-full h-auto"
 								/>

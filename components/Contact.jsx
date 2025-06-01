@@ -81,7 +81,7 @@ const ContactUs = () => {
 								/>
 							</div>
 							<div className="text-center space-y-2">
-								<p className="font-semibold text-center mb-4 text-lg md:text-xl">
+								<p className="font-base text-center mb-4 md:text-md">
 									Blended & Branded by
 								</p>
 								<p className="text-base md:text-lg">
@@ -261,7 +261,7 @@ const ContactUs = () => {
 						</p>
 					</div>
 					<div className="text-center space-y-2 mb-6">
-						<p className="mb-3 text-base font-medium">Blended & Branded by</p>
+						<p className="mb-3 text-md font-medium">Blended & Branded by</p>
 						<p className="text-base">Greenrich Worldwide Company Limited</p>
 						<p className="text-sm">Email: hundredsheritage.th@gmail.com</p>
 						<p className="text-sm">www.hundreds-heritage.com</p>

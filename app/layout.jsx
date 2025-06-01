@@ -33,6 +33,9 @@ export const metadata = {
 	title: "Hundreds Heritage Tea - Premium Thai Tea Experience",
 	description:
 		"Discover the finest Thai tea traditions with our premium tea collections. Handcrafted and ethically sourced.",
+	icons: {
+		icon: "/favicon.ico", // Path to your favicon in the app directory
+	},
 };
 
 export default function RootLayout({ children }) {
