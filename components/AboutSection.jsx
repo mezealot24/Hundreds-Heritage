@@ -1,28 +1,43 @@
 "use client";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
+import { useEffect, useRef, useState } from "react";
 // Import separated components
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { AboutSkeleton } from "@/components/about/AboutSkeleton";
 import { CertificateDisplay } from "@/components/about/CertificateDisplay";
 
 const AboutSection = () => {
-	const [isLoading, setIsLoading] = useState(true);
+	const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
+	const certificateRef = useRef(null);
 
 	useEffect(() => {
-		// Simulate loading or fetch data
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 2000);
+		if (!certificateRef.current) return;
 
-		return () => clearTimeout(timer);
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+
+				// Hide certificate when it's 70% scrolled past
+				if (entry.intersectionRatio <= 0.3) {
+					setIsBackgroundVisible(true);
+				} else {
+					setIsBackgroundVisible(false);
+				}
+			},
+			{
+				threshold: [0, 0.1, 0.2, 0.3, 0.7, 1.0], // Multiple thresholds for smoother transitions
+				rootMargin: "0px 0px -10% 0px", // Adjust the bottom margin to control when the effect triggers
+			}
+		);
+
+		observer.observe(certificateRef.current);
+
+		return () => {
+			if (certificateRef.current) {
+				observer.unobserve(certificateRef.current);
+			}
+		};
 	}, []);
-
-	if (isLoading) {
-		return <AboutSkeleton />;
-	}
 
 	return (
 		<section className="h-max w-full md:min-h-[calc(100vh-110px-88px)]">
@@ -46,8 +61,18 @@ const AboutSection = () => {
 							sizes="100vw"
 						/>
 					</div>
-					{/* Top Certificate for Desktop */}
-					<CertificateDisplay className="md:h-20 lg:h-24" size="normal" />
+					{/* Top Certificate for Desktop - ซ่อน เมื่อเลื่อนผ่าน certificate ไปแล้ว 70% */}
+					<div
+						ref={certificateRef}
+						className={`transition-opacity duration-700 ${
+							isBackgroundVisible ? "opacity-0" : "opacity-100"
+						} mb-20 md:mb-28 lg:mb-40`}
+					>
+						<CertificateDisplay
+							className="md:h-20 lg:h-24 mb-20 md:mb-28 lg:mb-40"
+							size="normal"
+						/>
+					</div>
 				</div>
 			</div>
 
@@ -63,7 +88,7 @@ const AboutSection = () => {
 						className="rounded-lg shadow-md"
 					/>
 				</div>
-				{/* Top Certificate for Mobile */}
+
 				<CertificateDisplay size="normal" />
 			</div>
 
@@ -71,7 +96,7 @@ const AboutSection = () => {
 				{/* Main Content */}
 				<section
 					id="background"
-					className="w-full h-auto pt-6 lg:pt-8 max-w-7xl mx-auto"
+					className="w-full h-auto pt-6 lg:pt-12 max-w-7xl mx-auto"
 				>
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -90,7 +115,7 @@ const AboutSection = () => {
 								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
 									Cultural Heritage
 								</h2>
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
 									Hundreds Heritage is inspired by a passion to share Thailand's
 									rich cultural heritage of tea drinking—a tradition deeply
 									rooted in centuries of wisdom and natural abundance. For
@@ -112,7 +137,7 @@ const AboutSection = () => {
 								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
 									Royal Legacy
 								</h2>
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
 									One of Thailand's most significant milestones in tea
 									cultivation dates back to the reign of His Majesty King
 									Bhumibol Adulyadej (Rama IX). Recognizing the potential of tea
@@ -135,7 +160,7 @@ const AboutSection = () => {
 								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
 									Tradition Empowered
 								</h2>
-								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify">
+								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
 									Hundreds Heritage holds deep gratitude for this royal
 									benevolence and is devoted to uplifting highland communities
 									and organic farmers. With a profound respect for Thailand's
@@ -160,7 +185,7 @@ const AboutSection = () => {
 								/>
 							</div>
 							<div className="md:w-1/2 w-full flex items-center">
-								<p className="text-sm sm:text-base px-4 md:text-lg text-tea-text-secondary leading-relaxed text-justify">
+								<p className="text-sm sm:text-base px-4 md:text-lg text-tea-text-secondary leading-relaxed text-justify indent-8">
 									Hundreds Heritage is a tribute to well-being, authenticity,
 									and inspiration. Our emblem, the peacock, symbolizes grace,
 									wisdom, prosperity, auspiciousness, and longevity—values we

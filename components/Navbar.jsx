@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -35,16 +34,13 @@ const socialIcons = [
 
 const Motto = ({ isScrolled }) => {
 	return (
-		<motion.h2
-			className={`brand-heading transition-all duration-300 ${
+		<h2
+			className={`brand-heading transition-all duration-500 opacity-100 transform translate-y-0 ${
 				isScrolled ? "text-lg" : "text-xl"
 			}`}
-			initial={{ opacity: 0, y: -20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5 }}
 		>
 			"THE WONDER OF SIAMESE WISDOM TEA"
-		</motion.h2>
+		</h2>
 	);
 };
 
@@ -59,11 +55,10 @@ const Navbar = () => {
 					{/* Logo space placeholder */}
 					<div className="w-48 row-span-4" />
 					<Link href="/" className="absolute left-0 top-4">
-						<motion.img
+						<img
 							src="/images/logo_HH.svg"
 							alt="Hundreds Heritage"
-							className={`transition-all duration-300 h-24 w-auto gold-shine-svg`}
-							whileHover={{ scale: 1.05 }}
+							className="transition-all duration-300 h-24 w-auto gold-shine-svg hover:scale-105"
 						/>
 					</Link>
 
@@ -75,19 +70,16 @@ const Navbar = () => {
 							{/* Social Icons */}
 							<div className="flex items-center justify-end space-x-4">
 								{socialIcons.map(({ Icon, href }, index) => (
-									<motion.a
+									<a
 										key={href}
 										href={href}
 										target="_blank"
 										rel="noopener noreferrer"
-										whileHover={{ scale: 1.1 }}
-										className="text-tea-text-secondary hover:text-primary transition-colors"
-										initial={{ opacity: 0, x: 20 }}
-										animate={{ opacity: 1, x: 0 }}
-										transition={{ duration: 0.3, delay: index * 0.1 }}
+										className="text-tea-text-secondary hover:text-primary hover:scale-110 transition duration-300 opacity-0 translate-x-5 animate-fade-in-right"
+										style={{ animationDelay: `${index * 100}ms` }}
 									>
 										<Icon size={26} stroke={1.5} />
-									</motion.a>
+									</a>
 								))}
 							</div>
 						</div>
@@ -96,7 +88,7 @@ const Navbar = () => {
 					<div className="flex px-4 h-16">
 						{/* Logo */}
 						<Link href="/" className="flex-shrink-0 w-auto">
-							<motion.img
+							<img
 								src="/images/logo_HH.svg"
 								alt="Hundreds Heritage"
 								className="h-24 w-auto gold-shine-svg"
@@ -108,10 +100,10 @@ const Navbar = () => {
 							<div className="h-full flex items-center w-[800px]">
 								<div className="flex space-x-12 w-full justify-center -ml-12">
 									{navItems.map((item) => (
-										<motion.div
+										<div
 											key={item.title}
-											onHoverStart={() => setActiveItem(item.title)}
-											onHoverEnd={() => setActiveItem(null)}
+											onMouseEnter={() => setActiveItem(item.title)}
+											onMouseLeave={() => setActiveItem(null)}
 											className="relative"
 										>
 											<Link
@@ -121,15 +113,9 @@ const Navbar = () => {
 												{item.title}
 											</Link>
 											{activeItem === item.title && (
-												<motion.div
-													className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-													layoutId="navbar-underline"
-													initial={{ opacity: 0 }}
-													animate={{ opacity: 1 }}
-													exit={{ opacity: 0 }}
-												/>
+												<div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary animate-fade-in transition-opacity duration-200" />
 											)}
-										</motion.div>
+										</div>
 									))}
 								</div>
 							</div>

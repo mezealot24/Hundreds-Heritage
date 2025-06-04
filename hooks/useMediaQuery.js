@@ -2,19 +2,20 @@
 import { useState, useEffect } from "react";
 
 export const useMediaQuery = (query) => {
-	const [matches, setMatches] = useState(false);
+	// Initialize with null to avoid hydration mismatch
+	const [matches, setMatches] = useState(null);
 
 	useEffect(() => {
+		// Set initial value once mounted
 		const media = window.matchMedia(query);
-		if (media.matches !== matches) {
-			setMatches(media.matches);
-		}
+		setMatches(media.matches);
 
-		const listener = () => setMatches(media.matches);
+		// Use the more efficient 'change' event instead of resize
+		const listener = (e) => setMatches(e.matches);
 		media.addEventListener("change", listener);
 
 		return () => media.removeEventListener("change", listener);
-	}, [matches, query]);
+	}, [query]); // Only re-run if query changes
 
 	return matches;
 };
