@@ -3,331 +3,414 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Bookman Old Style";
-  src: url("/fonts/bookmanoldstyle.ttf") format("ttf");
+	font-family: "Bookman Old Style";
+	src: url("/fonts/bookmanoldstyle.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: "Bookman Old Style Italic";
-  src: url("/fonts/bookmanoldstyle_italic.ttf") format("ttf");
+	font-family: "Bookman Old Style Italic";
+	src: url("/fonts/bookmanoldstyle_italic.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: "Bookman Old Style Bold";
-  src: url("/fonts/bookmanoldstyle_bold.  ttf") format("ttf");
+	font-family: "Bookman Old Style Bold";
+	src: url("/fonts/bookmanoldstyle_bold.  ttf") format("ttf");
 }
 
 @layer base {
-  :root {
-    --background: 18, 46%, 16%;
-    --foreground: 36, 30%, 90%;
+	:root {
+		--background: 18 46% 16%;
+		--foreground: 36 30% 90%;
+		--card: 30 25% 15%;
+		--card-foreground: 36 30% 90%;
+		--popover: 30 25% 15%;
+		--popover-foreground: 36 30% 90%;
+		--primary: 18 46% 16%;
+		--primary-foreground: 36 30% 95%;
+		--secondary: 30 15% 20%;
+		--secondary-foreground: 36 30% 90%;
+		--muted: 30 15% 20%;
+		--muted-foreground: 30 15% 60%;
+		--accent: 36 20% 25%;
+		--accent-foreground: 36 30% 90%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 30 15% 25%;
+		--input: 30 15% 25%;
+		--ring: 36 30% 40%;
+		--radius: 0.5rem;
+		--sidebar-background: 0 0% 98%;
+		--sidebar-foreground: 240 5.3% 26.1%;
+		--sidebar-primary: 240 5.9% 10%;
+		--sidebar-primary-foreground: 0 0% 98%;
+		--sidebar-accent: 240 4.8% 95.9%;
+		--sidebar-accent-foreground: 240 5.9% 10%;
+		--sidebar-border: 220 13% 91%;
+		--sidebar-ring: 217.2 91.2% 59.8%;
+	}
 
-    --card: 30 25% 15%;
-    --card-foreground: 36 30% 90%;
-
-    --popover: 30 25% 15%;
-    --popover-foreground: 36 30% 90%;
-
-    /* Darker golden brown */
-    --primary: 18, 46%, 16%;
-    --primary-foreground: 36 30% 95%;
-
-    --secondary: 30 15% 20%;
-    --secondary-foreground: 36 30% 90%;
-
-    --muted: 30 15% 20%;
-    --muted-foreground: 30 15% 60%;
-
-    --accent: 36 20% 25%;
-    --accent-foreground: 36 30% 90%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 30 15% 25%;
-    --input: 30 15% 25%;
-    --ring: 36 30% 40%;
-
-    /* Dark mode chart colors - deeper, richer tones */
-    --chart-1: 36 40% 35%; /* Deeper gold */
-    --chart-2: 25 35% 25%; /* Deep mahogany */
-    --chart-3: 20 30% 20%; /* Dark coffee */
-    --chart-4: 45 50% 40%; /* Muted gold */
-    --chart-5: 15 40% 30%; /* Dark cinnamon */
-
-    /* Brand specific variables */
-    --tea-container-bg: 25 25% 20%;
-    --tea-label-bg: 45 50% 35%;
-    --tea-text-primary: 45 40% 90%;
-    --tea-text-secondary: 45 30% 70%;
-    --tea-border-accent: 45 40% 40%;
-
-
-
-
-  }
-
-  /* Section Spacing */
-section[id] {
-  scroll-margin-top: 200px; /* Adjust based on your header height */
+	.dark {
+		--background: 222.2 84% 4.9%;
+		--foreground: 210 40% 98%;
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+		--sidebar-background: 240 5.9% 10%;
+		--sidebar-foreground: 240 4.8% 95.9%;
+		--sidebar-primary: 224.3 76.3% 48%;
+		--sidebar-primary-foreground: 0 0% 100%;
+		--sidebar-accent: 240 3.7% 15.9%;
+		--sidebar-accent-foreground: 240 4.8% 95.9%;
+		--sidebar-border: 240 3.7% 15.9%;
+		--sidebar-ring: 217.2 91.2% 59.8%;
+	}
 }
 
-div[id]{
-  scroll-margin-top: 100px; /* Adjust based on your header height */
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--font-bookman-old-style);
+		min-height: 100vh;
+	}
+
+	/* Section spacing for navigation */
+	section[id] {
+		scroll-margin-top: 120px;
+	}
+
+	/* Smooth scrolling */
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@layer components {
+	/* Custom animations */
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-fade-in {
+		animation: fade-in 0.8s ease-out;
+	}
+
+	/* Gold gradient text utility */
+	.gold-gradient-text {
+		@apply bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent;
+	}
+
+	/* Glass effect */
+	.glass-effect {
+		backdrop-filter: blur(10px);
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	/* Hover effects */
+	.hover-lift {
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+	}
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to bottom, #f59e0b, #d97706);
+}
+
+/* Section Spacing */
+section[id] {
+	scroll-margin-top: 200px; /* Adjust based on your header height */
+}
+
+div[id] {
+	scroll-margin-top: 100px; /* Adjust based on your header height */
 }
 
 /* Section IDs */
 #background,
 #our-story-section,
 #product-preview,
-
 #contact-us {
-  position: relative;
+	position: relative;
 }
 
+h1 {
+	font-family: "Bookman Old Style";
+	font-size: 2.5rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	line-height: 1.2;
+}
 
-  * {
-    @apply border-border outline-ring/50;
-  }
+h2 {
+	font-family: "Bookman Old Style";
+	font-weight: 400;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	line-height: 1.2;
+}
 
-  body {
-    font-family: var(--font-bookman-old-style);    
-  }
- 
-  h1 {
-    font-family: "Bookman Old Style";
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-  }
+h3 {
+	font-family: "Bookman Old Style";
+	font-weight: 300;
+	font-size: 1.25rem;
+	letter-spacing: 0.1em;
+	line-height: 1.2;
+}
 
-  h2 {
-    font-family: "Bookman Old Style";   
-    font-weight: 400;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-  }
+h4 {
+	font-family: var(--font-bookman-old-style);
+}
 
-  h3 {
-      font-family: "Bookman Old Style";
-      font-weight: 300;
-      font-size: 1.25rem;      
-      letter-spacing: 0.1em;
-      line-height: 1.2;
-  }
+p {
+	font-family: var(--font-sukhumvit-set);
+	font-weight: 300;
 
-  h4 {
-    font-family: var(--font-bookman-old-style);
-  }
-
-  p {
-    font-family: var(--font-sukhumvit-set);
-    font-weight: 300;
-    
-    color:#f1d180;
-  }
+	color: #f1d180;
 }
 
 /* Brand styling classes */
 @layer components {
-  /* Brand name styling - for the "HUNDREDS HERITAGE" text */
-  .brand-name {
-    @apply font-bold tracking-wider text-gold-500 uppercase ; /* ใช้  */
-  }
-  .product-gallery-container {
-    scroll-behavior: smooth;
-  }
+	/* Brand name styling - for the "HUNDREDS HERITAGE" text */
+	.brand-name {
+		@apply font-bold tracking-wider text-gold-500 uppercase; /* ใช้  */
+	}
+	.product-gallery-container {
+		scroll-behavior: smooth;
+	}
+	/* Luxury gold accents */
+	.gold-accent {
+		font-family: "Bookman Old Style";
+		color: hsl(45, 80%, 60%);
+	}
 
-  /* Product name styling - for tea names like "TOM YUM TEA" */
-  .product-name {
-    @apply font-bold tracking-tight;
-  }
+	.gold-border {
+		border-color: hsl(45, 80%, 60%, 0.3);
+	}
 
-  /* Luxury gold accents */
-  .gold-accent {
-    font-family: "Bookman Old Style";
-    color: hsl(45, 80%, 60%);
-  }
+	/* Product container patterns */
+	.tea-pattern-bg {
+		background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+	}
 
-  .gold-border {
-    border-color: hsl(45, 80%, 60%, 0.3);
-  }
+	.btn-gold {
+		@apply bg-transparent text-primary-foreground border border-primary/30 hover:bg-primary/20 transition-colors duration-200;
+	}
 
-  /* Product container patterns */
-  .tea-pattern-bg {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
+	.tea-card {
+		@apply overflow-hidden border-none shadow-lg;
+		background: linear-gradient(
+			to bottom right,
+			hsl(var(--tea-container-bg)),
+			hsl(var(--tea-container-bg) / 0.9)
+		);
+	}
 
-  .btn-gold {
-    @apply bg-transparent text-primary-foreground border border-primary/30 hover:bg-primary/20 transition-colors duration-200;
-}
+	.tea-card-header {
+		@apply p-6 border-b border-primary/10;
+	}
 
-  .tea-card {
-    @apply overflow-hidden border-none shadow-lg;
-    background: linear-gradient(to bottom right, hsl(var(--tea-container-bg)), hsl(var(--tea-container-bg) / 0.9));
-  }
+	.tea-ingredients-list {
+		@apply space-y-2 mt-4;
+	}
 
-  .tea-card-header {
-    @apply p-6 border-b border-primary/10;
-  }
+	.tea-ingredients-list-item {
+		@apply flex items-center text-sm text-tea-text-secondary;
+	}
 
-  .tea-ingredients-list {
-    @apply space-y-2 mt-4;
-  }
+	.tea-ingredients-list-item::before {
+		content: "•";
+		@apply mr-2 text-tea-border-accent;
+	}
 
-  .tea-ingredients-list-item {
-    @apply flex items-center text-sm text-tea-text-secondary;
-  }
+	/* Glass card effect */
+	.glass-card {
+		background: #40241c;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
 
-  .tea-ingredients-list-item::before {
-    content: "•";
-    @apply mr-2 text-tea-border-accent;
-  }
+	/* Image zoom effect container */
+	.image-zoom-container {
+		overflow: hidden;
+		transform: scale(1.25);
+	}
 
-  /* Glass card effect */
-  .glass-card {
-    background: #40241c;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-       
-  }
+	.image-zoom-container img {
+		transition: transform 0.8s ease;
+	}
 
-  /* Animated underline effect for navigation */
-  .hover-underline {
-    position: relative;
-    display: inline-block;
-  }
-
-  .hover-underline::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: hsl(var(--primary));
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-  }
-
-  .hover-underline:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-
-  /* Image zoom effect container */
-  .image-zoom-container {
-    overflow: hidden;
-    transform: scale(1.25);
-  }
-
-  .image-zoom-container img {
-    transition: transform 0.8s ease;
-  }
-
-  .image-zoom-container:hover img {
-    transform: scale(1.05);
-  }
+	.image-zoom-container:hover img {
+		transform: scale(1.05);
+	}
 }
 
 /* Custom animations */
 @keyframes gentle-shine {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .gold-shine-text {
-  background: linear-gradient(
-    90deg,
-    hsl(36, 40%, 40%) 0%,
-    hsl(45, 90%, 60%) 25%,
-    hsl(36, 40%, 40%) 50%,
-    hsl(45, 90%, 60%) 75%,
-    hsl(36, 40%, 40%) 100%
-  );
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: gold-shimmer 6s linear infinite;
+	background: linear-gradient(
+		90deg,
+		hsl(36, 40%, 40%) 0%,
+		hsl(45, 90%, 60%) 25%,
+		hsl(36, 40%, 40%) 50%,
+		hsl(45, 90%, 60%) 75%,
+		hsl(36, 40%, 40%) 100%
+	);
+	background-size: 200% auto;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	animation: gold-shimmer 6s linear infinite;
 }
 
 .gold-shine-svg {
-  filter: brightness(0.9) contrast(1.2) saturate(1.1);
-  animation: gentle-gold-shine 4s ease-in-out infinite;
+	filter: brightness(0.9) contrast(1.2) saturate(1.1);
+	animation: gentle-gold-shine 4s ease-in-out infinite;
 }
 
 @keyframes gentle-gold-shine {
-  0% {
-    filter: brightness(0.85) contrast(1.2) saturate(1.1);
-  }
-  50% {
-    filter: brightness(0.95) contrast(1.3) saturate(1.2);
-  }
-  100% {
-    filter: brightness(0.85) contrast(1.2) saturate(1.1);
-  }
+	0% {
+		filter: brightness(0.85) contrast(1.2) saturate(1.1);
+	}
+	50% {
+		filter: brightness(0.95) contrast(1.3) saturate(1.2);
+	}
+	100% {
+		filter: brightness(0.85) contrast(1.2) saturate(1.1);
+	}
 }
 
 @keyframes gold-shimmer {
-  to { background-position: 200% center; }
+	to {
+		background-position: 200% center;
+	}
 }
 
-/* Background patterns */
-.radial-gradient-bg {
-  background-image: radial-gradient(
-    circle at center,
-    #6e4e35 0%,
-    #593e2d 20%,
-    #533827 40%,
-    #462f21 60%,    
-    #3e281b 80%,    
-    #2e2116 100%
-  );
-  position: relative;
+/* background: linear-gradient(
+      135deg,
+      #6e4e35 0%,
+      #593e2d 20%,
+      #533827 40%,
+      #462f21 60%,
+      #3e281b 80%,
+      #2e2116 100%
+    ); */
+
+/* Custom animations */
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
-.radial-gradient-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(164, 137, 87, 0.15) 0%,    /* โทนทองอ่อนๆ */
-    transparent 70%
-  );
-  pointer-events: none;
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
+@layer utilities {
+	.animate-fade-in-right {
+		animation: fadeInRight 0.3s ease-out forwards;
+	}
+	
+	.animate-fade-in {
+		animation: fadeIn 0.2s ease-out forwards;
+	}
+}
 
+/* Certificate Display Sizes */
+[data-size="normal"] {
+  height: 3rem; /* h-12 */
+}
 
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  .tea-card-header {
-    @apply p-4;
+@media (min-width: 768px) {
+  [data-size="normal"] {
+    height: 5rem; /* md:h-20 */
   }
+}
 
-  .certification-badge {
-    @apply w-10 h-10;
+@media (min-width: 1024px) {
+  [data-size="normal"] {
+    height: 7rem; /* lg:h-28 */
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+[data-size="small"] {
+  height: 1.75rem; /* h-7 */
+}
+
+@media (min-width: 768px) {
+  [data-size="small"] {
+    height: 3rem; /* md:h-12 */
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+@media (min-width: 1024px) {
+  [data-size="small"] {
+    height: 4rem; /* lg:h-16 */
   }
 }

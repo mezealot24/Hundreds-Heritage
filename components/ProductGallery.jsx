@@ -1,26 +1,11 @@
 "use client";
-import { useState, useEffect } from "react"; // Added useEffect
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ObservedImage from "./ObservedImage"; // Import the new component
-
-const useMediaQuery = (query) => {
-	const [matches, setMatches] = useState(false);
-	useEffect(() => {
-		const media = window.matchMedia(query);
-		if (media.matches !== matches) {
-			setMatches(media.matches);
-		}
-		const listener = () => setMatches(media.matches);
-		window.addEventListener("resize", listener);
-		return () => window.removeEventListener("resize", listener);
-	}, [matches, query]);
-	return matches;
-};
+import Image from "next/image";
 
 const ProductGallery = ({ products }) => {
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [expandedView, setExpandedView] = useState(false);
-	const isDesktop = useMediaQuery("(min-width: 1024px)"); // Tailwind's lg breakpoint
 
 	const itemVariants = {
 		hidden: { opacity: 0, y: 30 },
@@ -30,15 +15,6 @@ const ProductGallery = ({ products }) => {
 	const handleImageClick = (product) => {
 		setSelectedProduct(product);
 		setExpandedView(true);
-	};
-
-	// Handle case where product.image might be the old string or new object
-	const getProductImageSrc = (product) => {
-		if (typeof product.image === "string") {
-			// Fallback for old data structure if needed, or assume new structure
-			return product.image;
-		}
-		return isDesktop ? product.imageDesktop : product.imageMobile;
 	};
 
 	const getSelectedProductImageSrc = (product) => {
@@ -63,20 +39,21 @@ const ProductGallery = ({ products }) => {
 						viewport={{ once: true, margin: "-100px" }}
 						className="w-full"
 					>
+						<motion.img
+							initial={{ opacity: 0, y: 30 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.7 }}
+							src={product.imageMobile}
+							alt={product.name}
+							className="w-full h-auto rounded-lg"
+						/>
 						<motion.div
 							className="w-full relative overflow-hidden cursor-pointer"
 							onClick={() => handleImageClick(product)}
 							whileHover={{ scale: 1.02 }}
 							transition={{ type: "spring", stiffness: 300, damping: 20 }}
-						>
-							<ObservedImage
-								src={getProductImageSrc(product) || "/placeholder.svg"}
-								alt={product.name || `Product ${index + 1}`}
-								className="w-full h-auto object-contain"
-								eagerLoad={index <= 1} // Eager load first 2 images
-								fetchpriority={index <= 1 ? "high" : "auto"}
-							/>
-						</motion.div>
+						></motion.div>
 					</motion.div>
 				))}
 			</div>

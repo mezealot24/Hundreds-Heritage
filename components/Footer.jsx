@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
 	return (
-		<footer className="w-full bg-destructive-foreground/10 py-8">
+		<footer className="w-full bg-destructive-foreground/10 py-4">
 			<div className="max-w-7xl mx-auto px-4">
-				<div className="mt-16 pt-8 border-t border-tea-border-accent/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+				<div className="mt-8 pt-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
 					<p className="text-sm">
 						&copy; {new Date().getFullYear()} Hundreds Heritage Tea. All rights
 						reserved.

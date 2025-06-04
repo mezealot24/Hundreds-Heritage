@@ -81,7 +81,7 @@ const ProductPreviewSection = () => {
 	return (
 		<section
 			id="our-collection"
-			className="relative py-16 md:py-24 radial-gradient-bg"
+			className="relative py-16 md:py-40 radial-gradient-bg"
 		>
 			<div className="z-10">
 				<motion.div

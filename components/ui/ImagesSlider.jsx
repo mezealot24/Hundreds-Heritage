@@ -17,7 +17,6 @@ export const ImagesSlider = ({
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [loadedImages, setLoadedImages] = useState([]);
-	const [loadProgress, setLoadProgress] = useState(0);
 
 	const handleNext = () => {
 		setCurrentIndex((prevIndex) =>
@@ -37,15 +36,11 @@ export const ImagesSlider = ({
 		// but we'll still keep track of images for our slider
 		setLoadedImages(images);
 
-		// Set a short timeout to simulate loading and ensure UI is rendered
-		const timer = setTimeout(() => {
-			setLoading(false);
-			if (typeof onImagesLoaded === "function") {
-				onImagesLoaded(images);
-			}
-		}, 500);
-
-		return () => clearTimeout(timer);
+		// Immediately set loading to false since Next.js Image handles loading
+		setLoading(false);
+		if (typeof onImagesLoaded === "function") {
+			onImagesLoaded(images);
+		}
 	}, [images, onImagesLoaded]);
 
 	useEffect(() => {
@@ -120,7 +115,7 @@ export const ImagesSlider = ({
 			<div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
 				<div
 					className="h-full bg-emerald-500 transition-all duration-300 ease-out"
-					style={{ width: `${loadProgress}%` }}
+					style={{ width: `100%` }}
 				></div>
 			</div>
 			<div className="text-gray-300 mt-4 text-sm">กำลังโหลด...</div>
@@ -132,7 +127,7 @@ export const ImagesSlider = ({
 	return (
 		<div
 			className={cn(
-				"overflow-hidden h-full w-full relative flex items-center justify-center z-30",
+				"relative overflow-hidden w-full h-full rounded-lg",
 				className
 			)}
 		>
@@ -176,8 +171,12 @@ export const ImagesSlider = ({
 				</AnimatePresence>
 			)}
 
-			{/* ใช้ CSS module หรือ global styles แทน jsx style */}
+			{/* Use CSS custom properties for mobile aspect ratio */}
 			<style jsx global>{`
+				.image-container {
+					/* Default styles */
+				}
+
 				@media (max-width: 768px) {
 					.image-container {
 						aspect-ratio: ${mobileAspectRatio};
