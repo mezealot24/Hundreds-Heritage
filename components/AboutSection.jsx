@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 // Import separated components
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { CertificateDisplay } from "@/components/about/CertificateDisplay";
+import { CertificateDisplay } from "@/components/About/CertificateDisplay";
 
 const AboutSection = () => {
 	const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
