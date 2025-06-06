@@ -219,7 +219,7 @@ const AboutSection = () => {
 
 					{/* Bottom Certificate - Using flex column for spacing */}
 					<div className="flex flex-col items-center mb-8">
-						<CertificateDisplay size="small" />
+						<CertificateDisplay className="h-8" size="small" />
 					</div>
 				</section>
 			</div>

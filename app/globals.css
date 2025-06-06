@@ -2,23 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font Face Declarations - Optimized Loading */
 @font-face {
 	font-family: "Bookman Old Style";
-	src: url("/fonts/bookmanoldstyle.ttf") format("ttf");
+	src: url("/fonts/bookmanoldstyle.woff2") format("woff2"),
+		 url("/fonts/bookmanoldstyle.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap; /* Performance: Prevent layout shift */
 }
 
 @font-face {
-	font-family: "Bookman Old Style Italic";
-	src: url("/fonts/bookmanoldstyle_italic.ttf") format("ttf");
+	font-family: "Bookman Old Style";
+	src: url("/fonts/bookmanoldstyle_italic.woff2") format("woff2"),
+		 url("/fonts/bookmanoldstyle_italic.ttf") format("truetype");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-	font-family: "Bookman Old Style Bold";
-	src: url("/fonts/bookmanoldstyle_bold.  ttf") format("ttf");
+	font-family: "Bookman Old Style";
+	src: url("/fonts/bookmanoldstyle_bold.woff2") format("woff2"),
+		 url("/fonts/bookmanoldstyle_bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Sukhumvit Set";
+	src: url("/fonts/SukhumvitSet-Regular.woff2") format("woff2"),
+		 url("/fonts/sukhumvitset.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @layer base {
 	:root {
+		/* Font variables */
+		--font-primary: "Bookman Old Style", serif;
+		--font-secondary: "Sukhumvit Set", sans-serif;
+		
 		--background: 18 46% 16%;
 		--foreground: 36 30% 90%;
 		--card: 30 25% 15%;
@@ -87,7 +113,7 @@
 
 	body {
 		@apply bg-background text-foreground;
-		font-family: var(--font-bookman-old-style);
+		font-family: var(--font-primary);
 		min-height: 100vh;
 	}
 
@@ -178,7 +204,7 @@ div[id] {
 }
 
 h1 {
-	font-family: "Bookman Old Style";
+	font-family: var(--font-primary);
 	font-size: 2.5rem;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -187,7 +213,7 @@ h1 {
 }
 
 h2 {
-	font-family: "Bookman Old Style";
+	font-family: var(--font-primary);
 	font-weight: 400;
 	font-size: 1.5rem;
 	text-transform: uppercase;
@@ -196,7 +222,7 @@ h2 {
 }
 
 h3 {
-	font-family: "Bookman Old Style";
+	font-family: var(--font-primary);
 	font-weight: 300;
 	font-size: 1.25rem;
 	letter-spacing: 0.1em;
@@ -204,13 +230,12 @@ h3 {
 }
 
 h4 {
-	font-family: var(--font-bookman-old-style);
+	font-family: var(--font-primary);
 }
 
 p {
-	font-family: var(--font-sukhumvit-set);
+	font-family: var(--font-secondary);
 	font-weight: 300;
-
 	color: #f1d180;
 }
 
@@ -224,10 +249,10 @@ p {
 		scroll-behavior: smooth;
 	}
 	/* Luxury gold accents */
-	.gold-accent {
-		font-family: "Bookman Old Style";
-		color: hsl(45, 80%, 60%);
-	}
+.gold-accent {
+	font-family: var(--font-primary);
+	color: hsl(45, 80%, 60%);
+}
 
 	.gold-border {
 		border-color: hsl(45, 80%, 60%, 0.3);

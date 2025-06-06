@@ -14,6 +14,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				primary: ["var(--font-primary)"],
+				secondary: ["var(--font-secondary)"],
 				bookmanoldstyle: ["Bookman Old Style", "serif"],
 			},
 			colors: {
