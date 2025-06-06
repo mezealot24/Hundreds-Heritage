@@ -323,7 +323,7 @@ const ContactUs = () => {
 							value={formData.message}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-3 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[150px] text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[150px] text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
 						/>
 						<Button
 							type="submit"
