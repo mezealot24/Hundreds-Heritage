@@ -41,7 +41,7 @@ export const TextGenerateEffect = ({
 					return (
 						<motion.span
 							key={word + idx}
-							className="gold-shine-text "
+							className="premium-gold-text"
 							style={{
 								filter: filter ? "blur(10px)" : "none",
 							}}

@@ -17,7 +17,7 @@ const OurStorySection = () => {
 					transition={{ duration: 0.7 }}
 					className="text-center mb-16"
 				>
-					<h2 className="pt-12 text-3xl sm:text-4xl md:text-5xl mb-3 gold-shine-text font-semibold ">
+					<h2 className="pt-12 text-3xl sm:text-4xl md:text-5xl mb-3 premium-gold-text font-semibold ">
 						Our Story
 					</h2>
 				</motion.div>

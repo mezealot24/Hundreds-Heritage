@@ -44,7 +44,7 @@ const AboutSection = () => {
 			{/* Title with Animation - Now centered by default */}
 			<TextGenerateEffect
 				words="Savor the essence of Siamese Wisdom"
-				className="uppercase gold-shine-text text-center my-8 sm:my-10 md:my-12 lg:my-16"
+				className="uppercase text-center my-8 sm:my-10 md:my-12 lg:my-16"
 				textAlign="center"
 			/>
 
@@ -106,13 +106,13 @@ const AboutSection = () => {
 						className="mb-10 md:mb-16"
 					>
 						{/* H2 Title */}
-						<h2 className="text-3xl font-semibold gold-shine-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
+						<h2 className="text-3xl font-semibold premium-gold-text sm:text-4xl md:text-5xl text-center mb-8 md:mb-12">
 							Background
 						</h2>
 						{/* Paragraph 1- Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
 							<div className="w-full px-4">
-								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text-controlled">
 									Cultural Heritage
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
@@ -134,7 +134,7 @@ const AboutSection = () => {
 						{/* Paragraph 2 - Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
 							<div className="w-full px-4">
-								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text-controlled">
 									Royal Legacy
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
@@ -157,7 +157,7 @@ const AboutSection = () => {
 						{/* Paragraph 3 - Full Paragraph */}
 						<div className="flex flex-col md:flex-row gap-6 md:gap-10 mb-12">
 							<div className="w-full px-4">
-								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text">
+								<h2 className="text-xl sm:text-2xl mb-4 font-medium gold-shine-text-controlled">
 									Tradition Empowered
 								</h2>
 								<p className="text-sm sm:text-base md:text-lg text-tea-text-secondary text-justify indent-8">
@@ -207,7 +207,7 @@ const AboutSection = () => {
 						transition={{ duration: 1 }}
 						className="relative my-8 rounded-xl px-8"
 					>
-						<blockquote className="text-xl sm:text-2xl text-center mx-auto max-w-2xl gold-shine-text italic">
+						<blockquote className="text-xl text-center mx-auto max-w-2xl gold-shine-text-controlled font-semibold">
 							<p>
 								Every sip of Hundreds Heritage is a voyage—one that honors the
 								past, embraces the present, and enriches the future.

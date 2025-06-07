@@ -3,148 +3,194 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
-// Skeleton component for loading state
-
-// Default images configuration
+// Default images configuration with mobile optimization
 const DEFAULT_IMAGES = [
 	{
 		src: "/images/banner/banner-1.webp",
+		srcMobile: "/images/banner/mobile/banner-1-mobile.webp",
 		alt: "Organic Tea Plantation",
 		priority: true,
 	},
-	{ src: "/images/banner/banner-2.webp", alt: "Premium Tea Experience" },
-	{ src: "/images/banner/banner-3.webp", alt: "Traditional Tea Ceremony" },
-	{ src: "/images/banner/banner-4.webp", alt: "Handcrafted Tea Process" },
-	{ src: "/images/banner/banner-5.webp", alt: "Heritage Tea Collection" },
-	{ src: "/images/banner/banner-6.webp", alt: "Heritage Tea Collection" },
+	{
+		src: "/images/banner/banner-2.webp",
+		srcMobile: "/images/banner/mobile/banner-2-mobile.webp",
+		alt: "Premium Tea Experience",
+	},
+	{
+		src: "/images/banner/banner-3.webp",
+		srcMobile: "/images/banner/mobile/banner-3-mobile.webp",
+		alt: "Traditional Tea Ceremony",
+	},
+	{
+		src: "/images/banner/banner-4.webp",
+		srcMobile: "/images/banner/mobile/banner-4-mobile.webp",
+		alt: "Handcrafted Tea Process",
+	},
+	{
+		src: "/images/banner/banner-5.webp",
+		srcMobile: "/images/banner/mobile/banner-5-mobile.webp",
+		alt: "Heritage Tea Collection",
+	},
+	{
+		src: "/images/banner/banner-6.webp",
+		srcMobile: "/images/banner/mobile/banner-6-mobile.webp",
+		alt: "Heritage Tea Collection",
+	},
 ];
 
-// Animation variants (memoized to prevent re-creation)
-const fadeZoomVariants = {
-	initial: { opacity: 0, scale: 1 },
-	animate: {
-		opacity: 1,
-		scale: 1.05,
-		transition: {
-			opacity: { duration: 1.5, ease: "easeInOut" },
-			scale: { duration: 8, ease: "linear" },
-		},
-	},
-	exit: {
-		opacity: 0,
-		transition: { duration: 0.8, ease: "easeInOut" },
-	},
-};
-
-const BannerCarousel = ({
+const ZoomFadeBanner = ({
 	images = DEFAULT_IMAGES,
-	autoplayDelay = 5000,
+	autoplayDelay = 8000, // Match the zoom duration
+	maxZoom = 1.2, // Maximum zoom level
+	maxZoomMobile = 1.15, // Reduced zoom for mobile
+	zoomDuration = 8, // Zoom duration in seconds
+	zoomDurationMobile = 6, // Shorter duration for mobile
+	fadeDuration = 1, // Fade duration in seconds
 	className = "",
 	children,
 }) => {
-	const [isLoading, setIsLoading] = useState(true);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [api, setApi] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
 
-	// Memoized autoplay plugin
-	const autoplayPlugin = useMemo(
-		() =>
-			Autoplay({
-				delay: autoplayDelay,
-				stopOnInteraction: true,
-				stopOnMouseEnter: true,
-			}),
-		[autoplayDelay]
-	);
+	// Detect mobile device
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth <= 768);
+		};
+
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+
+		return () => window.removeEventListener("resize", checkMobile);
+	}, []);
+
+	// Auto-advance to next image with mobile-optimized timing
+	useEffect(() => {
+		const delay = isMobile
+			? (zoomDurationMobile + fadeDuration) * 1000
+			: autoplayDelay;
+		const timer = setInterval(() => {
+			setCurrentIndex((prevIndex) =>
+				prevIndex === images.length - 1 ? 0 : prevIndex + 1
+			);
+		}, delay);
+
+		return () => clearInterval(timer);
+	}, [
+		autoplayDelay,
+		images.length,
+		isMobile,
+		zoomDurationMobile,
+		fadeDuration,
+	]);
 
 	// Handle image load completion
 	const handleImageLoad = useCallback(() => {
 		setIsLoading(false);
 	}, []);
 
-	// Handle slide change for current index tracking
-	const handleSlideChange = useCallback(() => {
-		if (api) {
-			setCurrentIndex(api.selectedScrollSnap());
-		}
-	}, [api]);
-
-	// Setup carousel API listeners
-	useEffect(() => {
-		if (!api) return;
-
-		api.on("select", handleSlideChange);
-		handleSlideChange(); // Set initial index
-
-		return () => {
-			api.off("select", handleSlideChange);
-		};
-	}, [api, handleSlideChange]);
-
-	// Memoized carousel options
-	const carouselOptions = useMemo(
+	// Memoized animation variants with dynamic values and mobile optimization
+	const animationVariants = useMemo(
 		() => ({
-			loop: true,
-			align: "center",
-			skipSnaps: false,
-			dragFree: false,
+			initial: {
+				opacity: 0,
+				scale: 1,
+			},
+			animate: {
+				opacity: 1,
+				scale: isMobile ? maxZoomMobile : maxZoom,
+				transition: {
+					opacity: {
+						duration: fadeDuration,
+						ease: "easeInOut",
+					},
+					scale: {
+						duration: isMobile ? zoomDurationMobile : zoomDuration,
+						ease: "linear",
+					},
+				},
+			},
+			exit: {
+				opacity: 0,
+				scale: isMobile ? maxZoomMobile : maxZoom,
+				transition: {
+					opacity: {
+						duration: fadeDuration,
+						ease: "easeInOut",
+					},
+					scale: {
+						duration: 0,
+					},
+				},
+			},
 		}),
-		[]
+		[
+			maxZoom,
+			maxZoomMobile,
+			zoomDuration,
+			zoomDurationMobile,
+			fadeDuration,
+			isMobile,
+		]
 	);
 
-	// Render the carousel
+	// Preload next image for smoother transition with mobile optimization
+	useEffect(() => {
+		const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+		const img = new window.Image();
+		const nextImage = images[nextIndex];
+
+		// Preload appropriate image based on device type
+		img.src =
+			isMobile && nextImage.srcMobile ? nextImage.srcMobile : nextImage.src;
+	}, [currentIndex, images, isMobile]);
+
 	return (
 		<div className={`relative w-full ${className}`}>
-			<Carousel
-				setApi={setApi}
-				className="w-full h-[30rem] md:h-[50rem] lg:h-screen"
-				opts={carouselOptions}
-				plugins={[autoplayPlugin]}
-			>
-				<CarouselContent className="-ml-0">
-					{images.map((image, index) => (
-						<CarouselItem key={`${image.src}-${index}`} className="pl-0">
-							<div className="relative w-full h-[30rem] md:h-[50rem] lg:h-screen overflow-hidden">
-								{/* Overlay */}
-								<div className="absolute inset-0 bg-black/60 z-20" />
+			<div className="relative w-full h-[25rem] sm:h-[30rem] md:h-[45rem] lg:h-[55rem] xl:h-screen overflow-hidden">
+				{/* Background overlay with mobile-optimized opacity */}
+				<div
+					className={`absolute inset-0 z-20 ${
+						isMobile ? "bg-black/50" : "bg-black/60"
+					}`}
+				/>
 
-								{/* Animated Image Container */}
-								<AnimatePresence mode="wait">
-									{currentIndex === index && (
-										<motion.div
-											key={`motion-${index}`}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-											variants={fadeZoomVariants}
-											className="absolute inset-0 z-10"
-										>
-											<Image
-												src={image.src}
-												alt={image.alt}
-												fill
-												priority={image.priority || index === 0}
-												sizes="100vw"
-												quality={85}
-												className="object-cover object-center"
-												onLoad={index === 0 ? handleImageLoad : undefined}
-												placeholder="blur"
-												blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-											/>
-										</motion.div>
-									)}
-								</AnimatePresence>
-							</div>
-						</CarouselItem>
-					))}
-				</CarouselContent>
+				{/* Image Container with AnimatePresence for smooth transitions */}
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={`zoom-fade-${currentIndex}`}
+						initial="initial"
+						animate="animate"
+						exit="exit"
+						variants={animationVariants}
+						className="absolute inset-0 z-10"
+					>
+						<Image
+							src={
+								isMobile && images[currentIndex].srcMobile
+									? images[currentIndex].srcMobile
+									: images[currentIndex].src
+							}
+							alt={images[currentIndex].alt}
+							fill
+							priority={images[currentIndex].priority || currentIndex === 0}
+							sizes={
+								isMobile
+									? "(max-width: 768px) 100vw, 100vw"
+									: "(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+							}
+							quality={isMobile ? 75 : 85}
+							className={`object-cover ${
+								isMobile ? "object-center" : "object-center"
+							}`}
+							onLoad={currentIndex === 0 ? handleImageLoad : undefined}
+							placeholder="blur"
+							blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+						/>
+					</motion.div>
+				</AnimatePresence>
 
 				{/* Content Overlay */}
 				{children && (
@@ -157,9 +203,40 @@ const BannerCarousel = ({
 						{children}
 					</motion.div>
 				)}
-			</Carousel>
+
+				{/* Loading indicator */}
+				{isLoading && (
+					<div className="absolute inset-0 z-60 flex items-center justify-center bg-gray-900">
+						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+					</div>
+				)}
+
+				{/* Progress indicators with mobile optimization */}
+				<div
+					className={`absolute z-30 flex space-x-2 ${
+						isMobile
+							? "bottom-3 left-1/2 transform -translate-x-1/2"
+							: "bottom-4 left-1/2 transform -translate-x-1/2"
+					}`}
+				>
+					{images.map((_, index) => (
+						<button
+							key={index}
+							onClick={() => setCurrentIndex(index)}
+							className={`rounded-full transition-all duration-300 ${
+								isMobile ? "w-1.5 h-1.5" : "w-2 h-2"
+							} ${
+								index === currentIndex
+									? `bg-white ${isMobile ? "w-4" : "w-6"}`
+									: "bg-white/50 hover:bg-white/75"
+							}`}
+							aria-label={`Go to slide ${index + 1}`}
+						/>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };
 
-export default BannerCarousel;
+export default ZoomFadeBanner;

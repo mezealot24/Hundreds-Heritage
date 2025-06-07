@@ -112,7 +112,7 @@ const ProductPreview = () => {
 			<div className="max-w-7xl mx-auto">
 				{/* Title */}
 				<div className="text-center mb-16">
-					<h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-8">
+					<h2 className="text-4xl md:text-6xl font-bold premium-gold-text mb-8">
 						OUR COLLECTION
 					</h2>
 				</div>

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // Define navigation items
@@ -11,14 +11,10 @@ export const navItems = [
 
 // Define the component
 export const Navigation = ({ mobile, onClick, className }) => {
-	const [activeItem, setActiveItem] = useState(null);
 	const [activeSection, setActiveSection] = useState(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			// Get current scroll position
-			const scrollPosition = window.scrollY + window.innerHeight / 3;
-
 			// Find the section that is currently in view
 			const currentSection = navItems.find((item) => {
 				const section = document.querySelector(item.href);
@@ -77,8 +73,6 @@ export const Navigation = ({ mobile, onClick, className }) => {
 					{navItems.map((item, index) => (
 						<motion.div
 							key={item.href}
-							onHoverStart={() => setActiveItem(item.label)}
-							onHoverEnd={() => setActiveItem(null)}
 							className="relative px-4 py-1 group"
 							style={
 								mobile ? { animationDelay: `${index * 100}ms` } : undefined

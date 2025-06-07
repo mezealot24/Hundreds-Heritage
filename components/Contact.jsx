@@ -17,13 +17,113 @@ const Contact = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitStatus, setSubmitStatus] = useState(null);
 
+	// Input validation function
+	const validateForm = () => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!formData.name.trim()) {
+			setSubmitStatus("Name is required");
+			return false;
+		}
+
+		if (!emailRegex.test(formData.email)) {
+			setSubmitStatus("Please enter a valid email address");
+			return false;
+		}
+
+		if (!formData.subject.trim()) {
+			setSubmitStatus("Subject is required");
+			return false;
+		}
+
+		if (!formData.message.trim()) {
+			setSubmitStatus("Message is required");
+			return false;
+		}
+
+		return true;
+	};
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
+		// Clear any previous error messages when user starts typing
+		if (submitStatus && !submitStatus.includes("success")) {
+			setSubmitStatus(null);
+		}
 		setFormData({ ...formData, [name]: value });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// Validate form before submission
+		if (!validateForm()) {
+			return;
+		}
+
+		setIsSubmitting(true);
+		setSubmitStatus(null);
+
+		try {
+			// Option 1: Use Next.js API route (Recommended)
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			const result = await response.json();
+
+			if (result.status === "success") {
+				setSubmitStatus(
+					"Message sent successfully! We'll get back to you soon."
+				);
+				setFormData({
+					name: "",
+					email: "",
+					phone: "",
+					subject: "",
+					message: "",
+				});
+			} else {
+				setSubmitStatus(
+					result.message || "Failed to send message. Please try again."
+				);
+			}
+		} catch (error) {
+			console.error("Contact form error:", error);
+
+			// Provide more specific error messages
+			if (error instanceof TypeError && error.message.includes("fetch")) {
+				setSubmitStatus(
+					"Network error. Please check your connection and try again."
+				);
+			} else if (error instanceof Error) {
+				setSubmitStatus(`Error: ${error.message}`);
+			} else {
+				setSubmitStatus(
+					"An unexpected error occurred. Please try again later."
+				);
+			}
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+
+	// Alternative submit function for external PHP endpoint
+	const handleSubmitToExternalPHP = async (e) => {
+		e.preventDefault();
+
+		if (!validateForm()) {
+			return;
+		}
+
 		setIsSubmitting(true);
 		setSubmitStatus(null);
 
@@ -34,14 +134,31 @@ const Contact = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/x-www-form-urlencoded",
+						Accept: "application/json",
 					},
 					body: new URLSearchParams(formData).toString(),
+					// Add timeout and other options
+					signal: AbortSignal.timeout(10000), // 10 second timeout
 				}
 			);
 
+			if (!response.ok) {
+				throw new Error(
+					`Server responded with ${response.status}: ${response.statusText}`
+				);
+			}
+
+			const contentType = response.headers.get("content-type");
+			if (!contentType || !contentType.includes("application/json")) {
+				throw new Error("Server returned invalid response format");
+			}
+
 			const result = await response.json();
+
 			if (result.status === "success") {
-				setSubmitStatus("Message sent successfully!");
+				setSubmitStatus(
+					"Message sent successfully! We'll get back to you soon."
+				);
 				setFormData({
 					name: "",
 					email: "",
@@ -50,10 +167,24 @@ const Contact = () => {
 					message: "",
 				});
 			} else {
-				setSubmitStatus("Failed to send message. Please try again later.");
+				setSubmitStatus(
+					result.message || "Failed to send message. Please try again."
+				);
 			}
 		} catch (error) {
-			setSubmitStatus("Failed to send message. Please try again later.");
+			console.error("Contact form error:", error);
+
+			if (error instanceof Error) {
+				if (error.name === "AbortError") {
+					setSubmitStatus("Request timeout. Please try again.");
+				} else if (error.message.includes("CORS")) {
+					setSubmitStatus("CORS error. Please contact support.");
+				} else {
+					setSubmitStatus(`Error: ${error.message}`);
+				}
+			} else {
+				setSubmitStatus("Network error. Please try again later.");
+			}
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -70,7 +201,6 @@ const Contact = () => {
 					<div className="flex flex-row">
 						{/* Left Column - Logo and Info */}
 						<div className="p-6 flex flex-col items-center w-full md:w-2/5">
-							{/* Moved the logo higher by adding negative margin-top */}
 							<div className="w-32 md:w-48 mb-6">
 								<Image
 									src="/images/logo_HH.svg"
@@ -135,6 +265,7 @@ const Contact = () => {
 										value={formData.name}
 										onChange={handleChange}
 										required
+										maxLength={100}
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 								</div>
@@ -146,6 +277,7 @@ const Contact = () => {
 										value={formData.email}
 										onChange={handleChange}
 										required
+										maxLength={200}
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 									<Input
@@ -154,6 +286,7 @@ const Contact = () => {
 										placeholder="TEL"
 										value={formData.phone}
 										onChange={handleChange}
+										maxLength={20}
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 								</div>
@@ -165,6 +298,7 @@ const Contact = () => {
 										value={formData.subject}
 										onChange={handleChange}
 										required
+										maxLength={200}
 										className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 									/>
 								</div>
@@ -174,11 +308,12 @@ const Contact = () => {
 									value={formData.message}
 									onChange={handleChange}
 									required
+									maxLength={2000}
 									className="min-h-[120px]"
 								/>
 								<Button
 									type="submit"
-									className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium"
+									className="w-full py-3 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed"
 									disabled={isSubmitting}
 								>
 									{isSubmitting ? (
@@ -217,10 +352,10 @@ const Contact = () => {
 							{submitStatus && (
 								<div
 									id="formStatus"
-									className={`mt-4 p-3 rounded-md text-center ${
+									className={`mt-4 p-3 rounded-md text-center transition-all duration-300 ${
 										submitStatus.includes("success")
-											? "bg-green-100 text-green-800"
-											: "bg-red-100 text-red-800"
+											? "bg-green-100 text-green-800 border border-green-200"
+											: "bg-red-100 text-red-800 border border-red-200"
 									}`}
 								>
 									{submitStatus}
@@ -289,6 +424,7 @@ const Contact = () => {
 							value={formData.name}
 							onChange={handleChange}
 							required
+							maxLength={100}
 							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
@@ -298,6 +434,7 @@ const Contact = () => {
 							value={formData.email}
 							onChange={handleChange}
 							required
+							maxLength={200}
 							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
@@ -306,6 +443,7 @@ const Contact = () => {
 							placeholder="TEL"
 							value={formData.phone}
 							onChange={handleChange}
+							maxLength={20}
 							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
@@ -315,6 +453,7 @@ const Contact = () => {
 							value={formData.subject}
 							onChange={handleChange}
 							required
+							maxLength={200}
 							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Textarea
@@ -323,12 +462,13 @@ const Contact = () => {
 							value={formData.message}
 							onChange={handleChange}
 							required
+							maxLength={2000}
 							className="min-h-[120px]"
 						/>
 
 						<Button
 							type="submit"
-							className="w-full py-4 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium text-lg mt-4"
+							className="w-full py-4 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium text-lg mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
 							disabled={isSubmitting}
 						>
 							{isSubmitting ? (
@@ -371,10 +511,10 @@ const Contact = () => {
 					{submitStatus && (
 						<div
 							id="formStatus"
-							className={`mt-4 p-3 rounded-md text-center w-full ${
+							className={`mt-4 p-3 rounded-md text-center w-full transition-all duration-300 ${
 								submitStatus.includes("success")
-									? "bg-green-100 text-green-800"
-									: "bg-red-100 text-red-800"
+									? "bg-green-100 text-green-800 border border-green-200"
+									: "bg-red-100 text-red-800 border border-red-200"
 							}`}
 						>
 							{submitStatus}

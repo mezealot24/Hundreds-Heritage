@@ -151,6 +151,7 @@ p {
 	font-family: var(--font-secondary);
 	font-weight: 300;
 	color: #f1d180;
+  text-indent: 30px;
 }
 
 /* Section spacing for navigation */
@@ -163,56 +164,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
-@layer components {
-/* Custom animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out;
-}
-
-/* Animation delay utilities */
-.animation-delay-200 {
-  animation-delay: 200ms;
-}
-
-.animation-delay-300 {
-  animation-delay: 300ms;
-}
-
-.animation-delay-400 {
-  animation-delay: 400ms;
-}
-
-.animation-delay-500 {
-  animation-delay: 500ms;
-}
-
-.animation-delay-600 {
-  animation-delay: 600ms;
-}
-
-.animation-delay-700 {
-  animation-delay: 700ms;
-}
-
-.animation-delay-800 {
-  animation-delay: 800ms;
-}
-
-.animation-delay-900 {
-  animation-delay: 900ms;
-}
 
 /* Gold gradient text utility */
 .gold-gradient-text {
@@ -255,22 +206,6 @@ border-radius: 4px;
 background: linear-gradient(to bottom, #f59e0b, #d97706);
 }
 
-.gold-shine-text {
-	background: linear-gradient(
-		90deg,
-		hsl(36, 40%, 40%) 0%,
-		hsl(45, 90%, 60%) 25%,
-		hsl(36, 40%, 40%) 50%,
-		hsl(45, 90%, 60%) 75%,
-		hsl(36, 40%, 40%) 100%
-	);
-	background-size: 200% auto;
-	color: transparent;
-	-webkit-background-clip: text;
-	background-clip: text;
-	animation: gold-shimmer 6s linear infinite;
-}
-
 .gold-shine-svg {
 	filter: brightness(0.9) contrast(1.2) saturate(1.1);
 	animation: gentle-gold-shine 4s ease-in-out infinite;
@@ -304,51 +239,146 @@ background: linear-gradient(to bottom, #f59e0b, #d97706);
       #2e2116 100%
     ); */
 
-/* Custom animations */
-@keyframes fadeInRight {
-	from {
-		opacity: 0;
-		transform: translateX(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
+/* Remove conflicting animations and optimize performance */
+
+@layer components {
+  /* Optimized fade-in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  /* Controlled gold shimmer - slower and more subtle */
+  @keyframes gold-shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  /* Remove auto-applied gold shine classes that cause conflicts */
+  .gold-shine-text-controlled {
+    position: relative;
+            background: linear-gradient(
+                135deg,
+                hsl(35, 70%, 35%) 0%,
+                hsl(40, 85%, 55%) 20%,
+                hsl(45, 95%, 75%) 35%,
+                hsl(49, 88%, 44%) 50%,
+                hsl(45, 95%, 75%) 65%,
+                hsl(40, 85%, 55%) 80%,
+                hsl(35, 70%, 35%) 100%
+            );            
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gold-shimmer 8s linear infinite;
+  }
+
+    /* Enhanced Premium Gold */
+    .premium-gold-text {
+      background: linear-gradient(
+        135deg,
+        hsl(35, 80%, 30%) 0%,
+        hsl(38, 90%, 45%) 20%,
+        hsl(42, 95%, 60%) 35%,
+        hsl(45, 100%, 70%) 50%,
+        hsl(42, 95%, 60%) 65%,
+        hsl(38, 90%, 45%) 80%,
+        hsl(35, 80%, 30%) 100%
+    );
+      background-size: 200% auto;        
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: premium-shimmer 6s ease-in-out infinite;
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  @keyframes premium-shimmer {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+@keyframes luxury-flow {
+    0% {
+        background-position: 0% center;
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)) brightness(0.8);
+    }
+    100% {
+        background-position: 100% center;
+        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6)) brightness(1.1);
+    }
 }
 
-@layer utilities {
-	.animate-fade-in-right {
-		animation: fadeInRight 0.3s ease-out forwards;
-	}
-	
-	.animate-fade-in {
-		animation: fadeIn 0.2s ease-out forwards;
-	}
-}
-
-/* Certificate Display Sizes */
-[data-size="normal"] {
-  height: 3rem; /* h-12 */
-}
-
-@media (min-width: 768px) {
-  [data-size="normal"] {
-    height: 5rem; /* md:h-20 */
+  
+  /* Subtle logo enhancement without animation conflicts */
+  .logo-enhanced {
+    filter: brightness(0.85) contrast(1.2) saturate(1.1);
+    transition: filter 0.5s ease-out;
+  }
+  
+  .logo-enhanced:hover {
+    filter: brightness(0.95) contrast(1.3) saturate(1.2);
+  }
+  
+  /* Remove conflicting auto-animations */
+  .gold-shine-svg {
+    /* Remove automatic animation */
+    filter: brightness(0.85) contrast(1.2) saturate(1.1);
+    transition: filter 0.3s ease-out;
+  }
+  
+  /* Optimized fade-in-right animation */
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @layer utilities {
+    .animate-fade-in-right {
+      animation: fadeInRight 0.4s ease-out forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out forwards;
+    }
+  }
+  
+  /* Performance optimization for animations */
+  .animate-fade-in,
+  .animate-fade-in-right {
+    will-change: opacity, transform;
+  }
+  
+  .animate-fade-in.animation-complete,
+  .animate-fade-in-right.animation-complete {
+    will-change: auto;
   }
 }
-
-@media (min-width: 1024px) {
-  [data-size="normal"] {
-    height: 7rem; /* lg:h-28 */
-  }
-}}
 
