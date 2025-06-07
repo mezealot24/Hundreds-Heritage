@@ -21,11 +21,10 @@ const Header = () => {
 		<>
 			{/* Desktop Header - Visible on medium screens and above */}
 			<header
-				className={`fixed w-full z-30 transition-all duration-500 hidden sm:block animate-fade-in
-				${
+				className={`fixed w-full z-30 transition-all duration-300 hidden md:block ${
 					isScrolled
-						? "bg-background/95 backdrop-blur-sm shadow-sm -translate-y-2"
-						: "bg-background/0"
+						? "bg-background/60 backdrop-blur-sm shadow-sm"
+						: "bg-none shadow-none"
 				}`}
 			>
 				<div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
