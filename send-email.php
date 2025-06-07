@@ -66,12 +66,25 @@ if (!$phpmailerFound) {
 
 // Get form data
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Collect form data
-    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-    $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
-    $subject = isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : '';
-    $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';
+    // Get JSON input for Next.js compatibility
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    
+    // Fallback to $_POST if JSON is not available
+    if ($data === null) {
+        $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+        $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+        $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
+        $subject = isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : '';
+        $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';
+    } else {
+        // Collect form data from JSON
+        $name = isset($data['name']) ? htmlspecialchars($data['name']) : '';
+        $email = isset($data['email']) ? htmlspecialchars($data['email']) : '';
+        $phone = isset($data['phone']) ? htmlspecialchars($data['phone']) : '';
+        $subject = isset($data['subject']) ? htmlspecialchars($data['subject']) : '';
+        $message = isset($data['message']) ? htmlspecialchars($data['message']) : '';
+    }
 
     // Validate required fields only (no email validation)
     if (empty($name) || empty($email) || empty($message)) {
