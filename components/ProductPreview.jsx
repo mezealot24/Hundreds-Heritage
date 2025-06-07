@@ -122,16 +122,16 @@ const ProductPreview = () => {
 					<div className="max-w-5xl mx-auto space-y-12">
 						{/* Special Hero Image - All Products */}
 						<div
-							className={`group relative overflow-hidden rounded-3xl shadow-2xl  transition-all duration-1000 ${
-								visibleImages.has(0) ? "p-0" : "p-8"
+							className={`group relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000 ${
+								visibleImages.has(0) ? "scale-100" : "scale-95 opacity-70"
 							}`}
 							data-index="0"
 						>
-							<div className="relative aspect-[21/9] overflow-hidden">
+							<div className="relative w-[1024px] h-[724px] overflow-hidden">
 								<img
 									src={products[0].imageDesktop}
 									alt={products[0].name}
-									className="w-full h-full object-cover transition-transform duration-700 "
+									className="w-full h-full object-cover"
 								/>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500"></div>
 
@@ -144,18 +144,19 @@ const ProductPreview = () => {
 						{products.slice(1).map((product, index) => (
 							<div
 								key={index + 1}
-								className={`group relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-1000  ${
-									visibleImages.has(index + 1) ? "p-0" : "p-6"
+								className={`group relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000  ${
+									visibleImages.has(index + 1)
+										? "scale-100"
+										: "scale-95 opacity-70"
 								}`}
 								data-index={index + 1}
 							>
-								<div className="relative aspect-[18/10] overflow-hidden">
+								<div className="relative w-[1024px] h-[724px] overflow-hidden">
 									<img
 										src={product.imageDesktop}
 										alt={product.name}
 										className="w-full h-full object-cover transition-transform duration-700 "
 									/>
-									<div className=""></div>
 								</div>
 							</div>
 						))}
