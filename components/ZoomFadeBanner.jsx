@@ -39,7 +39,7 @@ const DEFAULT_IMAGES = [
 	},
 ];
 
-export default function ZoomFadeBanner({
+const ZoomFadeBanner = ({
 	images = DEFAULT_IMAGES,
 	autoplayDelay = 8000, // Match the zoom duration
 	maxZoom = 1.2, // Maximum zoom level
@@ -49,7 +49,7 @@ export default function ZoomFadeBanner({
 	fadeDuration = 1, // Fade duration in seconds
 	className = "",
 	children,
-}) {
+}) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
@@ -234,7 +234,8 @@ export default function ZoomFadeBanner({
 						/>
 					))}
 				</div>
-			</div>
-		</div>
+			</div>		</div>
 	);
-}
+};
+
+export default ZoomFadeBanner;

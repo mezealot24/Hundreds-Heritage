@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 
-export default function ProductPreview() {
+const ProductPreview = () => {
 	const [visibleImages, setVisibleImages] = useState(new Set());
 	const observerRef = useRef(null);
 
@@ -186,9 +186,10 @@ export default function ProductPreview() {
 								</h3>
 							</div>
 						</div>
-					))}
-				</div>
+					))}				</div>
 			</div>
 		</section>
 	);
-}
+};
+
+export default ProductPreview;

@@ -6,13 +6,13 @@ import {
 	SheetTrigger,
 	SheetTitle,
 	SheetClose,
-} from "@/components/ui/sheet";
+} from "./ui/sheet";
 
 import Link from "next/link";
 import { IconMenuDeep } from "@tabler/icons-react";
-import { navItems } from "@/components/Header/Navigation";
+import { navItems } from "./Header/Navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { SocialIcons } from "@/components/Header/SocialIcons";
+import { SocialIcons } from "./Header/SocialIcons";
 import { useState } from "react";
 
 const mobileNavVariants = {

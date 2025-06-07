@@ -1,4 +1,4 @@
-import PrivacyPolicy from "@/components/legal/PrivacyPolicy";
+import PrivacyPolicy from "../../components/legal/PrivacyPolicy";
 
 export const metadata = {
 	title: "Privacy Policy - Hundreds Heritage Tea",

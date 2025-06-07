@@ -3,7 +3,7 @@ import {
 	IconBrandFacebook,
 	IconBrandTiktok,
 } from "@tabler/icons-react";
-import LineIcon from "@/components/LineIcon";
+import LineIcon from "../LineIcon";
 
 const socialIcons = [
 	{

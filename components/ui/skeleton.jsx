@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 // Base Skeleton Component - Optimized
 const Skeleton = ({ className, ...props }) => {

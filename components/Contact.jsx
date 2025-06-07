@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 import Image from "next/image";
-import { SocialIcons } from "@/components/Header/SocialIcons";
+import { SocialIcons } from "./Header/SocialIcons";
 
-export default function Contact() {
+const Contact = () => {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -63,10 +63,9 @@ export default function Contact() {
 
 		setIsSubmitting(true);
 		setSubmitStatus(null);
-
 		try {
-			// Option 1: Use Next.js API route (Recommended)
-			const response = await fetch("/api/contact", {
+			// Use PHP script for form submission (compatible with static export)
+			const response = await fetch("/send-email.php", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -521,7 +520,8 @@ export default function Contact() {
 						</div>
 					)}
 				</section>
-			</div>
-		</div>
+			</div>		</div>
 	);
-}
+};
+
+export default Contact;

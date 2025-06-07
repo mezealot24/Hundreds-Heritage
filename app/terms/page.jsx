@@ -1,4 +1,4 @@
-import TermsAndConditions from "@/components/legal/TermsAndConditions";
+import TermsAndConditions from "../../components/legal/TermsAndConditions";
 
 export const metadata = {
 	title: "Terms and Conditions - Hundreds Heritage Tea",

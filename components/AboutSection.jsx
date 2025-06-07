@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 // Import separated components
-import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { CertificateDisplay } from "@/components/About/CertificateDisplay";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { CertificateDisplay } from "./About/CertificateDisplay";
 
-export default function AboutSection() {
+const AboutSection = () => {
 	const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
 	const certificateRef = useRef(null);
 
@@ -226,4 +226,6 @@ export default function AboutSection() {
 		</section>
 	);
 };
+
+export default AboutSection;
 
