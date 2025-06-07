@@ -2,43 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font Face Declarations - Optimized Loading */
-@font-face {
-	font-family: "Bookman Old Style";
-	src: url("/fonts/bookmanoldstyle.woff2") format("woff2"),
-		 url("/fonts/bookmanoldstyle.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap; /* Performance: Prevent layout shift */
-}
-
-@font-face {
-	font-family: "Bookman Old Style";
-	src: url("/fonts/bookmanoldstyle_italic.woff2") format("woff2"),
-		 url("/fonts/bookmanoldstyle_italic.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Bookman Old Style";
-	src: url("/fonts/bookmanoldstyle_bold.woff2") format("woff2"),
-		 url("/fonts/bookmanoldstyle_bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-  font-family: "Bookman Old Style Bold";
-  src: url("/fonts/bookmanoldstyle_bold.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "sukhumvit-set";
-  src: url("/fonts/sukhumvitset.ttf") format("ttf");
-}
+/* Font loading is now handled by next/font/local in layout.jsx */
 
 @layer base {
   :root {
@@ -102,9 +66,6 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-
-
-
   @layer base {
     * {
       @apply border-border;
@@ -112,13 +73,13 @@
   
     body {
       @apply bg-background text-foreground;
-      font-family: var(--font-bookman-old-style);      
+      font-family: var(--font-bookman-old-style), serif;
       min-height: 100vh;
     }
   }
  
   h1 {
-    font-family: "Bookman Old Style";
+    font-family: var(--font-bookman-old-style), serif;
     font-size: 2.5rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -126,66 +87,65 @@
     line-height: 1.2;
   }
 
-h2 {
-	font-family: var(--font-primary);
-	font-weight: 400;
-	font-size: 1.5rem;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	line-height: 1.2;
-}
+  h2 {
+    font-family: var(--font-sukhumvit-set), sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
 
-h3 {
-	font-family: var(--font-primary);
-	font-weight: 300;
-	font-size: 1.25rem;
-	letter-spacing: 0.1em;
-	line-height: 1.2;
-}
+  h3 {
+    font-family: var(--font-sukhumvit-set), sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
 
-h4 {
-	font-family: var(--font-primary);
-}
+  h4 {
+    font-family: var(--font-sukhumvit-set), sans-serif;
+  }
 
-p {
-	font-family: var(--font-secondary);
-	font-weight: 300;
-	color: #f1d180;
-  text-indent: 30px;
-}
+  p {
+    font-family: var(--font-sukhumvit-set), sans-serif;
+    font-weight: 300;
+    color: #f1d180;
+    text-indent: 30px;
+  }
 
-/* Section spacing for navigation */
-section[id] {
-  scroll-margin-top: 120px;
-}
+  /* Section spacing for navigation */
+  section[id] {
+    scroll-margin-top: 120px;
+  }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 
+  /* Gold gradient text utility */
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent;
+  }
 
-/* Gold gradient text utility */
-.gold-gradient-text {
-  @apply bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent;
-}
+  /* Glass effect */
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
 
-/* Glass effect */
-.glass-effect {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-/* Hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Scrollbar styling */
@@ -228,16 +188,6 @@ background: linear-gradient(to bottom, #f59e0b, #d97706);
 		background-position: 200% center;
 	}
 }
-
-/* background: linear-gradient(
-      135deg,
-      #6e4e35 0%,
-      #593e2d 20%,
-      #533827 40%,
-      #462f21 60%,
-      #3e281b 80%,
-      #2e2116 100%
-    ); */
 
 /* Remove conflicting animations and optimize performance */
 

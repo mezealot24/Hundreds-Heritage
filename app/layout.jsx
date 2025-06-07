@@ -5,11 +5,7 @@ import Header from "@/components/Header";
 
 const bookmanOldStyle = localFont({
 	src: [
-		{
-			path: "./fonts/bookmanoldstyle.ttf",
-			weight: "400",
-			style: "normal",
-		},
+		{ path: "./fonts/bookmanoldstyle.ttf", weight: "400", style: "normal" },
 		{
 			path: "./fonts/bookmanoldstyle_italic.ttf",
 			weight: "400",
@@ -22,21 +18,14 @@ const bookmanOldStyle = localFont({
 		},
 	],
 	variable: "--font-bookman-old-style",
+	display: "swap",
 });
 
 const sukhumvitSet = localFont({
 	src: "./fonts/SukhumvitSet-Regular.woff2",
 	variable: "--font-sukhumvit-set",
+	display: "swap",
 });
-
-export const metadata = {
-	title: "Hundreds Heritage Tea - Premium Thai Tea Experience",
-	description:
-		"Discover the finest Thai tea traditions with our premium tea collections. Handcrafted and ethically sourced.",
-	icons: {
-		icon: "/favicon.ico", // Path to your favicon in the app directory
-	},
-};
 
 export default function RootLayout({ children }) {
 	return (
@@ -45,7 +34,7 @@ export default function RootLayout({ children }) {
 			className={`${bookmanOldStyle.variable} ${sukhumvitSet.variable}`}
 		>
 			<body className="antialiased min-h-screen flex flex-col overflow-x-hidden">
-				<div className=" flex-grow w-full">
+				<div className="flex-grow w-full">
 					<Header />
 					<main className="w-full">{children}</main>
 					<Footer />
