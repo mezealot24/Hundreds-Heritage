@@ -4,7 +4,7 @@ import AboutSection from "@/components/AboutSection";
 import ProductPreview from "@/components/ProductPreview";
 import BannerCarousel from "@/components/BannerCarousel";
 import OurStorySection from "@/components/OurstorySection";
-import ContactUs from "@/components/Contact";
+import Contact from "@/components/Contact";
 
 const HomePage = () => {
 	return (
@@ -13,7 +13,7 @@ const HomePage = () => {
 			<AboutSection />
 			<OurStorySection />
 			<ProductPreview />
-			<ContactUs />
+			<Contact />
 		</>
 	);
 };

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { SocialIcons } from "@/components/Header/SocialIcons";
 
-const ContactUs = () => {
+const Contact = () => {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -174,7 +174,7 @@ const ContactUs = () => {
 									value={formData.message}
 									onChange={handleChange}
 									required
-									className="w-full px-4 py-2 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[120px] text-tea-text-secondary placeholder-tea-text-secondary/50"
+									className="min-h-[120px]"
 								/>
 								<Button
 									type="submit"
@@ -289,7 +289,7 @@ const ContactUs = () => {
 							value={formData.name}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
 							type="email"
@@ -298,7 +298,7 @@ const ContactUs = () => {
 							value={formData.email}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
 							type="tel"
@@ -306,7 +306,7 @@ const ContactUs = () => {
 							placeholder="TEL"
 							value={formData.phone}
 							onChange={handleChange}
-							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Input
 							type="text"
@@ -315,7 +315,7 @@ const ContactUs = () => {
 							value={formData.subject}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-3 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="w-full px-4 py-2 bg-accent/90 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent text-tea-text-secondary placeholder-tea-text-secondary/50"
 						/>
 						<Textarea
 							name="message"
@@ -323,8 +323,9 @@ const ContactUs = () => {
 							value={formData.message}
 							onChange={handleChange}
 							required
-							className="w-full px-4 py-3 bg-background/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-transparent min-h-[150px] text-tea-text-secondary placeholder-tea-text-secondary/50 text-base"
+							className="min-h-[120px]"
 						/>
+
 						<Button
 							type="submit"
 							className="w-full py-4 rounded-lg hover:-translate-y-1 bg-[#945028] hover:bg-[#5a3b14] text-white font-medium text-lg mt-4"
@@ -385,4 +386,4 @@ const ContactUs = () => {
 	);
 };
 
-export default ContactUs;
+export default Contact;
