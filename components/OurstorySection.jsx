@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const OurStorySection = () => {
+export default function OurStorySection() {
 	return (
 		<section
 			id="our-story"
@@ -64,6 +64,4 @@ const OurStorySection = () => {
 			/>
 		</section>
 	);
-};
-
-export default OurStorySection;
+}

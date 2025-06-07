@@ -6,7 +6,7 @@ import { Navigation } from "./Header/Navigation";
 import { SocialIcons } from "./Header/SocialIcons";
 import MobileNav from "./MobileNav";
 
-const Header = () => {
+export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
 
 	// Throttled scroll handler to prevent excessive re-renders
@@ -113,6 +113,4 @@ const Header = () => {
 			</header>
 		</>
 	);
-};
-
-export default Header;
+}

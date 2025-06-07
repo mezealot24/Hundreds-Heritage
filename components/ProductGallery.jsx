@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const ProductGallery = ({ products }) => {
+export default function ProductGallery({ products }) {
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [expandedView, setExpandedView] = useState(false);
 
@@ -115,6 +115,4 @@ const ProductGallery = ({ products }) => {
 			</AnimatePresence>
 		</>
 	);
-};
-
-export default ProductGallery;
+}

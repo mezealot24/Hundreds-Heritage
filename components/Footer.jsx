@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-const Footer = () => {
+export default function Footer() {
 	return (
 		<footer className="w-full bg-destructive-foreground/10 py-4">
 			<div className="max-w-7xl mx-auto px-4">
@@ -28,6 +28,4 @@ const Footer = () => {
 			</div>
 		</footer>
 	);
-};
-
-export default Footer;
+}

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { SocialIcons } from "@/components/Header/SocialIcons";
 
-const Contact = () => {
+export default function Contact() {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -524,6 +524,4 @@ const Contact = () => {
 			</div>
 		</div>
 	);
-};
-
-export default Contact;
+}

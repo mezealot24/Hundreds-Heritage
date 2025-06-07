@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { CertificateDisplay } from "@/components/About/CertificateDisplay";
 
-const AboutSection = () => {
+export default function AboutSection() {
 	const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
 	const certificateRef = useRef(null);
 
@@ -227,4 +227,3 @@ const AboutSection = () => {
 	);
 };
 
-export default AboutSection;
