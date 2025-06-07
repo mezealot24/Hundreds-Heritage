@@ -47,18 +47,73 @@ export default function Header() {
 			}
 		};
 	}, [handleScroll]);
-
 	return (
 		<>
-			{/* Desktop Header - Visible on medium screens and above */}
+			{/* Mobile Header - < 768px */}
 			<header
-				className={`fixed w-full z-30 transition-[background-color,box-shadow] duration-500 ease-out hidden md:block ${
+				className={`fixed top-0 left-0 right-0 h-20 md:hidden z-30 w-full transition-[background-color,box-shadow] duration-500 ease-out ${
+					isScrolled ? "bg-background/95 shadow-sm" : "bg-transparent"
+				}`}
+			>
+				<div className="flex items-center justify-between h-20 px-4">
+					<div className="w-8 h-8" aria-hidden="true" />
+
+					{/* Centered Mobile Logo */}
+					<div className="absolute left-1/2 transform -translate-x-1/2 z-40">
+						<a href="/">
+							<img
+								src="/images/logo_HH.svg"
+								alt="Hundreds Heritage"
+								className="h-16 w-auto"
+							/>
+						</a>
+					</div>
+
+					{/* Mobile Navigation */}
+					<div className="z-50">
+						<MobileNav />
+					</div>
+				</div>
+			</header>
+
+			{/* Tablet Header - 768px to 1024px */}
+			<header
+				className={`fixed w-full z-30 transition-[background-color,box-shadow] duration-500 ease-out hidden md:block lg:hidden ${
+					isScrolled
+						? "bg-background/70 shadow-sm"
+						: "bg-transparent shadow-none"
+				}`}
+			>
+				<div className="max-w-[1200px] mx-auto px-6">
+					<div className="flex items-center justify-between py-4">
+						{/* Logo Section */}
+						<div className="flex-shrink-0">
+							<Logo isScrolled={isScrolled} />
+						</div>
+
+						{/* Center Content: Motto and Navigation */}
+						<div className="flex-grow flex flex-col items-center space-y-2">
+							<Motto />
+							<Navigation />
+						</div>
+
+						{/* Social Icons Section */}
+						<div className="flex-shrink-0">
+							<SocialIcons />
+						</div>
+					</div>
+				</div>
+			</header>
+
+			{/* Desktop Header - > 1024px */}
+			<header
+				className={`fixed w-full z-30 transition-[background-color,box-shadow] duration-500 ease-out hidden lg:block ${
 					isScrolled
 						? "bg-background/60 shadow-sm"
 						: "bg-transparent shadow-none"
 				}`}
 			>
-				<div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
+				<div className="max-w-[1440px] mx-auto px-8 xl:px-12">
 					<div className="grid grid-cols-12 gap-4">
 						{/* Logo Section */}
 						<div className="col-span-2 flex items-center justify-end">
@@ -68,11 +123,11 @@ export default function Header() {
 						{/* Center Content: Motto and Navigation */}
 						<div className="col-span-8">
 							{/* Motto Row */}
-							<div className="flex justify-center items-center h-16 md:h-[70px]">
+							<div className="flex justify-center items-center h-16 lg:h-[70px]">
 								<Motto />
 							</div>
 							{/* Navigation Row */}
-							<div className="flex justify-center items-center h-16 md:h-[70px]">
+							<div className="flex justify-center items-center h-16 lg:h-[70px]">
 								<Navigation />
 							</div>
 						</div>
@@ -81,33 +136,6 @@ export default function Header() {
 						<div className="col-span-2 flex items-center justify-center h-16 mt-8">
 							<SocialIcons />
 						</div>
-					</div>
-				</div>
-			</header>
-
-			{/* Mobile Header - Visible below medium screens */}
-			<header
-				className={`fixed top-0 left-0 right-0 h-24 lg:hidden z-30 w-full transition-[background-color,box-shadow] duration-500 ease-out ${
-					isScrolled ? "bg-background/95 shadow-sm" : "bg-transparent"
-				}`}
-			>
-				<div className="flex items-center justify-between h-24 px-4">
-					<div className="w-10 h-10" aria-hidden="true" />
-
-					{/* Centered Mobile Logo */}
-					<div className="absolute left-1/2 transform -translate-x-1/2 z-40">
-						<a href="/">
-							<img
-								src="/images/logo_HH.svg"
-								alt="Hundreds Heritage"
-								className="h-24 w-auto pb-2"
-							/>
-						</a>
-					</div>
-
-					{/* Mobile Navigation */}
-					<div className="z-50">
-						<MobileNav />
 					</div>
 				</div>
 			</header>

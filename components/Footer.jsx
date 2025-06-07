@@ -3,13 +3,13 @@ import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<footer className="w-full bg-destructive-foreground/10 py-4">
-			<div className="max-w-7xl mx-auto px-4">
-				<div className="mt-8 pt-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-					<p className="text-sm">
+		<footer className="w-full bg-destructive-foreground/10">
+			<div className="max-w-7xl mx-auto py-4 px-4">
+				<div className="mt-2 pt-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+					<h4 className="text-sm">
 						&copy; {new Date().getFullYear()} Hundreds Heritage Tea. All rights
 						reserved.
-					</p>
+					</h4>
 					<div className="flex space-x-6">
 						<Link
 							href="/terms"

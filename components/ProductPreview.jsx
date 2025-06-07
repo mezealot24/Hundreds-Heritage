@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import ProductImageModal from "./ProductImageModal";
 
 const ProductPreview = () => {
 	const [visibleImages, setVisibleImages] = useState(new Set());
+	const [selectedProduct, setSelectedProduct] = useState(null);
 	const observerRef = useRef(null);
 
 	const products = [
@@ -107,6 +109,17 @@ const ProductPreview = () => {
 			}
 		};
 	}, []);
+
+	// Handle mobile image click
+	const handleMobileImageClick = (product) => {
+		setSelectedProduct(product);
+	};
+
+	// Close modal
+	const closeModal = () => {
+		setSelectedProduct(null);
+	};
+
 	return (
 		<section id="our-collection" className="relative w-full py-20 px-4">
 			<div className="max-w-7xl mx-auto">
@@ -116,7 +129,6 @@ const ProductPreview = () => {
 						OUR COLLECTION
 					</h2>
 				</div>
-
 				{/* Desktop: Special first image + Single Column Vertical Scroll */}
 				<div className="hidden md:block">
 					<div className="max-w-5xl mx-auto space-y-12">
@@ -133,7 +145,6 @@ const ProductPreview = () => {
 									alt={products[0].name}
 									className="w-full h-full object-cover"
 								/>
-								<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500"></div>
 
 								{/* Golden border overlay for special effect */}
 								<div className="absolute inset-0 border-4 border-gradient-to-r from-yellow-400/30 to-yellow-600/30 rounded-3xl opacity-0  transition-opacity duration-500"></div>
@@ -161,33 +172,55 @@ const ProductPreview = () => {
 							</div>
 						))}
 					</div>
-				</div>
-
-				{/* Mobile: Keep original grid layout */}
-				<div className="md:hidden grid grid-cols-2 gap-6">
+				</div>{" "}
+				{/* Mobile */}
+				<div className="md:hidden flex flex-col gap-6">
 					{products.map((product, index) => (
 						<div
 							key={index}
-							className="group bg-gradient-to-b from-yellow-900/20 to-yellow-800/20 rounded-xl overflow-hidden border border-yellow-400/20 hover:border-yellow-400/50 transition-all duration-500"
-							onClick={() => setCurrentIndex(index)}
+							className="w-full relative overflow-visible cursor-pointer"
+							data-index={index}
+							onClick={() => handleMobileImageClick(product)}
 						>
-							<div className="relative h-56 overflow-hidden">
+							<div className="relative h-full overflow-visible rounded-lg">
 								<img
-									src={product.mobileImage}
+									src={product.imageMobile}
 									alt={product.name}
-									className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+									className="w-full h-full object-cover rounded-lg "
 								/>
-								<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-							</div>
 
-							<div className="p-4">
-								<h3 className="text-sm font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent text-center">
-									{product.name}
-								</h3>
+								{/* Click indicator */}
+								<div className="absolute top-4 right-4 bg-black/40 rounded-full p-2">
+									<svg
+										className="w-5 h-5 text-white"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+										/>
+									</svg>
+								</div>
 							</div>
 						</div>
-					))}				</div>
+					))}
+				</div>
 			</div>
+
+			{/* Image Modal for Mobile */}
+			{selectedProduct && (
+				<ProductImageModal
+					product={{
+						...selectedProduct,
+						image: selectedProduct.imageMobile,
+					}}
+					onClose={closeModal}
+				/>
+			)}
 		</section>
 	);
 };

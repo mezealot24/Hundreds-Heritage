@@ -26,12 +26,11 @@ export const TextGenerateEffect = ({
 			}
 		);
 	}, [scope.current, animate, duration, filter]);
-
 	const renderWords = () => {
 		return (
 			<motion.div
 				ref={scope}
-				className={cn("text-center", {
+				className={cn({
 					"text-left": textAlign === "left",
 					"text-center": textAlign === "center",
 					"text-right": textAlign === "right",
@@ -41,7 +40,7 @@ export const TextGenerateEffect = ({
 					return (
 						<motion.span
 							key={word + idx}
-							className="premium-gold-text"
+							className="premium-gold-text text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold"
 							style={{
 								filter: filter ? "blur(10px)" : "none",
 							}}
@@ -55,10 +54,13 @@ export const TextGenerateEffect = ({
 	};
 
 	return (
-		<div className={cn("h1 font-bookmanoldstyle font-bold", className)}>
-			<div className="text-sm md:text-3xl leading-snug tracking-wide">
-				{renderWords()}
-			</div>
+		<div
+			className={cn(
+				"font-bookmanoldstyle font-bold leading-snug tracking-wide",
+				className
+			)}
+		>
+			{renderWords()}
 		</div>
 	);
 };

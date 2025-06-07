@@ -54,13 +54,14 @@ const OurStorySection = () => {
 						</p>
 					</div>
 				</motion.div>
+				<motion.div
+					initial={{ opacity: 0, y: 50 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 1.2 }}
+					className="w-full aspect-[16/7] bg-[url('/images/ourstory/ourstory-1.PNG')] bg-center bg-cover bg-no-repeat rounded-lg"
+				/>
 			</div>
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
-				transition={{ duration: 1.2 }}
-				className="w-full aspect-[16/7] bg-[url('/images/ourstory/ourstory-1.PNG')] bg-center bg-cover bg-no-repeat"			/>
 		</section>
 	);
 };

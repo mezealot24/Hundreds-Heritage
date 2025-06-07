@@ -190,11 +190,11 @@ const Contact = () => {
 	};
 
 	return (
-		<div id="contact-us">
+		<section id="contact-us">
 			{/* Desktop Section */}
 			<div className="hidden md:block">
-				<section className="rounded-lg mx-auto max-w-5xl pt-12">
-					<h2 className="text-3xl font-semibold gold-shine-text md:text-5xl text-center mb-12">
+				<div className="rounded-lg mx-auto max-w-5xl pt-12">
+					<h2 className="text-3xl font-semibold premium-gold-text md:text-5xl text-center mb-12">
 						Contact Us
 					</h2>
 					<div className="flex flex-row">
@@ -210,22 +210,22 @@ const Contact = () => {
 								/>
 							</div>
 							<div className="text-center space-y-2">
-								<p className="font-base text-center mb-4 md:text-md">
+								<h4 className="font-base text-center mb-4 md:text-md">
 									Blended & Branded by
-								</p>
-								<p className="text-base md:text-lg">
+								</h4>
+								<h4 className="text-base md:text-lg">
 									Greenrich Worldwide Company Limited
-								</p>
-								<p className="text-sm md:text-base">
+								</h4>
+								<h4 className="text-sm md:text-base">
 									Email: hundredsheritage.th@gmail.com
-								</p>
-								<p className="text-sm md:text-base">
+								</h4>
+								<h4 className="text-sm md:text-base">
 									www.hundreds-heritage.com
-								</p>
+								</h4>
 							</div>
 							<div className="relative my-8">
 								<div className="text-center">
-									<p className="my-2 text-tea-text-secondary">ORDER HERE</p>
+									<h4 className="my-2 text-tea-text-secondary">ORDER HERE</h4>
 									<Image
 										src="/images/line-qr.png"
 										alt="Order QR Code"
@@ -251,7 +251,7 @@ const Contact = () => {
 								meaningfulness, and a gentle whisper of luxury. May your day be
 								filled with wellness, and may happiness flourish within you.
 							</p>
-							<h2 className="text-center mb-6 font-bold text-lg gold-shine-text">
+							<h2 className="text-center mb-6 font-bold text-lg gold-shine-text-controlled">
 								Thank you for savoring our blends.
 							</h2>
 
@@ -362,13 +362,12 @@ const Contact = () => {
 							)}
 						</div>
 					</div>
-				</section>
+				</div>
 			</div>
-
 			{/* Mobile Section */}
 			<div className="md:hidden block w-full py-8 bg-background">
-				<section className="flex flex-col items-center px-4 sm:px-6">
-					<h2 className="text-3xl font-semibold gold-shine-text text-center mb-8">
+				<div className="flex flex-col items-center px-4 sm:px-6">
+					<h2 className="text-3xl font-semibold premium-gold-text text-center mb-8">
 						Contact Us
 					</h2>
 					<div className="mb-6 flex justify-center w-32">
@@ -390,21 +389,21 @@ const Contact = () => {
 							meaningfulness, and a gentle whisper of luxury. May your day be
 							filled with wellness, and may happiness flourish within you.
 						</p>
-						<p className="my-6 font-bold text-lg gold-shine-text">
+						<h4 className="my-6 font-bold text-lg gold-shine-text-controlled">
 							Thank you for savoring our blends.
-						</p>
+						</h4>
 					</div>
 					<div className="text-center space-y-2 mb-6">
-						<p className="mb-3 text-md font-medium">Blended & Branded by</p>
-						<p className="text-base">Greenrich Worldwide Company Limited</p>
-						<p className="text-sm">Email: hundredsheritage.th@gmail.com</p>
-						<p className="text-sm">www.hundreds-heritage.com</p>
+						<h4 className="mb-3 text-md font-medium">Blended & Branded by</h4>
+						<h4 className="text-base">Greenrich Worldwide Company Limited</h4>
+						<h4 className="text-sm">Email: hundredsheritage.th@gmail.com</h4>
+						<h4 className="text-sm">www.hundreds-heritage.com</h4>
 					</div>
 					<div className="relative my-6">
 						<div className="text-center">
-							<p className="mb-3 text-tea-text-secondary font-medium">
+							<h4 className="mb-3 text-tea-text-secondary font-medium">
 								ORDER HERE
-							</p>
+							</h4>
 							<Image
 								src="/images/line-qr.png"
 								alt="Order QR Code"
@@ -519,8 +518,9 @@ const Contact = () => {
 							{submitStatus}
 						</div>
 					)}
-				</section>
-			</div>		</div>
+				</div>
+			</div>
+		</section>
 	);
 };
 
